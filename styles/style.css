@@ -33,7 +33,7 @@ div.divMenu ul li a::after {
     width: 0;
     height: 2px;
     background: #000;
-    transition: width .35s;
+    transition: width .27s;
 }
 
 div.divMenu ul li a:hover::after {
