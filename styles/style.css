@@ -47,12 +47,12 @@ div.divMenu + div{
   margin-right: 2%;
 }
 
-div.divMenu + div > img{
+div.divMenu + div a > img{
   width: 40px;
   height: 40px;
   margin-top: 1rem;
   opacity: 0.5;
 }
-div.divMenu + div > img:hover{
+div.divMenu + div a > img:hover{
   opacity: 1;
 }
