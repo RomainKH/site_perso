@@ -1,31 +1,33 @@
+nav{
+  justify-content: space-between;
+}
 
-
-div.divMenu > ul{
+div.divMenu ul{
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   list-style: none;
   margin: 1rem auto;
   position: fixed;
-  padding-left: 0;
 }
-div.divMenu > ul li:hover{
+div.divMenu ul li:hover{
   text-decoration: none;
 }
 
-div.divMenu > ul li{
-  margin-left: 2rem;
+div.divMenu ul li{
+  padding-left: 1.6rem;
   font-size: 1.6rem;
 }
 
-div.divMenu > ul li a{
+div.divMenu ul li a{
   color: rgba(0,0,0,.5);
 }
-div.divMenu > ul li a:hover{
+div.divMenu ul li a:hover{
   color: black;
   text-decoration: none;
 }
 
-div.divMenu > ul li a::after {
+div.divMenu ul li a::after {
     content: '';
     display: block;
     width: 0;
@@ -34,21 +36,23 @@ div.divMenu > ul li a::after {
     transition: width .27s;
 }
 
-div.divMenu > ul li a:hover::after {
+div.divMenu ul li a:hover::after {
     width: 100%;
 }
 
-div.divMenu > a img{
+
+div.divMenu + div{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2%;
+}
+
+div.divMenu + div a > img{
   width: 40px;
   height: 40px;
+  margin-top: 1rem;
   opacity: 0.5;
-  margin: 1rem auto;
 }
-div.divMenu > div a img:hover{
+div.divMenu + div a > img:hover{
   opacity: 1;
-}
-
-
-@media screen and (min-width:640px) and (max-width: 960px){
-
 }
