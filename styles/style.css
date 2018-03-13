@@ -1,10 +1,11 @@
+/*****MENU*******/
 div.divMenu ul{
   display: flex;
   flex-direction: row;
   list-style: none;
   margin-top: 1rem;
   margin-bottom: 0px;
-  position: fixed;
+  position: absolute;
   padding:0px;
 }
 div.divMenu ul li:hover{
@@ -54,6 +55,15 @@ div.divMenu + div a > img:hover{
   opacity: 1;
 }
 
+/****ARTICLE*****/
+main{
+  width: 1060px;
+  margin: 0 auto;
+}
+article img{
+  margin-top: 1%;
+  width: 100%;
+}
 @media screen and (min-width: 260px) and (max-width: 640px){
   div.divMenu ul li{
     margin-left: 2rem;
