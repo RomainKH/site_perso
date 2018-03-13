@@ -1,22 +1,19 @@
-nav{
-  justify-content: space-between;
-}
-
 div.divMenu ul{
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
   list-style: none;
-  margin: 1rem auto;
+  margin-top: 1rem;
+  margin-bottom: 0px;
   position: fixed;
+  padding:0px;
 }
 div.divMenu ul li:hover{
   text-decoration: none;
 }
 
 div.divMenu ul li{
-  padding-left: 1.6rem;
-  font-size: 1.6rem;
+  margin-left: 5.5rem;
+  font-size: 1.7rem;
 }
 
 div.divMenu ul li a{
@@ -55,4 +52,15 @@ div.divMenu + div a > img{
 }
 div.divMenu + div a > img:hover{
   opacity: 1;
+}
+
+@media screen and (min-width: 260px) and (max-width: 640px){
+  div.divMenu ul li{
+    margin-left: 2rem;
+   font-size: 1rem;
+  }
+  div.divMenu + div a > img{
+    width: 24px;
+    height: 24px;
+  }
 }
