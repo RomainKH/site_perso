@@ -1,76 +1,66 @@
-/*****MENU*******/
-div.divMenu ul{
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  margin-top: 1rem;
-  margin-bottom: 0px;
-  position: absolute;
-  padding:0px;
-}
-div.divMenu ul li:hover{
-  text-decoration: none;
-}
-
-div.divMenu ul li{
-  margin-left: 5.5rem;
-  font-size: 1.7rem;
-}
-
-div.divMenu ul li a{
-  color: rgba(0,0,0,.5);
-}
-div.divMenu ul li a:hover{
-  color: black;
-  text-decoration: none;
-}
-
-div.divMenu ul li a::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background: #000;
-    transition: width .27s;
-}
-
-div.divMenu ul li a:hover::after {
-    width: 100%;
-}
-
-
-div.divMenu + div{
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 2%;
-}
-
-div.divMenu + div a > img{
-  width: 40px;
-  height: 40px;
-  margin-top: 1rem;
-  opacity: 0.5;
-}
-div.divMenu + div a > img:hover{
-  opacity: 1;
-}
-
-/****ARTICLE*****/
-main{
-  width: 1060px;
+body{
   margin: 0 auto;
+  overflow: hidden;
+  cursor: none;
 }
-article img{
-  margin-top: 1%;
-  width: 100%;
+
+main{ height: 0px;}
+
+main h1{
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  font-family: 'Mukta', sans-serif;
+  color: white;
+  user-select: none;
 }
-@media screen and (min-width: 260px) and (max-width: 640px){
-  div.divMenu ul li{
-    margin-left: 2rem;
-   font-size: 1rem;
-  }
-  div.divMenu + div a > img{
-    width: 24px;
-    height: 24px;
-  }
+
+main .contact{
+  display: flex;
+  width: 30%;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  user-select: none;
+}
+
+main .textContainer{
+  margin: 0 auto;
+  height: 40px;
+  width: 546px;
+  position: relative;
+  top: 22vh;
+}
+
+main p{
+  position: absolute;
+  color: white;
+  transform: translate(0%, 0%);
+  font-family: 'Mukta', sans-serif;
+  animation: textmoving 5s linear infinite;
+  user-select: none;
+}
+
+@keyframes textmoving{
+  0%     { transform: translate(0%, 0%);  }
+  50%    { transform: translate(116%, 0%); }
+  100%   { transform: translate(0%, 0%); }
+}
+
+.contact img{
+  width: 64px;
+  height: 64px;
+}
+
+a{
+  font-family: 'Mukta', sans-serif;
+  cursor: none;
 }
