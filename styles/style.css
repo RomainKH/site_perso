@@ -16,7 +16,9 @@ main h1{
   font-size: 5rem;
   font-family: 'Mukta', sans-serif;
   color: white;
+  TEXT-ALIGN: center;
   user-select: none;
+  line-height: 100%;
 }
 
 main .contact{
