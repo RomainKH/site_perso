@@ -1,0 +1,75 @@
+@font-face
+    font-family 'Mukta-M'
+    src url('../fonts/Mukta-Medium.ttf')
+
+@font-face
+    font-family 'Mukta-R'
+    src url('../fonts/Mukta-Regular.ttf')
+
+body
+    margin 0 auto
+    overflow hidden
+
+main
+    z-index 2
+
+main h1
+    margin 0
+    padding 0
+    position absolute
+    left 50%
+    top 30%
+    transform translate(-50%, -50%)
+    font-size 5rem
+    font-family 'Mukta-M', sans-serif
+    color white
+    text-align center
+    user-select none
+    line-height 100%
+    text-transform uppercase
+
+.continueTo
+    position absolute
+    left 50%
+    top 50%
+    transform translate(-50%, -50%)
+
+.continueTo button
+    font-family 'Mukta-M', sans-serif
+    color white
+    border none
+    background none
+    outline none
+    text-transform uppercase
+    cursor pointer
+
+.arrow
+    position relative
+    left 48%
+
+.arrow .topA
+    position absolute
+    background white
+    height 30   px
+    width 2px
+    border-radius 50px
+
+.arrow .leftA
+    position absolute
+    background #fff
+    top 29px
+    height 13px
+    width 2px
+    transform rotate(140deg)
+    transform-origin top
+    border-radius 50px
+
+.arrow .rightA
+    position absolute
+    top 29px
+    background #fff
+    height 13px
+    width 2px
+    transform rotate(-140deg)
+    transform-origin top
+    border-radius 50px
