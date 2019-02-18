@@ -33,6 +33,9 @@ main h1
     left 50%
     top 50%
     transform translate(-50%, -50%)
+    height 6%
+    cursor pointer
+
 
 .continueTo button
     font-family 'Mukta-M', sans-serif
@@ -43,14 +46,39 @@ main h1
     text-transform uppercase
     cursor pointer
 
+.buttonIsGone
+    animation fadeButton 2s ease-in 1 forwards
+
+@keyframes fadeButton 
+  0% 
+    opacity 1
+
+  50% 
+    opacity 0.5
+
+  100% 
+    opacity 0
+    transform translate(-50%, 100%)
+
 .arrow
     position relative
     left 48%
+    animation light 1.5s ease-in infinite normal
+
+@keyframes light 
+  0% 
+    opacity 0
+
+  50% 
+    opacity 1
+
+  100% 
+    opacity 0
 
 .arrow .topA
     position absolute
     background white
-    height 30   px
+    height 30px
     width 2px
     border-radius 50px
 
@@ -73,3 +101,4 @@ main h1
     transform rotate(-140deg)
     transform-origin top
     border-radius 50px
+

@@ -1,10 +1,19 @@
 import * as THREE from 'three'
 
-// random funct
-const randomNb = (min, max) =>
+// // random funct
+// const randomNb = (min, max) =>
+// {
+//     return Math.random() * (max - min + 1) + min
+// }
+
+// BUTTON CLICK
+let isMoving = false
+const button = document.querySelector('.continueTo')
+button.addEventListener('click', (_event) =>
 {
-    return Math.random() * (max - min + 1) + min
-}
+    isMoving = true
+})
+
 
 export default class Cubes
 {
@@ -14,7 +23,7 @@ export default class Cubes
         
         this.setCubes()
         this.setAnimation()
-        this.setIlluminate()
+        this.startSite()
     }
     
     setCubes()
@@ -23,7 +32,7 @@ export default class Cubes
         let g = 9
         let x = 9
         for (let i = 0; i < 10; i++) {
-            this.cubes.geometry = new THREE.BoxGeometry(0.5, 200, 0.1),
+            this.cubes.geometry = new THREE.BoxGeometry(0.5, 20000, 0.1),
             this.cubes.material = new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: false})
             this.cubes.mesh = new THREE.Mesh(this.cubes.geometry, this.cubes.material)
             this.cubes.mesh.position.x = g
@@ -40,25 +49,36 @@ export default class Cubes
         const loop = () =>
         {
             window.requestAnimationFrame(loop)
-            if (this.container.children[2].position.z > 3.5) {
-                for (let i = 0; i < this.container.children.length; i++)
-                {
-                    this.container.children[i].position.z -= 0.001
+            if (isMoving == false) {
+                if (this.container.children[2].position.z < 3.5) {
+                    for (let i = 0; i < this.container.children.length; i++)
+                    {
+                        this.container.children[i].position.z -= 0.001
+                    }
                 }
+            }
+            else {
+                if (this.container.children[2].position.z < 5) {
+                    for (let i = 0; i < this.container.children.length; i++)
+                    {
+                        this.container.children[i].position.z -= 0.1
+                    }
+                }
+                
             }
         }
         loop()
     }
 
-    setIlluminate()
+    startSite()
     {
         let i = 0
         const loop = () =>
         {
-            setTimeout(function(){window.requestAnimationFrame(loop)}, 200)
             if (i < 10) {
-                this.container.children[i].material.color.set(0xff0fff)
+                this.container.children[i].material.color.set(0x4000CC)
                 i++
+                setTimeout(function(){window.requestAnimationFrame(loop)}, 200)
             }
         }
         loop()

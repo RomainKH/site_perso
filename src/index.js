@@ -4,8 +4,6 @@ import { BloomEffect, EffectComposer, EffectPass, RenderPass, BokehEffect, Glitc
 import Cubes from './js/Cubes.js'
 import Controls from './js/Controls.js'
 
-console.log('Hello webpack')
-
 /**
  * Sizes
  */
@@ -55,23 +53,6 @@ scene.add(camera)
 const cubes = new Cubes()
 scene.add(cubes.container)
 
-
-/**
- * Lights
- */
-
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
-scene.add(ambientLight)
-
-const sunLight = new THREE.DirectionalLight(0xffcccc, 0.6)
-sunLight.castShadow = true
-sunLight.position.x = -2
-sunLight.position.y = 5 
-sunLight.position.z = -1
-scene.add(sunLight)
-
-
-
 /**
  * Renderer
  */ 
@@ -84,9 +65,9 @@ document.body.appendChild(renderer.domElement)
  */
 const composer = new EffectComposer(renderer)
 
-const effectBokeh = new EffectPass(camera, new BokehEffect(),)
+const effectBokeh = new EffectPass(camera, new BokehEffect())
 effectBokeh.renderToScreen = true
-const effectPassGlitch = new EffectPass(camera, )
+const effectPassGlitch = new EffectPass(camera, new BloomEffect())
 effectPassGlitch.renderToScreen = true
 
 
@@ -110,10 +91,19 @@ const loop = () =>
     camera.position.x = cursor.x * 0.5
     camera.position.y = cursor.y * 0.5
     camera.lookAt(new THREE.Vector3())
+    
     // Renderer
     renderer.render(scene, camera)
 }
 loop()
 
 
+/**
+ * Button continue
+ */
 
+const button = document.querySelector('.continueTo')
+button.addEventListener('click', (_event) =>
+{
+    button.classList.add('buttonIsGone')
+})
