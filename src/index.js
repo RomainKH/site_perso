@@ -37,7 +37,13 @@ window.addEventListener('orientationchange', () =>
     camera.updateProjectionMatrix()
 
     // Update
-    renderer.setSize(sizes.width, sizes.height)
+    if (sizes.width < sizes.height) {
+        renderer.setSize(sizes.width, sizes.height)
+    }
+    else {
+        renderer.setSize(sizes.height, sizes.width)
+    }
+    
 })
 
 // scene
