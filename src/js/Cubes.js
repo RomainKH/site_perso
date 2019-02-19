@@ -50,7 +50,7 @@ export default class Cubes
         {
             window.requestAnimationFrame(loop)
             if (isMoving == false) {
-                if (this.container.children[2].position.z < 3.5) {
+                if (this.container.children[2].position.z > 3.5) {
                     for (let i = 0; i < this.container.children.length; i++)
                     {
                         this.container.children[i].position.z -= 0.001
@@ -58,7 +58,7 @@ export default class Cubes
                 }
             }
             else {
-                if (this.container.children[2].position.z < 5) {
+                if (this.container.children[2].position.z > -49) {
                     for (let i = 0; i < this.container.children.length; i++)
                     {
                         this.container.children[i].position.z -= 0.1
