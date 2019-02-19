@@ -136,5 +136,3 @@ const loop = () =>
     renderer.render(scene, camera)
 }
 loop()
-
-

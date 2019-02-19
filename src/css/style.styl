@@ -95,7 +95,8 @@ main h1
     width 2px
     border-radius 50px
 
-.arrow .leftA
+.arrow .topA::after
+    content ''
     position absolute
     background #fff
     top 29px
@@ -105,7 +106,8 @@ main h1
     transform-origin top
     border-radius 50px
 
-.arrow .rightA
+.arrow .topA::before
+    content ''
     position absolute
     top 29px
     background #fff
@@ -114,6 +116,32 @@ main h1
     transform rotate(-140deg)
     transform-origin top
     border-radius 50px
+
+article p
+    opacity 0
+    position absolute
+    margin 0
+    padding 0
+    top 45%
+    left 50%
+    transform translate(-50%, -50%)
+    color white
+    font-family 'Mukta-R', sans-serif
+    text-align center
+    will-change opacity 
+
+.textAppears
+    animation text 2s linear 1 forwards normal
+
+@keyframes text 
+  50% 
+    opacity 0
+
+  100% 
+    opacity 1
+
+
+/***** RESPONSIVE DESIGN *****/
 
 @media (max-width 700px) and (min-height 200px) 
     
@@ -124,8 +152,8 @@ main h1
         animation repositionQ 2.5s linear forwards normal
 
     @keyframes repositionQ 
+      0%
+        transform translate(-50%, -50%)
       100% 
         transform translate(-50%, -200%)
-        font-size 3rem
-
     
