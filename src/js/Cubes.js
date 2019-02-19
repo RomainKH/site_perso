@@ -3,11 +3,19 @@ import * as THREE from 'three'
 // BUTTON CLICK
 let isMoving = false
 const button = document.querySelector('.continueTo')
-button.addEventListener('click', (_event) =>
+const h1 = document.querySelector('h1')
+button.addEventListener('click', () =>
 {
     isMoving = true
     button.classList.add('buttonIsGone')
+    h1.classList.add('repositionH1')
 })
+window.addEventListener('mousewheel', (_event) => {
+    isMoving = true
+    button.classList.add('buttonIsGone')
+    h1.classList.add('repositionH1')
+})
+
 
 
 export default class Cubes

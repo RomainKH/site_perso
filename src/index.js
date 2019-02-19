@@ -11,8 +11,7 @@ const sizes = {}
 sizes.width = window.innerWidth
 sizes.height = window.innerHeight
 
-window.addEventListener('resize', () =>
-{
+const resizingScreen = () => {
     // Update sizes
     sizes.width = window.innerWidth
     sizes.height = window.innerHeight
@@ -22,31 +21,23 @@ window.addEventListener('resize', () =>
     camera.updateProjectionMatrix()
 
     // Update
-    renderer.setSize(sizes.width, sizes.height)
+    if (sizes.height > sizes.width) {
+        renderer.setSize(sizes.width, sizes.height)
+    }
+    else {
+        renderer.setSize(sizes.height, sizes.width)
+    }
+}
+
+window.addEventListener('resize', () =>
+{
+    resizingScreen()
 })
 
 // Check for phone rotation resizes
 window.addEventListener('orientationchange', () =>
 {
-    // Update sizes
-    sizes.width = window.innerWidth
-    sizes.height = window.innerHeight
-
-    // Update camera
-    camera.aspect = sizes.width / sizes.height
-    camera.updateProjectionMatrix()
-
-    // Update
-    if (sizes.width > sizes.height) {
-        console.log('portrait')
-        renderer.setSize(sizes.width, sizes.height)
-    }
-    else {
-        renderer.setSize(sizes.height, sizes.width)
-        console.log('paysage')
-
-    }
-    
+    resizingScreen()
 })
 
 // scene
@@ -65,7 +56,7 @@ window.addEventListener('mousemove', (_event) =>
 })
 
 /**
- * Phone movement
+ * Is it a phone ?
  */
 const functionisMobile = () => {
     if (navigator.userAgent.match(/Android/i)
@@ -87,7 +78,7 @@ const functionisMobile = () => {
  * Device orientation
  */
 window.addEventListener('deviceorientation', (_event) => {
-    cursor.x = _event.gamma / sizes.width - 0.5
+    cursor.x = _event.alpha / sizes.width - 0.5
     cursor.y = _event.beta / sizes.height - 0.5
 }, true)
 
@@ -118,12 +109,8 @@ const composer = new EffectComposer(renderer)
 
 const effectBokeh = new EffectPass(camera, new BokehEffect())
 effectBokeh.renderToScreen = true
-const effectPassGlitch = new EffectPass(camera, new BloomEffect())
-effectPassGlitch.renderToScreen = true
-
 
 composer.addPass(new RenderPass(scene, camera))
-//composer.addPass(effectPassGlitch)
 composer.addPass(effectBokeh)
 
 const clock = new THREE.Clock()
@@ -144,8 +131,8 @@ const loop = () =>
         camera.position.y = cursor.y * 0.5 
     }
     else if (functionisMobile() == true) {
-        camera.position.x = - cursor.x * 0.4
-        camera.position.y = - cursor.y * 0.4
+        camera.position.x = - cursor.x * 0.6
+        camera.position.y = - cursor.y * 0.6
     }
        
     camera.lookAt(new THREE.Vector3())
@@ -154,3 +141,5 @@ const loop = () =>
     renderer.render(scene, camera)
 }
 loop()
+
+

@@ -28,6 +28,17 @@ main h1
     user-select none
     line-height 100%
     text-transform uppercase
+    will-change transform
+
+.repositionH1
+    animation reposition 2.5s linear forwards
+
+@keyframes reposition 
+  0% 
+    transform translate(-50%, -50%)  
+  100% 
+    transform translate(-50%, -280px)
+    font-size 3rem
 
 .continueTo
     position absolute
@@ -36,7 +47,7 @@ main h1
     transform translate(-50%, -50%)
     height 6%
     cursor pointer
-
+    will-change transform
 
 .continueTo button
     font-family 'Mukta-M', sans-serif
