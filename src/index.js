@@ -25,6 +25,21 @@ window.addEventListener('resize', () =>
     renderer.setSize(sizes.width, sizes.height)
 })
 
+// Check for phone rotation resizes
+window.addEventListener('orientationEvent', () =>
+{
+    // Update sizes
+    sizes.width = window.innerWidth
+    sizes.height = window.innerHeight
+
+    // Update camera
+    camera.aspect = sizes.width / sizes.height
+    camera.updateProjectionMatrix()
+
+    // Update
+    renderer.setSize(sizes.width, sizes.height)
+})
+
 // scene
 const scene = new THREE.Scene()
 
@@ -120,8 +135,8 @@ const loop = () =>
         camera.position.y = cursor.y * 0.5 
     }
     else if (functionisMobile() == true) {
-        camera.position.x = cursor.x * 1.5
-        camera.position.y = cursor.y * 1.5 
+        camera.position.x = cursor.x
+        camera.position.y = cursor.y 
     }
        
     camera.lookAt(new THREE.Vector3())
