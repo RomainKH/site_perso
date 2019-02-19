@@ -73,7 +73,7 @@ const functionisMobile = () => {
  * Device orientation
  */
 window.addEventListener('deviceorientation', (_event) => {
-    cursor.x = _event.alpha / sizes.width - 0.5
+    cursor.x = _event.gamma / sizes.width - 0.5
     cursor.y = _event.beta / sizes.height - 0.5
 }, true)
 
