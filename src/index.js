@@ -38,10 +38,13 @@ window.addEventListener('orientationchange', () =>
 
     // Update
     if (sizes.width > sizes.height) {
+        console.log('portrait')
         renderer.setSize(sizes.width, sizes.height)
     }
     else {
         renderer.setSize(sizes.height, sizes.width)
+        console.log('paysage')
+
     }
     
 })
