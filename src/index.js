@@ -58,17 +58,14 @@ const functionisMobile = () => {
         return false
     }
 }
+
 /**
  * Device orientation
  */
-const phone = {}
-phone.x = 0
-phone.y = 0
 window.addEventListener('deviceorientation', (_event) => {
-    phone.x = _event.beta / sizes.width - 0.5
-    phone.y = _event.gamma / sizes.height - 0.5
+    cursor.x = _event.alpha / sizes.width - 0.5
+    cursor.y = _event.gamma / sizes.height - 0.5
 }, true)
-
 
 /**
  * Camera
@@ -118,14 +115,8 @@ const loop = () =>
     composer.render(clock.getDelta())
 
     // Update camera via cursor
-    if (functionisMobile() == false) {
-        camera.position.x = cursor.x * 0.5
-        camera.position.y = cursor.y * 0.5    
-    }
-    else if (functionisMobile() == true) {
-        camera.position.x = phone.x * 0.5
-        camera.position.y = phone.y * 0.5
-    }
+    camera.position.x = cursor.x * 0.5
+    camera.position.y = cursor.y * 0.5    
     camera.lookAt(new THREE.Vector3())
     
     // Renderer
