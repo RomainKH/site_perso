@@ -48,7 +48,7 @@ export default class Cubes
     {
         const loop = () =>
         {
-            window.requestAnimationFrame(loop)
+            
             if (isMoving == false) {
                 if (this.container.children[2].position.z > 3.5) {
                     for (let i = 0; i < this.container.children.length; i++)
@@ -56,6 +56,7 @@ export default class Cubes
                         this.container.children[i].position.z -= 0.001
                     }
                 }
+                window.requestAnimationFrame(loop)
             }
             else {
                 if (this.container.children[2].position.z > -49) {
@@ -63,6 +64,7 @@ export default class Cubes
                     {
                         this.container.children[i].position.z -= 0.1
                     }
+                    window.requestAnimationFrame(loop)
                 }
                 
             }

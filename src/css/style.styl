@@ -14,6 +14,7 @@ main
     z-index 2
 
 main h1
+    width 80%
     margin 0
     padding 0
     position absolute
@@ -31,7 +32,7 @@ main h1
 .continueTo
     position absolute
     left 50%
-    top 50%
+    top 52%
     transform translate(-50%, -50%)
     height 6%
     cursor pointer
@@ -59,11 +60,12 @@ main h1
   100% 
     opacity 0
     transform translate(-50%, 100%)
+    z-index -1
 
 .arrow
     position relative
     left 48%
-    animation light 1.5s ease-in infinite normal
+    animation light 2s ease-in infinite normal
 
 @keyframes light 
   0% 
@@ -102,3 +104,10 @@ main h1
     transform-origin top
     border-radius 50px
 
+@media (max-width 500px) and (min-height 200px) 
+    
+    main h1
+        font-size 3rem
+    
+
+    
