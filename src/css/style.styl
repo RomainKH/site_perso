@@ -37,7 +37,7 @@ main h1
   0% 
     transform translate(-50%, -50%)  
   100% 
-    transform translate(-50%, -280px)
+    transform translate(-50%, -280%)
     font-size 3rem
 
 .continueTo
@@ -115,10 +115,17 @@ main h1
     transform-origin top
     border-radius 50px
 
-@media (max-width 500px) and (min-height 200px) 
+@media (max-width 700px) and (min-height 200px) 
     
     main h1
         font-size 3rem
-    
+
+    .repositionH1
+        animation repositionQ 2.5s linear forwards normal
+
+    @keyframes repositionQ 
+      100% 
+        transform translate(-50%, -200%)
+        font-size 3rem
 
     

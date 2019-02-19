@@ -21,12 +21,7 @@ const resizingScreen = () => {
     camera.updateProjectionMatrix()
 
     // Update
-    if (sizes.height > sizes.width) {
-        renderer.setSize(sizes.width, sizes.height)
-    }
-    else {
-        renderer.setSize(sizes.height, sizes.width)
-    }
+    renderer.setSize(sizes.width, sizes.height)
 }
 
 window.addEventListener('resize', () =>
