@@ -26,7 +26,7 @@ window.addEventListener('resize', () =>
 })
 
 // Check for phone rotation resizes
-window.addEventListener('orientationEvent', () =>
+window.addEventListener('orientationchange', () =>
 {
     // Update sizes
     sizes.width = window.innerWidth
@@ -135,8 +135,8 @@ const loop = () =>
         camera.position.y = cursor.y * 0.5 
     }
     else if (functionisMobile() == true) {
-        camera.position.x = - cursor.x
-        camera.position.y = - cursor.y 
+        camera.position.x = - cursor.x * 0.4
+        camera.position.y = - cursor.y * 0.4
     }
        
     camera.lookAt(new THREE.Vector3())
