@@ -41,6 +41,36 @@ window.addEventListener('mousemove', (_event) =>
 })
 
 /**
+ * Phone movement
+ */
+const functionisMobile = () => {
+    if (navigator.userAgent.match(/Android/i)
+        || navigator.userAgent.match(/webOS/i)
+        || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPad/i)
+        || navigator.userAgent.match(/iPod/i)
+        || navigator.userAgent.match(/BlackBerry/i)
+        || navigator.userAgent.match(/Windows Phone/i)
+    ) {
+        return true
+    }
+    else {
+        return false
+    }
+}
+/**
+ * Device orientation
+ */
+const phone = {}
+phone.x = 0
+phone.y = 0
+window.addEventListener('deviceorientation', (_event) => {
+    phone.x = _event.beta / sizes.width - 0.5
+    phone.y = _event.gamma / sizes.height - 0.5
+}, true)
+
+
+/**
  * Camera
  */
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
@@ -87,23 +117,18 @@ const loop = () =>
     
     composer.render(clock.getDelta())
 
-    // Update camera
-    camera.position.x = cursor.x * 0.5
-    camera.position.y = cursor.y * 0.5
+    // Update camera via cursor
+    if (functionisMobile() == false) {
+        camera.position.x = cursor.x * 0.5
+        camera.position.y = cursor.y * 0.5    
+    }
+    else if (functionisMobile() == true) {
+        camera.position.x = phone.x * 0.5
+        camera.position.y = phone.y * 0.5
+    }
     camera.lookAt(new THREE.Vector3())
     
     // Renderer
     renderer.render(scene, camera)
 }
 loop()
-
-
-/**
- * Button continue
- */
-
-const button = document.querySelector('.continueTo')
-button.addEventListener('click', (_event) =>
-{
-    button.classList.add('buttonIsGone')
-})

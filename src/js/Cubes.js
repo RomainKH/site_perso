@@ -1,17 +1,12 @@
 import * as THREE from 'three'
 
-// // random funct
-// const randomNb = (min, max) =>
-// {
-//     return Math.random() * (max - min + 1) + min
-// }
-
 // BUTTON CLICK
 let isMoving = false
 const button = document.querySelector('.continueTo')
 button.addEventListener('click', (_event) =>
 {
     isMoving = true
+    button.classList.add('buttonIsGone')
 })
 
 
