@@ -64,7 +64,7 @@ const functionisMobile = () => {
  */
 window.addEventListener('deviceorientation', (_event) => {
     cursor.x = _event.beta / sizes.width - 0.5
-    cursor.y = _event.gamma / sizes.width - 0.5
+    cursor.y = _event.gamma / sizes.height - 0.5
 }, true)
 
 /**
@@ -120,8 +120,8 @@ const loop = () =>
         camera.position.y = cursor.y * 0.5 
     }
     else if (functionisMobile() == true) {
-        camera.position.x = cursor.x * 2.5
-        camera.position.y = cursor.y * 2.5 
+        camera.position.x = cursor.x * 1.5
+        camera.position.y = cursor.y * 1.5 
     }
        
     camera.lookAt(new THREE.Vector3())
