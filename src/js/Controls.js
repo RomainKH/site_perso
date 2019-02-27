@@ -1,5 +1,5 @@
 import img0 from '../images/image0.png'
-import img1 from '../images/image1.svg'
+import img1 from '../images/image1.jpg'
 import img2 from '../images/image2.svg'
 import img3 from '../images/image3.svg'
 import img4 from '../images/image4.svg'
@@ -108,8 +108,8 @@ buttonB.addEventListener('click', () => {
         i = 4
     }
 
-    bigImg1.src = bigImg.src
-    bigImg.src = imgArray[i]
+    bigImg1.src = imgArray[i]
+    bigImg.src = bigImg.src
 
     imgTitle.classList.remove('pauseAnim')
     imgDescription.classList.remove('pauseAnim')
@@ -117,13 +117,14 @@ buttonB.addEventListener('click', () => {
     imgTitle.classList.add('changeText')
     imgDescription.innerHTML = descriptionArray[i]
     imgTitle.innerHTML = titleArray[i]
-    bigImg1.classList.add('falseBigImg')
-    bigImg.classList.add('getBigger')
+    bigImg1.classList.add('falseBigImgReverse')
+    bigImg.classList.add('getBiggerReverse')
     setTimeout(function(){
-        bigImg.classList.remove('getBigger')
+        bigImg.classList.remove('getBiggerReverse')
+        bigImg1.classList.remove('falseBigImgReverse')
         imgDescription.classList.remove('changeText')
         imgTitle.classList.remove('changeText')
-        bigImg1.classList.remove('falseBigImg')
+        bigImg.src = imgArray[i]
         bigImg1.removeAttribute('src')
     }, 390)
 })

@@ -123,7 +123,7 @@ article
   position absolute
   display flex
   width 55%
-  height 52%
+  height 45%
   flex-direction row-reverse
   justify-content space-between
   top 50%
@@ -233,6 +233,16 @@ article h2
   100% 
     transform translate(-50%, -50%) scale(1)
 
+.getBiggerReverse
+    animation getBigR 0.38s linear 1 forwards normal
+
+@keyframes getBigR
+  0% 
+    transform translate(-50%, -50%) scale(1)
+
+  100% 
+    transform translate(-50%, -50%) scale(0)
+
 .falseBigImg
     position absolute
     z-index 2
@@ -250,9 +260,27 @@ article h2
   100% 
     transform translate(-220%, -50%)
 
+.falseBigImgReverse
+    position absolute
+    z-index 2
+    width 55%
+    top 60%
+    left 8%
+    transform translate(-50%, -50%)
+    will-change transform
+    animation imgTransitionR 0.38s ease-in 1 forwards normal
+
+@keyframes imgTransitionR 
+  0% 
+    transform translate(-220%, -50%)
+
+  100% 
+    transform translate(-50%, -50%)
+
 /***** RESPONSIVE DESIGN *****/
 
-@media screen and (min-width 200px) and (max-width 700px) 
+//SMARTPHONE
+@media screen and (min-width 200px) and (max-width 700px)
     main h1
         font-size 3rem
 
@@ -264,64 +292,14 @@ article h2
         transform translate(-50%, -50%)
       100% 
         transform translate(-50%, -190%)
-    
-    .divArrowR
-        position absolute
-        background #fff
-        top 50%
-        right 15%
-        height 45px
-        width 5px
-        transform rotate(227deg)
-        border-radius 50px
 
-    .divArrowR::before
-        content ''
-        position absolute
-        background #fff
-        height 45px
-        width 5px
-        transform rotate(-95deg)
-        transform-origin 21px
-        border-radius 50px
+//
 
-    .buttonA
-        opacity 0
-        width 7%
-        height 13%
-        position absolute
-        top 45%
-        right 12%
-        cursor pointer
-
+@media screen and (min-width 700px) and (max-width 1280px) and (min-height 600px) and (max-height 950px)
     article
         position absolute
         display flex
-        width 55%
-        height 47%
-        flex-direction column-reverse
-        justify-content space-between
-        top 50%
-        left 55%
-        transform translate(-50%, -50%)
-
-@media screen and (min-width 1024px) and (max-width 1280px) 
-    article
-        position absolute
-        display flex
-        width 55%
-        height 47%
-        flex-direction row-reverse
-        justify-content space-between
-        top 50%
-        left 55%
-        transform translate(-50%, -50%)
-
-@media screen and (min-width 700px) and (max-width 1024px) and (min-height 768px) and (max-height 950px)
-    article
-        position absolute
-        display flex
-        width 55%
+        width 60%
         height 37%
         flex-direction row-reverse
         justify-content space-between
@@ -337,6 +315,36 @@ article h2
         font-family 'Mukta-R', sans-serif
         font-size 2rem
         will-change opacity
+    
+    .buttonA
+        width 20%
+        height 15%
+        position absolute
+        color white
+        font-family 'Mukta-M', sans-serif
+        background black
+        border white 2px solid
+        top 80%
+        right 2%
+        cursor pointer
+        transition ease-in 0.3s
+        text-transform uppercase
+        
+    .buttonB
+        width 20%
+        height 15%
+        position absolute
+        color white
+        font-family 'Mukta-M', sans-serif
+        background black
+        border white 2px solid
+        top 80%
+        right 40%
+        cursor pointer
+        transition ease-in 0.3s
+        text-transform uppercase
+    
+
 
 @media screen and (min-width 700px) and (max-width 1024px) and (min-height 500px) and (max-height 600px)
     article
