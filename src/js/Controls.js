@@ -14,61 +14,54 @@ document.body.appendChild(arrows)
 arrows.classList.add('arrows')
 
 const buttonA = document.createElement('button')
-arrows.appendChild(buttonA)
+article.appendChild(buttonA)
 buttonA.classList.add('buttonA')
+buttonA.innerHTML = 'Next Creation'
 
-const divArrowR = document.createElement('div')
-arrows.appendChild(divArrowR)
-divArrowR.classList.add('divArrowR')
+const buttonB = document.createElement('button')
+article.appendChild(buttonB)
+buttonB.classList.add('buttonB')
+buttonB.innerHTML = 'Last Creation'
+
 const button = document.querySelector('.continueTo')
 const bigImg = document.createElement('img')
 let neverDone = true
 
 button.addEventListener('click', () =>
 {
-    setTimeout(function(){ arrows.classList.add('textAppears') }, 2200)    
-    setTimeout(function(){ bigImg.classList.add('textAppears') }, 2200)
-    setTimeout(function(){ bigImg.classList.remove('textAppears')}, 4200)
-    setTimeout(function(){ bigImg.style.opacity = 1}, 4200)
-    setTimeout(function(){ imgTitle.classList.add('textAppears') }, 2200)
-    setTimeout(function(){ imgDescription.classList.add('textAppears') }, 2200)
-    setTimeout(function(){ imgTitle.style.opacity = 1}, 4200)
-    setTimeout(function(){ imgDescription.style.opacity = 1}, 4200)
-    setTimeout(function(){ imgDescription.classList.remove('textAppears') }, 4200)
-    setTimeout(function(){ imgTitle.classList.remove('textAppears') }, 4200)
     neverDone = false
+    setTimeout(function(){ 
+        article.classList.add('textAppears') 
+    }, 2200)
+    setTimeout(function(){  
+        article.classList.remove('textAppears')
+        article.style.opacity = 1
+    }, 4200)
 })
 window.addEventListener('mousewheel', (_event) => {
     if (neverDone == true) {
         neverDone = false
-        setTimeout(function(){ arrows.classList.add('textAppears') }, 2200)    
-        setTimeout(function(){ bigImg.classList.add('textAppears') }, 2200)
-        setTimeout(function(){ bigImg.classList.remove('textAppears')}, 4200)
-        setTimeout(function(){ bigImg.style.opacity = 1}, 4200)
-        setTimeout(function(){ imgTitle.classList.add('textAppears') }, 2200)
-        setTimeout(function(){ imgDescription.classList.add('textAppears') }, 2200)
-        setTimeout(function(){ imgTitle.style.opacity = 1}, 4200)
-        setTimeout(function(){ imgDescription.style.opacity = 1}, 4200)
-        setTimeout(function(){ imgDescription.classList.remove('textAppears') }, 4200)
-        setTimeout(function(){ imgTitle.classList.remove('textAppears') }, 4200)
+        setTimeout(function(){ 
+            article.classList.add('textAppears') 
+        }, 2200)
+        setTimeout(function(){  
+            article.classList.remove('textAppears')
+            article.style.opacity = 1
+        }, 4200)
     }
     
 })
 window.addEventListener('scroll', (_event) => {
     if (neverDone == true) {
         neverDone = false
-        setTimeout(function(){ arrows.classList.add('textAppears') }, 2200)
-        setTimeout(function(){ bigImg.classList.add('textAppears') }, 2200)
-        setTimeout(function(){ bigImg.classList.remove('textAppears')}, 4200)
-        setTimeout(function(){ bigImg.style.opacity = 1}, 4200)
-        setTimeout(function(){ imgTitle.classList.add('textAppears') }, 2200)
-        setTimeout(function(){ imgDescription.classList.add('textAppears') }, 2200)
-        setTimeout(function(){ imgTitle.style.opacity = 1}, 4200)
-        setTimeout(function(){ imgDescription.style.opacity = 1}, 4200)
-        setTimeout(function(){ imgDescription.classList.remove('textAppears') }, 4200)
-        setTimeout(function(){ imgTitle.classList.remove('textAppears') }, 4200)
+        setTimeout(function(){ 
+            article.classList.add('textAppears') 
+        }, 2200)
+        setTimeout(function(){  
+            article.classList.remove('textAppears')
+            article.style.opacity = 1
+        }, 4200)
     }
-    
 })
 
 
@@ -80,15 +73,18 @@ const titleArray = new Array('Mandala Undertale', 'Olly Moss Film Poster', 'Dail
 article.appendChild(bigImg)
 bigImg.classList.add('bigImg')
 bigImg.src = imgArray[0]
-let i = 1
+let i = 0
 let bigImg1 = document.createElement('img')
 article.appendChild(bigImg1)
 buttonA.addEventListener('click', () => {
+    i++
     if(i > 4) {
         i = 0
     }
+
     bigImg1.src = bigImg.src
     bigImg.src = imgArray[i]
+
     imgTitle.classList.remove('pauseAnim')
     imgDescription.classList.remove('pauseAnim')
     imgDescription.classList.add('changeText')
@@ -104,5 +100,30 @@ buttonA.addEventListener('click', () => {
         bigImg1.classList.remove('falseBigImg')
         bigImg1.removeAttribute('src')
     }, 390)
-    i++
+})
+
+buttonB.addEventListener('click', () => {
+    i--
+    if(i < 0) {
+        i = 4
+    }
+
+    bigImg1.src = bigImg.src
+    bigImg.src = imgArray[i]
+
+    imgTitle.classList.remove('pauseAnim')
+    imgDescription.classList.remove('pauseAnim')
+    imgDescription.classList.add('changeText')
+    imgTitle.classList.add('changeText')
+    imgDescription.innerHTML = descriptionArray[i]
+    imgTitle.innerHTML = titleArray[i]
+    bigImg1.classList.add('falseBigImg')
+    bigImg.classList.add('getBigger')
+    setTimeout(function(){
+        bigImg.classList.remove('getBigger')
+        imgDescription.classList.remove('changeText')
+        imgTitle.classList.remove('changeText')
+        bigImg1.classList.remove('falseBigImg')
+        bigImg1.removeAttribute('src')
+    }, 390)
 })
