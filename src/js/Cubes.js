@@ -4,25 +4,21 @@ import * as THREE from 'three'
 let isMoving = false
 const button = document.querySelector('.continueTo')
 const h1 = document.querySelector('h1')
-const wip = document.querySelector('article p')
 button.addEventListener('click', () =>
 {
     isMoving = true
     button.classList.add('buttonIsGone')
     h1.classList.add('repositionH1')
-    setTimeout(function(){ wip.classList.add('textAppears') }, 2200)
 })
 window.addEventListener('mousewheel', (_event) => {
     isMoving = true
     button.classList.add('buttonIsGone')
     h1.classList.add('repositionH1')
-    setTimeout(function(){ wip.classList.add('textAppears') }, 2200)
 })
 window.addEventListener('scroll', (_event) => {
     isMoving = true
     button.classList.add('buttonIsGone')
     h1.classList.add('repositionH1')
-    setTimeout(function(){ wip.classList.add('textAppears') }, 2200)
 })
 
 
