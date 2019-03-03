@@ -14,13 +14,14 @@ main
     z-index 2
 
 main h1
-    width 80%
+    position absolute
+    width 100%
     margin 0
     padding 0
-    position absolute
     left 50%
-    top 30%
-    transform translate(-50%, -50%)
+    top 2%
+    font-size 2rem
+    transform translate(-50%, 180%)
     font-size 5rem
     font-family 'Mukta-R', sans-serif
     color white
@@ -35,9 +36,9 @@ main h1
 
 @keyframes reposition 
   0% 
-    transform translate(-50%, -50%)  
+    transform translate(-50%, 180%)  
   100% 
-    transform translate(-50%, -310%)
+    transform translate(-50%, 0%)
     font-size 3rem
 
 .continueTo
@@ -122,21 +123,23 @@ article
   opacity 0
   position absolute
   display flex
-  width 55%
+  width 70%
   height 45%
   flex-direction row-reverse
   justify-content space-between
+  align-items center
   top 50%
-  left 55%
+  left 50%
   transform translate(-50%, -50%)
 
 article div
   display flex 
-  width 60%
-  height 40%
+  max-width 50%
+  height 100%
   flex-direction column
   justify-content space-between
-
+  align-items space-around
+  
 article p
     margin 0
     padding 0
@@ -169,37 +172,42 @@ article h2
     opacity 0
     visibility hidden
 
+.buttonContainer
+    display flex
+    flex-direction row-reverse
+    justify-content space-between
+    align-items flex-end
+    max-width 100%
+    max-height 55%
 
 .buttonA
-    width 15%
-    height 10%
-    position absolute
+    width 20%
+    height 15%
     color white
     font-family 'Mukta-M', sans-serif
     background black
     border white 2px solid
-    top 80%
-    right 2%
     cursor pointer
     transition ease-in 0.3s
     text-transform uppercase
+    padding 0
+    margin 0
 
 .buttonA:hover
     border #4000CC 2px solid
 
 .buttonB
-    width 15%
-    height 10%
-    position absolute
+    width 20%
+    height 15%
     color white
     font-family 'Mukta-M', sans-serif
     background black
     border white 2px solid
-    top 80%
-    right 45%
     cursor pointer
     transition ease-in 0.3s
     text-transform uppercase
+    padding 0
+    margin 0
 
 .buttonB:hover
     border #4000CC 2px solid
@@ -216,11 +224,8 @@ article h2
     visibility visible
 
 .bigImg
-    position absolute
-    width 55%
-    top 60%
-    left 8%
-    transform translate(-50%, -50%)
+    width 450px
+    height 100%
     will-change transform
 
 .getBigger
@@ -228,70 +233,134 @@ article h2
 
 @keyframes getBig 
   0% 
-    transform translate(-50%, -50%) scale(0)
+    transform scale(0)
 
   100% 
-    transform translate(-50%, -50%) scale(1)
+    transform scale(1)
 
 .getBiggerReverse
     animation getBigR 0.38s linear 1 forwards normal
 
 @keyframes getBigR
   0% 
-    transform translate(-50%, -50%) scale(1)
+    transform scale(1)
 
   100% 
-    transform translate(-50%, -50%) scale(0)
+    transform scale(0)
 
 .falseBigImg
-    position absolute
+    position fixed
+    top 50%
+    left 50%
     z-index 2
-    width 55%
-    top 60%
-    left 8%
-    transform translate(-50%, -50%)
+    width 450px
+    height 100%
+    transform translate(-140%, -50%)
     will-change transform
     animation imgTransition 0.38s ease-in 1 forwards normal
 
 @keyframes imgTransition 
   0% 
-    transform translate(-50%, -50%)
+    transform translate(-140%, -50%)
 
   100% 
-    transform translate(-220%, -50%)
+    transform translate(-305%, -50%)
 
 .falseBigImgReverse
-    position absolute
+    position fixed
+    top 50%
+    left 50%
     z-index 2
-    width 55%
-    top 60%
-    left 8%
-    transform translate(-50%, -50%)
+    width 450px
+    height 438px
+    transform translate(-305%, -50%)
     will-change transform
     animation imgTransitionR 0.38s ease-in 1 forwards normal
 
 @keyframes imgTransitionR 
   0% 
-    transform translate(-220%, -50%)
+    transform translate(-305%, -50%)
 
   100% 
-    transform translate(-50%, -50%)
+    transform translate(-128%, -50%)
 
 /***** RESPONSIVE DESIGN *****/
 
 //SMARTPHONE
 @media screen and (min-width 200px) and (max-width 700px)
     main h1
-        font-size 3rem
+        font-size 2rem
+        position absolute
+        top 5%
+        width 100%
+        transform translate(-50%, 250%)
 
     .repositionH1
         animation repositionQ 2.5s linear forwards normal
 
     @keyframes repositionQ 
       0%
-        transform translate(-50%, -50%)
+        transform translate(-50%, 250%)
       100% 
-        transform translate(-50%, -190%)
+        transform translate(-50%, -40%)
+
+    article
+        opacity 0
+        position absolute
+        display flex
+        width 90%
+        height 75%
+        flex-direction column-reverse
+        justify-content center
+        align-content space-between
+        top 48%
+        left 50%
+        transform translate(-50%, -50%)
+
+    article div
+        max-width 100%
+        justify-content center
+
+    .bigImg
+      width 85%
+      height 50%
+      will-change transform
+
+    article p
+      margin 0
+      padding 0
+      color white
+      font-family 'Mukta-R', sans-serif
+      font-size 0.8rem
+      will-change opacity 
+
+    article h2
+      margin 0
+      padding 0
+      color white
+      font-family 'Mukta-R', sans-serif
+      font-size 1.8rem
+      will-change opacity 
+
+    .buttonContainer
+        top 80%
+        width 100%
+        position absolute
+        flex-direction row-reverse
+        justify-content space-between
+        align-items center
+    
+    .buttonA
+        width 40%
+        height 20%
+
+    .buttonB
+        width 40%
+        height 20%
+    
+
+    
+
 
 //
 

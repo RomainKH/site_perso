@@ -1,11 +1,12 @@
-import img0 from '../images/image0.png'
-import img1 from '../images/image1.jpg'
+import img0 from '../images/image0.jpg'
+import img1 from '../images/image1.svg'
 import img2 from '../images/image2.svg'
 import img3 from '../images/image3.svg'
 import img4 from '../images/image4.svg'
 
 
 const article = document.querySelector('article')
+const inArticle = article.querySelector('div')
 const imgDescription = article.querySelector('p')
 const imgTitle = article.querySelector('h2')
 
@@ -13,13 +14,17 @@ const arrows = document.createElement('div')
 document.body.appendChild(arrows)
 arrows.classList.add('arrows')
 
+const someDiv = document.createElement('div')
+someDiv.classList.add('buttonContainer')
+inArticle.appendChild(someDiv)
+
 const buttonA = document.createElement('button')
-article.appendChild(buttonA)
+someDiv.appendChild(buttonA)
 buttonA.classList.add('buttonA')
 buttonA.innerHTML = 'Next Creation'
 
 const buttonB = document.createElement('button')
-article.appendChild(buttonB)
+someDiv.appendChild(buttonB)
 buttonB.classList.add('buttonB')
 buttonB.innerHTML = 'Last Creation'
 
@@ -81,25 +86,25 @@ buttonA.addEventListener('click', () => {
     if(i > 4) {
         i = 0
     }
-
+    bigImg1.onload = () => {
+        bigImg.classList.add('getBigger')
+        imgTitle.classList.remove('pauseAnim')
+        imgDescription.classList.remove('pauseAnim')
+        imgDescription.classList.add('changeText')
+        imgTitle.classList.add('changeText')
+        imgDescription.innerHTML = descriptionArray[i]
+        imgTitle.innerHTML = titleArray[i]
+        bigImg1.classList.add('falseBigImg')
+        setTimeout(function(){
+            bigImg.classList.remove('getBigger')
+            imgDescription.classList.remove('changeText')
+            imgTitle.classList.remove('changeText')
+            bigImg1.classList.remove('falseBigImg')
+            bigImg1.removeAttribute('src')
+        }, 390)
+    }
     bigImg1.src = bigImg.src
     bigImg.src = imgArray[i]
-
-    imgTitle.classList.remove('pauseAnim')
-    imgDescription.classList.remove('pauseAnim')
-    imgDescription.classList.add('changeText')
-    imgTitle.classList.add('changeText')
-    imgDescription.innerHTML = descriptionArray[i]
-    imgTitle.innerHTML = titleArray[i]
-    bigImg1.classList.add('falseBigImg')
-    bigImg.classList.add('getBigger')
-    setTimeout(function(){
-        bigImg.classList.remove('getBigger')
-        imgDescription.classList.remove('changeText')
-        imgTitle.classList.remove('changeText')
-        bigImg1.classList.remove('falseBigImg')
-        bigImg1.removeAttribute('src')
-    }, 390)
 })
 
 buttonB.addEventListener('click', () => {
@@ -108,23 +113,26 @@ buttonB.addEventListener('click', () => {
         i = 4
     }
 
+    bigImg1.onload = () => {
+        bigImg1.classList.add('falseBigImgReverse')
+        imgTitle.classList.remove('pauseAnim')
+        imgDescription.classList.remove('pauseAnim')
+        imgDescription.classList.add('changeText')
+        imgTitle.classList.add('changeText')
+        imgDescription.innerHTML = descriptionArray[i]
+        imgTitle.innerHTML = titleArray[i]
+        bigImg.classList.add('getBiggerReverse')
+        setTimeout(function(){
+            bigImg.classList.remove('getBiggerReverse')
+            bigImg1.classList.remove('falseBigImgReverse')
+            imgDescription.classList.remove('changeText')
+            imgTitle.classList.remove('changeText')
+            bigImg.src = imgArray[i]
+            bigImg1.removeAttribute('src')
+        }, 390)
+    }
+    
     bigImg1.src = imgArray[i]
     bigImg.src = bigImg.src
-
-    imgTitle.classList.remove('pauseAnim')
-    imgDescription.classList.remove('pauseAnim')
-    imgDescription.classList.add('changeText')
-    imgTitle.classList.add('changeText')
-    imgDescription.innerHTML = descriptionArray[i]
-    imgTitle.innerHTML = titleArray[i]
-    bigImg1.classList.add('falseBigImgReverse')
-    bigImg.classList.add('getBiggerReverse')
-    setTimeout(function(){
-        bigImg.classList.remove('getBiggerReverse')
-        bigImg1.classList.remove('falseBigImgReverse')
-        imgDescription.classList.remove('changeText')
-        imgTitle.classList.remove('changeText')
-        bigImg.src = imgArray[i]
-        bigImg1.removeAttribute('src')
-    }, 390)
+    
 })
