@@ -224,6 +224,9 @@ article h2
     visibility visible
 
 .bigImg
+    position absolute
+    left 2%
+    top 2%
     width 450px
     height 100%
     will-change transform
@@ -250,39 +253,43 @@ article h2
 
 .falseBigImg
     position fixed
-    top 50%
-    left 50%
-    z-index 2
+    visibility hidden
+    left 2%
+    top 2%
     width 450px
     height 100%
-    transform translate(-140%, -50%)
+    transform translate(0%, 0%)
     will-change transform
     animation imgTransition 0.38s ease-in 1 forwards normal
 
 @keyframes imgTransition 
   0% 
-    transform translate(-140%, -50%)
+    transform translate(0%, 0%)
+    visibility visible
 
   100% 
-    transform translate(-305%, -50%)
+    transform translate(-150%, 0%)
+    visibility visible
 
 .falseBigImgReverse
     position fixed
-    top 50%
-    left 50%
-    z-index 2
+    visibility hidden
+    left 2%
+    top 2%
     width 450px
-    height 438px
-    transform translate(-305%, -50%)
+    height 100%
+    transform translate(-150%, 0%)
     will-change transform
     animation imgTransitionR 0.38s ease-in 1 forwards normal
 
 @keyframes imgTransitionR 
   0% 
-    transform translate(-305%, -50%)
+    transform translate(-150%, 0%)
+    visibility visible
 
   100% 
-    transform translate(-128%, -50%)
+    transform translate(0%, 0%)
+    visibility visible
 
 /***** RESPONSIVE DESIGN *****/
 
@@ -319,11 +326,16 @@ article h2
 
     article div
         max-width 100%
+        height 40%
+        transform translate(0%,70%)
         justify-content center
 
     .bigImg
-      width 85%
-      height 50%
+      position absolute
+      width 75%
+      left 13%
+      top -17%
+      transform translate(0%, 0%) scale(1)
       will-change transform
 
     article p
@@ -352,13 +364,19 @@ article h2
     
     .buttonA
         width 40%
-        height 20%
+        height 50%
 
     .buttonB
         width 40%
-        height 20%
+        height 50%
     
+    .falseBigImg
+        display none
+        visibility hidden
 
+    .falseBigImgReverse
+        display none
+        visibility hidden
     
 
 

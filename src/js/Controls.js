@@ -81,12 +81,15 @@ bigImg.src = imgArray[0]
 let i = 0
 let bigImg1 = document.createElement('img')
 article.appendChild(bigImg1)
+    
 buttonA.addEventListener('click', () => {
+    bigImg1.style.display = 'none'
     i++
     if(i > 4) {
         i = 0
     }
     bigImg1.onload = () => {
+        bigImg1.style.display = 'block'
         bigImg.classList.add('getBigger')
         imgTitle.classList.remove('pauseAnim')
         imgDescription.classList.remove('pauseAnim')
@@ -101,7 +104,8 @@ buttonA.addEventListener('click', () => {
             imgTitle.classList.remove('changeText')
             bigImg1.classList.remove('falseBigImg')
             bigImg1.removeAttribute('src')
-        }, 390)
+            bigImg1.style.display = 'none'
+        }, 380)
     }
     bigImg1.src = bigImg.src
     bigImg.src = imgArray[i]
@@ -112,8 +116,9 @@ buttonB.addEventListener('click', () => {
     if(i < 0) {
         i = 4
     }
-
+    bigImg1.style.display = 'none'
     bigImg1.onload = () => {
+        bigImg1.style.display = 'block'
         bigImg1.classList.add('falseBigImgReverse')
         imgTitle.classList.remove('pauseAnim')
         imgDescription.classList.remove('pauseAnim')
@@ -129,9 +134,9 @@ buttonB.addEventListener('click', () => {
             imgTitle.classList.remove('changeText')
             bigImg.src = imgArray[i]
             bigImg1.removeAttribute('src')
-        }, 390)
+            bigImg1.style.display = 'none'
+        }, 380)
     }
-    
     bigImg1.src = imgArray[i]
     bigImg.src = bigImg.src
     
