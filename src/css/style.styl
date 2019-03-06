@@ -181,8 +181,8 @@ article h2
     max-height 55%
 
 .buttonA
-    width 20%
-    height 15%
+    width 25%
+    height 18%
     color white
     font-family 'Mukta-M', sans-serif
     background black
@@ -197,8 +197,8 @@ article h2
     border #4000CC 2px solid
 
 .buttonB
-    width 20%
-    height 15%
+    width 25%
+    height 18%
     color white
     font-family 'Mukta-M', sans-serif
     background black
@@ -294,7 +294,7 @@ article h2
 /***** RESPONSIVE DESIGN *****/
 
 //SMARTPHONE
-@media screen and (min-width 200px) and (max-width 700px)
+@media screen and (max-width 700px)
     main h1
         font-size 2rem
         position absolute
@@ -331,12 +331,13 @@ article h2
         justify-content center
 
     .bigImg
-      position absolute
-      width 75%
-      left 13%
-      top -17%
-      transform translate(0%, 0%) scale(1)
-      will-change transform
+        position absolute
+        width 74%
+        height auto
+        left 50%
+        top 0%
+        transform translate(-50%, 0%) scale(1)
+        will-change transform
 
     article p
       margin 0
@@ -355,20 +356,21 @@ article h2
       will-change opacity 
 
     .buttonContainer
-        top 80%
+        top 55%
+        height 100%
         width 100%
         position absolute
-        flex-direction row-reverse
-        justify-content space-between
+        flex-direction column-reverse
+        justify-content space-around
         align-items center
     
     .buttonA
-        width 40%
-        height 50%
+        width 90%
+        height 35%
 
     .buttonB
-        width 40%
-        height 50%
+        width 90%
+        height 35%
     
     .falseBigImg
         display none
@@ -382,77 +384,47 @@ article h2
 
 //
 
-@media screen and (min-width 700px) and (max-width 1280px) and (min-height 600px) and (max-height 950px)
-    body
-        overflow hidden
-        
+@media screen and (max-width 1340px)
     article
-        position absolute
-        display flex
-        width 60%
+        width 95%
+    
+@media screen and (min-width 805px) and (max-width 980px)
+    article
+        width 95%
         height 37%
-        flex-direction row-reverse
-        justify-content space-between
-        top 50%
-        left 55%
-        transform translate(-50%, -50%)
-
+    
+    .bigImg
+        position absolute
+        width 380px
+        transform translate(0%, 0%) scale(1)
+        will-change transform
+    
     article h2
-        opacity 0
-        margin 0
-        padding 0
-        color white
-        font-family 'Mukta-R', sans-serif
         font-size 2rem
-        will-change opacity
+
+    article p
+        font-size 0.8rem
+
+@media screen and (min-width 700px) and (max-width 805px)
+
+    article
+        width 95%
+        height 35%
+    
+    .bigImg
+        position absolute
+        width 310px
+        transform translate(0%, 0%) scale(1)
+        will-change transform
+    
+    article h2
+        font-size 1.8rem
+
+    article p
+        font-size 0.7rem
     
     .buttonA
-        width 20%
-        height 15%
-        position absolute
-        color white
-        font-family 'Mukta-M', sans-serif
-        background black
-        border white 2px solid
-        top 80%
-        right 2%
-        cursor pointer
-        transition ease-in 0.3s
-        text-transform uppercase
-        
-    .buttonB
-        width 20%
-        height 15%
-        position absolute
-        color white
-        font-family 'Mukta-M', sans-serif
-        background black
-        border white 2px solid
-        top 80%
-        right 40%
-        cursor pointer
-        transition ease-in 0.3s
-        text-transform uppercase
+        width 30%
     
-
-
-@media screen and (min-width 700px) and (max-width 1024px) and (min-height 500px) and (max-height 600px)
-    article
-        position absolute
-        display flex
-        width 55%
-        height 47%
-        flex-direction row-reverse
-        justify-content space-between
-        top 50%
-        left 55%
-        transform translate(-50%, -50%)
-
-    article h2
-        opacity 0
-        margin 0
-        padding 0
-        color white
-        font-family 'Mukta-R', sans-serif
-        font-size 2rem
-        will-change opacity
+    .buttonB
+        width 30%
