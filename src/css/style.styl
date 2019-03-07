@@ -228,7 +228,7 @@ article h2
     left 2%
     top 2%
     width 450px
-    height 100%
+    height auto
     will-change transform
 
 .getBigger
@@ -335,9 +335,29 @@ article h2
         width 74%
         height auto
         left 50%
-        top 0%
-        transform translate(-50%, 0%) scale(1)
+        top 30%
+        transform translate(-50%, -50%) scale(1)
         will-change transform
+    
+    .getBigger
+        animation newAnimBig 0.38s linear 1 forwards normal
+
+    @keyframes newAnimBig 
+      0% 
+        transform translate(-50%, -50%) scale(0)
+
+      100% 
+        transform translate(-50%, -50%) scale(1)
+
+    .getBiggerReverse
+        animation newGetBigR 0.38s linear 1 forwards normal
+
+    @keyframes newGetBigR
+      0% 
+        transform translate(-50%, -50%) scale(1)
+
+      100% 
+        transform translate(-50%, -50%) scale(0)
 
     article p
       margin 0
@@ -360,26 +380,55 @@ article h2
         height 100%
         width 100%
         position absolute
-        flex-direction column-reverse
-        justify-content space-around
+        flex-direction row-reverse
+        justify-content space-between
         align-items center
     
     .buttonA
-        width 90%
-        height 35%
+        width 45%
+        height 45%
 
     .buttonB
-        width 90%
-        height 35%
+        width 45%
+        height 45%
     
     .falseBigImg
-        display none
-        visibility hidden
+        position absolute
+        width 74%
+        height auto
+        left 50%
+        top 30%
+        transform translate(-50%, -50%) scale(1)
+        will-change transform
+        animation imgTransitionNew 0.38s ease-in 1 forwards normal
+
+    @keyframes imgTransitionNew
+      0% 
+        transform translate(-50%, -50%)
+        visibility visible
+    
+      100% 
+        transform translate(-190%, -50%)
+        visibility visible
 
     .falseBigImgReverse
-        display none
-        visibility hidden
+        position absolute
+        width 74%
+        height auto
+        left 50%
+        top 30%
+        transform translate(-190%, -50%) scale(1)
+        will-change transform
+        animation imgTransitionRNew 0.38s ease-in 1 forwards normal
+
+    @keyframes imgTransitionRNew
+      0% 
+        transform translate(-190%, -50%)
+        visibility visible
     
+      100% 
+        transform translate(-50%, -50%)
+        visibility visible
 
 
 //
