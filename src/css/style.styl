@@ -15,25 +15,14 @@ main
     height 100%
     z-index 2
 
-nav
-    position absolute
-    top 0
-    right 0
-
 nav button
-    border none
-    font-size 1rem
-    font-family 'Mukta-M', sans-serif
-    color white
-    border none
-    background none
-    outline none
-    text-transform uppercase
-    cursor pointer
-    transition 0.2s linear
-
-nav button:hover
-    border none
+    z-index 3
+    position absolute
+    overflow hidden
+    left 90%
+    top 2%
+    width 7%
+    height 5%
     font-size 1.1rem
     font-family 'Mukta-M', sans-serif
     color white
@@ -42,6 +31,21 @@ nav button:hover
     outline none
     text-transform uppercase
     cursor pointer
+
+nav button::before
+    content ''
+    position absolute
+    background #4000CC
+    width 100%
+    left 0
+    bottom 0
+    height 3px
+    transform translateX(-100%)
+    transition 0.5s ease-out
+
+nav button:hover::before
+    transform translateX(100%)
+
 
 main h1
     position absolute

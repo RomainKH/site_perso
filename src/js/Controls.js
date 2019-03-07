@@ -87,6 +87,7 @@ let wichButton = true
 buttonA.addEventListener('click', () => {
     wichButton = true
     bigImg.style.display = 'none'
+    bigImg1.style.display = 'none'
     i++
     if(i > 4) {
         i = 0
@@ -118,6 +119,7 @@ buttonA.addEventListener('click', () => {
 })
 
 buttonB.addEventListener('click', () => {
+    bigImg1.style.display = 'none'
     wichButton = false
     i--
     if(i < 0) {
