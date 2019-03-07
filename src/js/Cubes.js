@@ -62,6 +62,7 @@ export default class Cubes
                     for (let i = 0; i < this.container.children.length; i++)
                     {
                         this.container.children[i].position.z -= 0.001
+                        this.container.children[i].rotation.x -= 0.0003
                     }
                 }
                 window.requestAnimationFrame(loop)
