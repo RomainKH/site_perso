@@ -1,6 +1,6 @@
 import './css/style.styl'
 import * as THREE from 'three'
-import { BloomEffect, EffectComposer, EffectPass, RenderPass, BokehEffect, GlitchEffect } from "postprocessing"
+import { EffectComposer, EffectPass, RenderPass, BokehEffect } from "postprocessing"
 import Cubes from './js/Cubes.js'
 import Controls from './js/Controls.js'
 

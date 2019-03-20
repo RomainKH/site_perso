@@ -69,6 +69,16 @@ window.addEventListener('scroll', (_event) => {
     }
 })
 
+// About me
+
+const aboutMe = document.querySelector('nav button')
+const windowAbout = document.querySelector('.aboutMe')
+
+aboutMe.addEventListener('click', () => {
+    windowAbout.classList.toggle('goWide')
+    
+    
+})
 
 
 const imgArray = new Array(img0, img1, img2, img3, img4)
@@ -111,7 +121,7 @@ buttonA.addEventListener('click', () => {
                 bigImg1.classList.remove('falseBigImg')
                 bigImg1.removeAttribute('src')
                 bigImg1.style.display = 'none'
-            }, 380)
+            }, 382)
         }
     }
     bigImg1.src = bigImg.src
@@ -144,7 +154,7 @@ buttonB.addEventListener('click', () => {
                 bigImg.src = imgArray[i]
                 bigImg1.removeAttribute('src')
                 bigImg1.style.display = 'none'
-            }, 380)
+            }, 382)
         }
     }
     bigImg1.src = imgArray[i]
