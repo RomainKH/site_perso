@@ -96,7 +96,6 @@ let wichButton = true
 
 buttonA.addEventListener('click', () => {
     wichButton = true
-    bigImg.style.display = 'none'
     bigImg1.style.display = 'none'
     i++
     if(i > 4) {
