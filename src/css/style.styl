@@ -6,26 +6,37 @@
     font-family 'Mukta-R'
     src url('../fonts/Mukta-Regular.ttf')
 
+@font-face
+    font-family 'Noto-L'
+    src url('../fonts/NotoSerifJP-Light.otf')
+
+@font-face
+    font-family 'Playfair-R'
+    src url('../fonts/PlayfairDisplay-Regular.ttf')
+
 body
     margin 0 auto
-    overflow hidden
+    overflow-y scroll
+    overflow-x hidden
+    background #fefcfa
 
-main
-    width 100%
-    height 100%
-    z-index 2
+nav 
+    position relative
+    display flex
+    justify-content space-between
+    align-items center
+    flex-direction row-reverse
+    height 15px
+    padding 25px 25px 0px 0px
 
 nav button
-    z-index 5
+    z-index 4
     position absolute
     overflow hidden
-    right 2%
-    top 2%
-    height 5%
-    width 5%
+    height 75%
     font-size 1.1rem
     font-family 'Mukta-M', sans-serif
-    color white
+    color #3c3c3c
     border none
     background none
     outline none
@@ -35,11 +46,11 @@ nav button
 nav button::before
     content ''
     position absolute
-    background white
+    background #3c3c3c
     width 100%
     left 0
     bottom 0
-    height 3px
+    height 2px
     transform translateX(-100%)
     transition 0.5s ease-out
     will-change transform
@@ -49,62 +60,107 @@ nav button:hover::before
 
 .aboutMe
     position absolute
-    z-index 4
+    display flex
+    flex-direction column-reverse
+    justify-content flex-end
     top 0
     width 100%
     height 100%
-    background #000000
-    transition 0.5s ease-out
-    will-change transform
+    background #282828
+    padding 2% 0 0 0.5%
+    opacity 0
     transform translateY(-100%)
+    will-change transform
+
+.aboutMe > *
+    padding-left 1%
+
+.zIndexPlus
+    z-index 3
+
+.transitionAboutMe
+    transition 0.6s linear
 
 .goWide
     transform translateY(0%)
+    opacity 1
 
-.aboutMe h4
-    position absolute
-    font-size 5rem
-    font-family 'Mukta-R', sans-serif
-    color white
-    text-transform uppercase
+.changeColor
+    animation changeButton 1s ease-in 1 normal forwards
 
-.aboutMe p
+@keyframes changeButton
+    0%
+        opacity 0
+        color #fefcfa  
+    50%
+        opacity 0
+        color #3c3c3c
+
+    100% 
+        opacity 1
+        color #fefcfa
+
+.changeColorReverse
+    animation changeButtonR 1s ease-in 1 normal forwards
+
+@keyframes changeButtonR
+    0%
+        opacity 0
+        color #fefcfa  
+    50%
+        opacity 0
+        color #3c3c3c
+
+    100% 
+        opacity 1
+        color #3c3c3c
+
+.aboutMe div
+    display flex
+    flex-direction column
+    justify-content space-around
+    align-items flex-start
+
+.aboutMe div h4
+    font-size 3rem
+    font-family 'Times New Roman', serif
+    color #fefcfa
+    margin 0
+
+.aboutMe div p
     top 20%
-    position absolute
-    font-size 2rem
+    font-size 1.5rem
     font-family 'Mukta-R', sans-serif
-    color white
+    color #fefcfa
+    margin 0
 
-main h1
+.aboutMe img 
+    width 10%
+
+h1
     position absolute
-    width 100%
+    font-family 'Playfair-R', serif
     margin 0
     padding 0
-    left 50%
-    top 2%
-    font-size 2rem
-    transform translate(-50%, 180%)
-    font-size 5rem
-    font-family 'Mukta-R', sans-serif
-    color white
+    width 100%
+    bottom 85%
+    font-size 4rem
+    font-family: ''
+    transform translate(0%, 100%)
     text-align center
     user-select none
     line-height 100%
     text-transform uppercase
     will-change transform
+    
 
-.repositionH1
-    animation reposition 2.5s linear forwards
-
-@keyframes reposition 
-  0% 
-    transform translate(-50%, 180%)  
-  100% 
-    transform translate(-50%, 0%)
-    font-size 3rem
+.scrolled
+    transform translate(0%, 50%) scale(0.4)
+    transition 1.3s linear
+    
 
 .continueTo
-    z-index 3
+    z-index 1
     position absolute
     left 50%
     top 52%
@@ -115,7 +171,7 @@ main h1
 
 .continueTo button
     font-family 'Mukta-M', sans-serif
-    color white
+    color #3c3c3c
     border none
     background none
     outline none
@@ -123,7 +179,7 @@ main h1
     cursor pointer
 
 .buttonIsGone
-    animation fadeButton 1.5s ease-in 1 forwards
+    animation fadeButton 1s ease-in 1 forwards
 
 @keyframes fadeButton 
   0% 
@@ -153,16 +209,18 @@ main h1
     opacity 0
 
 .arrow .topA
+    z-index 4
     position absolute
-    background white
+    background #3c3c3c
     height 30px
     width 2px
     border-radius 50px
+    cursor pointer
 
 .arrow .topA::after
     content ''
     position absolute
-    background #fff
+    background #3c3c3c
     top 29px
     height 13px
     width 2px
@@ -174,368 +232,97 @@ main h1
     content ''
     position absolute
     top 29px
-    background #fff
+    background #3c3c3c
     height 13px
     width 2px
     transform rotate(-140deg)
     transform-origin top
     border-radius 50px
 
-article
-  opacity 0
-  position absolute
-  display flex
-  width 70%
-  height 45%
-  flex-direction row-reverse
-  justify-content space-between
-  align-items center
-  top 50%
-  left 50%
-  transform translate(-50%, -50%)
-
-article div
-  display flex 
-  max-width 50%
-  height 100%
-  flex-direction column
-  justify-content space-between
-  align-items space-around
-  
-article p
-    margin 0
-    padding 0
-    color white
-    font-family 'Mukta-R', sans-serif
-    will-change opacity 
-
-article h2
-    margin 0
-    padding 0
-    color white
-    font-family 'Mukta-R', sans-serif
-    font-size 3rem
-    will-change opacity 
-
-.changeText
-    animation changeTxt 0.38s linear 1 normal forwards
-
-.pauseAnim
-    animation-play-state paused
-
-@keyframes changeTxt
-  50% 
-    opacity 0
-
-  100% 
-    opacity 1
-
-.arrows
-    opacity 0
-    visibility hidden
-
-.buttonContainer
-    display flex
-    flex-direction row-reverse
-    justify-content space-between
-    align-items flex-end
-    max-width 100%
-    max-height 55%
-
-.buttonA
-    width 25%
-    height 18%
-    color white
-    font-family 'Mukta-M', sans-serif
-    background black
-    border white 2px solid
-    cursor pointer
-    transition ease-in 0.3s
-    text-transform uppercase
-    padding 0
-    margin 0
-
-.buttonA:hover
-    border #4000CC 2px solid
-
-.buttonB
-    width 25%
-    height 18%
-    color white
-    font-family 'Mukta-M', sans-serif
-    background black
-    border white 2px solid
-    cursor pointer
-    transition ease-in 0.3s
-    text-transform uppercase
-    padding 0
-    margin 0
-
-.buttonB:hover
-    border #4000CC 2px solid
-
-.textAppears
-    animation text 2s linear 1 forwards
-
-@keyframes text 
-  50% 
-    opacity 0
-
-  100% 
-    opacity 1
-    visibility visible
-
-.bigImg
+main
     position absolute
-    left 2%
-    top 2%
-    width 450px
-    height auto
-    will-change transform
+    display none
+    flex-direction column
+    align-items center
+    justify-content space-between
+    top 26%
+    left 0%
+    width 100%
+    transition .3s linear
+    opacity 0
 
-.getBigger
-    animation getBig 0.38s linear 1 forwards normal
-
-@keyframes getBig 
-  0% 
-    transform scale(0)
-
-  100% 
-    transform scale(1)
-
-.getBiggerReverse
-    animation getBigR 0.38s linear 1 forwards normal
-
-@keyframes getBigR
-  0% 
-    transform scale(1)
-
-  100% 
-    transform scale(0)
-
-.falseBigImg
-    position fixed
-    visibility hidden
-    left 2%
-    top 2%
-    width 450px
+article 
+    display flex
+    flex-direction column
+    justify-content space-between
+    align-items flex-start
+    width 60%
     height 100%
-    transform translate(0%, 0%)
-    will-change transform
-    animation imgTransition 0.38s ease-in 1 forwards normal
 
-@keyframes imgTransition 
+article:nth-child(1)
+    z-index 2
+    opacity 1
+    transition .2s linear
+
+article:nth-child(2)
+    z-index 1
+    opacity 0
+    transform translateY(-477px)
+    transition .2s linear
+
+article:nth-child(3)
+    opacity 0
+    transform translateY(-190px)
+    transition .2s linear
+
+
+article h3
+    font-family 'Mukta-M', sans-serif
+    font-size 4.5rem
+    margin 0
+
+article p
+    margin-bottom 4.5%
+    font-family 'Noto-L', sans-serif
+    font-size 1rem
+
+.images
+    display flex
+    flex-direction row
+    justify-content space-between
+
+article .images img
+    width 45%
+    height 45%
+
+.loadingAnim
+    position relative
+    margin 0 auto
+    top 300px
+    width 100px
+    height 100px
+    border 2px solid gray
+    border-radius 10px
+    opacity 0
+    transition 0.5s ease-out
+    transform rotate(0deg) scale(0.5)
+    transform-origin center
+    animation loadingLoop 1.1s linear infinite forwards normal
+    will-change transform
+
+@keyframes loadingLoop 
   0% 
-    transform translate(0%, 0%)
-    visibility visible
+    transform rotate(0deg) scale(0.5)
+    border-radius 10px
+
+  50%
+    transform rotate(0.5turn) scale(0.7)
+    border-radius 50px
 
   100% 
-    transform translate(-180%, 0%)
-    visibility visible
+    transform rotate(1turn) scale(0.5)
+    border-radius 10px
 
-.falseBigImgReverse
-    position fixed
-    visibility hidden
-    left 2%
-    top 2%
-    width 450px
-    height 100%
-    transform translate(-180%, 0%)
-    will-change transform
-    animation imgTransitionR 0.38s ease-in 1 forwards normal
+/*** RESPONSIVE ***/
 
-@keyframes imgTransitionR 
-  0% 
-    transform translate(-180%, 0%)
-    visibility visible
-
-  100% 
-    transform translate(0%, 0%)
-    visibility visible
-
-/***** RESPONSIVE DESIGN *****/
-
-//SMARTPHONE
-@media screen and (max-width 700px)
-    main h1
-        font-size 2rem
-        position absolute
-        top 5%
-        width 100%
-        transform translate(-50%, 250%)
-
-    .repositionH1
-        animation repositionQ 2.5s linear forwards normal
-
-    @keyframes repositionQ 
-      0%
-        transform translate(-50%, 250%)
-      100% 
-        transform translate(-50%, -40%)
-
-    article
-        opacity 0
-        position absolute
-        display flex
-        width 90%
-        height 75%
-        flex-direction column-reverse
-        justify-content center
-        align-content space-between
-        top 48%
-        left 50%
-        transform translate(-50%, -50%)
-
-    article div
-        max-width 100%
-        height 40%
-        transform translate(0%,70%)
-        justify-content center
-
-    .bigImg
-        position absolute
-        width 74%
-        height auto
-        left 50%
-        top 30%
-        transform translate(-50%, -50%) scale(1)
-        will-change transform
-    
-    .getBigger
-        animation newAnimBig 0.38s linear 1 forwards normal
-
-    @keyframes newAnimBig 
-      0% 
-        transform translate(-50%, -50%) scale(0)
-
-      100% 
-        transform translate(-50%, -50%) scale(1)
-
-    .getBiggerReverse
-        animation newGetBigR 0.38s linear 1 forwards normal
-
-    @keyframes newGetBigR
-      0% 
-        transform translate(-50%, -50%) scale(1)
-
-      100% 
-        transform translate(-50%, -50%) scale(0)
-
-    article p
-      margin 0
-      padding 0
-      color white
-      font-family 'Mukta-R', sans-serif
-      font-size 0.8rem
-      will-change opacity 
-
-    article h2
-      margin 0
-      padding 0
-      color white
-      font-family 'Mukta-R', sans-serif
-      font-size 1.8rem
-      will-change opacity 
-
-    .buttonContainer
-        top 55%
-        height 100%
-        width 100%
-        position absolute
-        flex-direction row-reverse
-        justify-content space-between
-        align-items center
-    
-    .buttonA
-        width 45%
-        height 45%
-
-    .buttonB
-        width 45%
-        height 45%
-    
-    .falseBigImg
-        position absolute
-        width 74%
-        height auto
-        left 50%
-        top 30%
-        transform translate(-50%, -50%) scale(1)
-        will-change transform
-        animation imgTransitionNew 0.38s ease-in 1 forwards normal
-
-    @keyframes imgTransitionNew
-      0% 
-        transform translate(-50%, -50%)
-        visibility visible
-    
-      100% 
-        transform translate(-190%, -50%)
-        visibility visible
-
-    .falseBigImgReverse
-        position absolute
-        width 74%
-        height auto
-        left 50%
-        top 30%
-        transform translate(-190%, -50%) scale(1)
-        will-change transform
-        animation imgTransitionRNew 0.38s ease-in 1 forwards normal
-
-    @keyframes imgTransitionRNew
-      0% 
-        transform translate(-190%, -50%)
-        visibility visible
-    
-      100% 
-        transform translate(-50%, -50%)
-        visibility visible
-
-
-//
-
-@media screen and (max-width 1340px)
-    article
-        width 95%
-    
-@media screen and (min-width 805px) and (max-width 980px)
-    article
-        width 95%
-        height 37%
-    
-    .bigImg
-        position absolute
-        width 380px
-        transform translate(0%, 0%) scale(1)
-        will-change transform
-    
-    article h2
-        font-size 2rem
-
-    article p
-        font-size 0.8rem
-
-@media screen and (min-width 700px) and (max-width 805px)
-
-    article
-        width 95%
-        height 35%
-    
-    .bigImg
-        position absolute
-        width 310px
-        transform translate(0%, 0%) scale(1)
-        will-change transform
-    
-    article h2
-        font-size 1.8rem
-
-    article p
-        font-size 0.7rem
-    
-    .buttonA
-        width 30%
-    
-    .buttonB
-        width 30%
+// @media (min-width 100px) (max-width 200px)
