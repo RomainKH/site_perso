@@ -19,7 +19,6 @@ window.addEventListener('resize', () => {
     //Update sizes
     sizes.width = window.innerWidth
     sizes.height = window.innerHeight - 50
-    console.log(sizes.height)
     //update camera
     camera.aspect = sizes.width / sizes.height
     camera.updateProjectionMatrix()
@@ -35,32 +34,33 @@ window.addEventListener('mousemove', (event) =>
     cursor.x = ( event.clientX / window.innerWidth ) * 2 - 1
     cursor.y = - ( event.clientY / window.innerHeight ) * 2 + 1
 })
+
 /**
  * Scene
  */
-const scene = new THREE.Scene()
+
+ const scene = new THREE.Scene()
 scene.background = new THREE.Color( 0xfefcfa )
+
 /**
  * Camera
  */
+
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
-camera.position.x = 0
+camera.position.z = -10
+
 scene.add(camera)
 /**
  * Object 3D
  */
-for(let i = 0; i < 20; i++)
-{
-    const radius = Math.random() * 0.2
-    const bush = new THREE.Mesh(
-        new THREE.SphereGeometry(radius),
-        new THREE.MeshBasicMaterial({color: 0x3c3c3c, wireframe:true })
-    )
-    bush.position.x = (Math.random() - (Math.random()+  0.9)) * 2
-    bush.position.z = -1
-    bush.position.y = 0
-    scene.add(bush)
-}
+
+const sphere = new THREE.Mesh(
+    new THREE.SphereGeometry(2, 15, 10),
+    new THREE.MeshBasicMaterial({color: 0x3c3c3c, wireframe:true })
+)
+sphere.position.x = 0
+//scene.add(sphere)
+
 /**
  * Renderer
  */
@@ -70,12 +70,15 @@ document.body.appendChild(renderer.domElement)
 /**
  * Loop Render
  */
+console.log(sphere.position)
 const render = () =>
 {
     window.requestAnimationFrame(render)
     // Update camera
-    camera.position.x = - cursor.x * 0.5
-    camera.position.y = cursor.y * 0.5
+    sphere.position.x = - cursor.x * 0.2
+    sphere.position.y = cursor.y * 0.2
+    sphere.rotation.x += 0.002
+    sphere.rotation.y += 0.002
     camera.lookAt(scene.position)     
     // Render
     renderer.render( scene, camera )   
@@ -91,12 +94,47 @@ const loop = (whatInside) => {
     whatInside
 }
 
+/**
+ * Scroll + Click > Continue to portfolio
+ */ 
+const buttonContinue = document.querySelector('.continueTo')
+const getScrolled = () => {
+    wavyText.classList.add('scrolled')
+    buttonContinue.classList.add('buttonIsGone')
+    const canvasToDelete = document.querySelectorAll('canvas')
+    canvasToDelete[1].remove()
+}
+let isInFolio = false
+
+window.addEventListener('wheel', () => {
+    if (aboutMeButton.classList.contains('changeColor') == false && isInFolio == false && isPageLoaded == true) {
+        getScrolled()
+        isInFolio = true
+        createArticles()
+    }
+})
+window.addEventListener('scroll', () => {
+    if (aboutMeButton.classList.contains('changeColor') == false && isInFolio == false && isPageLoaded == true) {
+        getScrolled()
+        isInFolio = true
+        createArticles()
+    }
+})
+buttonContinue.addEventListener('click', () => {
+    if (aboutMeButton.classList.contains('changeColor') == false && isInFolio == false && isPageLoaded == true) {
+        getScrolled()
+        isInFolio = true
+        createArticles()
+    }
+})
 
 /**
  * No animation onload page
  */
+let isPageLoaded = false
 window.addEventListener('load', () => {
     aboutMeInfos.classList.add('transitionAboutMe')
+    setTimeout(function(){ isPageLoaded = true }, 500)
 })
 let text = new Blotter.Text('ROMAIN KHANOYAN', {
     family: 'serif',
@@ -141,40 +179,6 @@ window.addEventListener('resize', () => {
 })
 checkSizes()
 
-
-/**
- * Scroll + Click > Continue to portfolio
- */ 
-const buttonContinue = document.querySelector('.continueTo')
-const getScrolled = () => {
-    wavyText.classList.add('scrolled')
-    buttonContinue.classList.add('buttonIsGone')
-    const canvasToDelete = document.querySelectorAll('canvas')
-    canvasToDelete[1].remove()
-}
-let isInFolio = false
-window.addEventListener('wheel', () => {
-    if (aboutMeButton.classList.contains('changeColor') == false && isInFolio == false) {
-        getScrolled()
-        isInFolio = true
-        createArticles()
-    }
-})
-window.addEventListener('scroll', () => {
-    if (aboutMeButton.classList.contains('changeColor') == false && isInFolio == false) {
-        getScrolled()
-        isInFolio = true
-        createArticles()
-    }
-})
-buttonContinue.addEventListener('click', () => {
-    if (aboutMeButton.classList.contains('changeColor') == false && isInFolio == false) {
-        getScrolled()
-        isInFolio = true
-        createArticles()
-    }
-})
-
 const main = document.querySelector('main')
 
 const createArticles = () => {
@@ -198,10 +202,11 @@ profilePicture = document.createElement('img')
 profilePicture.src = imgPP
 aboutMeInfos.appendChild(profilePicture)
 aboutMeButton.addEventListener('click', () => {
+    window.scrollTo(0,0)
     aboutMeInfos.classList.toggle('goWide')
     aboutMeInfos.classList.toggle('zIndexPlus')
     aboutMeButton.classList.toggle('changeColor')
-    document.body.style.overflow = 'hidden'
+    setTimeout(function(){ document.body.style.overflowY = 'hidden' }, 200)
     if (aboutMeButton.classList.contains('changeColor') == true) {
         aboutMeButton.innerHTML = 'close'
         aboutMeButton.classList.remove('changeColorReverse')
@@ -209,7 +214,7 @@ aboutMeButton.addEventListener('click', () => {
     else{
         aboutMeButton.innerHTML = 'About me'
         aboutMeButton.classList.add('changeColorReverse')
-        document.body.style.overflowY = 'scroll'
+        setTimeout(function(){ document.body.style.overflowY = 'scroll' }, 200)
     }
 })
 
@@ -218,48 +223,58 @@ aboutMeButton.addEventListener('click', () => {
  */
 
 window.addEventListener('scroll', () => {
-    // first block
-    const blockOne = main.querySelector('article:first-child'),
-          titleOne = blockOne.querySelector('h3'),
-          paraOne = blockOne.querySelector('p'),
-          imgsOne = blockOne.querySelectorAll('img'),
-          blockTwo = main.querySelector('article:nth-child(2)'),
-          titleTwo = blockTwo.querySelector('h3'),
-          paraTwo = blockTwo.querySelector('p'),
-          imgsTwo = blockTwo.querySelectorAll('img')
-    
-    if(window.scrollY >= 0 && window.scrollY <= 450) {
-        blockOne.style.opacity = 1
-        blockTwo.style.opacity = 0
-        titleOne.style.transform = `translateY(-${Math.round(window.scrollY/1.8)}px)`
-        paraOne.style.transform = `translateY(-${Math.round(window.scrollY/1.4)}px)`
-        imgsOne[0].style.transform = `translateY(-${Math.round(window.scrollY/1.2)}px)`
-        imgsOne[1].style.transform = `translateY(-${Math.round(window.scrollY/1.15)}px)`
-    }
+    if (isInFolio == true) {
+        // first block
+        const blockOne = main.querySelector('article:first-child'),
+        titleOne = blockOne.querySelector('h3'),
+        paraOne = blockOne.querySelector('p'),
+        imgsOne = blockOne.querySelectorAll('img'),
+        blockTwo = main.querySelector('article:nth-child(2)'),
+        titleTwo = blockTwo.querySelector('h3'),
+        paraTwo = blockTwo.querySelector('p'),
+        imgsTwo = blockTwo.querySelectorAll('img'),
+        blockThree = main.querySelector('article:nth-child(3)'),
+        titleThree = blockThree.querySelector('h3'),
+        paraThree = blockThree.querySelector('p'),
+        imgsThree = blockThree.querySelectorAll('img')
 
-    console.log(window.scrollY)
-    
-    //second block
-    //console.log(blockTwo.offsetParent)
-    if(window.scrollY >= 397 && window.scrollY <= 889) {
-        blockOne.style.opacity = 0
-        blockTwo.style.opacity = 1
-        titleTwo.style.transform = `translateY(-${Math.round(window.scrollY/1.4)-367}px)`
-        paraTwo.style.transform = `translateY(-${Math.round(window.scrollY/1.3)-377}px)`
-        imgsTwo[0].style.transform = `translateY(-${Math.round(window.scrollY/1.2)-377}px)`
-        imgsTwo[1].style.transform = `translateY(-${Math.round(window.scrollY/1.15)-377}px)`
-    }
+        if(window.scrollY >= 0 && window.scrollY <= 550) {
+          blockOne.style.opacity = 1
+          blockTwo.style.opacity = 0
+          blockThree.style.opacity = 0
+          titleOne.style.transform = `translateY(-${Math.round(window.scrollY/1.8)}px)`
+          paraOne.style.transform = `translateY(-${Math.round(window.scrollY/1.5)}px)`
+          imgsOne[0].style.transform = `translateY(-${Math.round(window.scrollY/1.9)}px)`
+          imgsOne[1].style.transform = `translateY(-${Math.round(window.scrollY/1.65)}px)`
+        }
 
-    //third block
-    const blockThree = main.querySelector('article:nth-child(3)'),
-          titleThree = blockThree.querySelector('h3'),
-          paraThree = blockThree.querySelector('p'),
-          imgsThree = blockThree.querySelectorAll('img')
+        console.log(window.scrollY)
 
-    if(window.scrollY >= 609 && window.scrollY <= 1800) {
-        titleThree.style.transform = `translateY(-${Math.round(window.scrollY/1.5)-350}px)`
-        paraThree.style.transform = `translateY(-${Math.round(window.scrollY/1.5)-350}px)`
-        imgsThree[0].style.transform = `translateY(-${Math.round(window.scrollY/1.5)-350}px)`
-        imgsThree[1].style.transform = `translateY(-${Math.round(window.scrollY/3)-350}px)`
+        //second block
+        //console.log(blockTwo.offsetParent)
+        if(window.scrollY >= 450 && window.scrollY <= 1000) {
+          blockOne.style.opacity = 0
+          blockTwo.style.opacity = 1
+          blockThree.style.opacity = 0
+          titleTwo.style.transform = `translateY(-${Math.round(window.scrollY/1.4)-237}px)`
+          paraTwo.style.transform = `translateY(-${Math.round(window.scrollY/1.3)-257}px)`
+          imgsTwo[0].style.transform = `translateY(-${Math.round(window.scrollY/1.2)-277}px)`
+          imgsTwo[1].style.transform = `translateY(-${Math.round(window.scrollY/1.45)-277}px)`
+        }
+
+        //third block
+        if(window.scrollY >= 950 && window.scrollY <= 1500) {
+          blockTwo.style.opacity = 0
+          blockOne.style.opacity = 0
+          blockThree.style.opacity = 1
+          titleThree.style.transform = `translateY(-${Math.round(window.scrollY/1.5)-350}px)`
+          paraThree.style.transform = `translateY(-${Math.round(window.scrollY/1.5)-350}px)`
+          imgsThree[0].style.transform = `translateY(-${Math.round(window.scrollY/1.5)-350}px)`
+          imgsThree[1].style.transform = `translateY(-${Math.round(window.scrollY/3)-350}px)`
+        }
     }
 })
+
+/**
+ * Scroll indicator
+ */

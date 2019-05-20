@@ -1,18 +1,28 @@
 @font-face
     font-family 'Mukta-M'
     src url('../fonts/Mukta-Medium.ttf')
+    font-display swap
 
 @font-face
     font-family 'Mukta-R'
     src url('../fonts/Mukta-Regular.ttf')
+    font-display swap
 
 @font-face
     font-family 'Noto-L'
     src url('../fonts/NotoSerifJP-Light.otf')
+    font-display swap
 
 @font-face
     font-family 'Playfair-R'
     src url('../fonts/PlayfairDisplay-Regular.ttf')
+    font-display swap
+
+*
+    scroll-behavior smooth
+
+::selection
+    background #e7fcfa
 
 body
     margin 0 auto
@@ -201,12 +211,15 @@ h1
 @keyframes light 
   0% 
     opacity 0
+    transform translateY(0px)
 
   50% 
     opacity 1
+    transform translateY(15px)
 
   100% 
     opacity 0
+    transform translateY(0px)
 
 .arrow .topA
     z-index 4
@@ -267,12 +280,12 @@ article:nth-child(1)
 article:nth-child(2)
     z-index 1
     opacity 0
-    transform translateY(-477px)
+    transform translateY(-100px)
     transition .2s linear
 
 article:nth-child(3)
     opacity 0
-    transform translateY(-190px)
+    transform translateY(-100px)
     transition .2s linear
 
 
@@ -290,6 +303,7 @@ article p
     display flex
     flex-direction row
     justify-content space-between
+
 
 article .images img
     width 45%
