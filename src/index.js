@@ -1,6 +1,7 @@
 import './css/style.styl';
 import * as THREE from 'three';
 import Projects from './js/projects';
+import ScrollsElements from './js/scroll';
 import Loading from './js/loader';
 
 import img0_0 from './images/image0_0.jpg';
@@ -8,6 +9,7 @@ import img0_1 from './images/image0_1.png';
 import img1_0 from './images/image1_0.png';
 import img1_1 from './images/image1_1.png';
 import imgPP from './images/profile.jpg';
+
 
 /**
  * Sizes
@@ -24,7 +26,12 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix()
     //update
     renderer.setSize(sizes.width, sizes.height)
+    
+    $canvas.width = sizes.width
+    $canvas.height = sizes.height
 })
+
+
 /**
  * Cursor
  */
@@ -39,7 +46,7 @@ window.addEventListener('mousemove', (event) =>
  * Scene
  */
 
- const scene = new THREE.Scene()
+const scene = new THREE.Scene()
 scene.background = new THREE.Color( 0xfefcfa )
 
 /**
@@ -47,7 +54,8 @@ scene.background = new THREE.Color( 0xfefcfa )
  */
 
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
-camera.position.z = -10
+camera.position.z = -15
+
 
 scene.add(camera)
 /**
@@ -55,12 +63,20 @@ scene.add(camera)
  */
 
 const sphere = new THREE.Mesh(
-    new THREE.SphereGeometry(2, 15, 10),
-    new THREE.MeshBasicMaterial({color: 0x3c3c3c, wireframe:true })
+    new THREE.SphereGeometry(2, 13, 5),
+    new THREE.MeshStandardMaterial( {color: 0xffffff,metalness: 0.3, roughness: 0.8, wireframe:true} )
 )
-sphere.position.x = 0
-//scene.add(sphere)
+scene.add(sphere)
 
+const cube = new THREE.Mesh(
+    new THREE.BoxGeometry(3, 3, 3),
+    new THREE.MeshStandardMaterial({ color: 0xffffff,metalness: 0.3, roughness: 0.8, wireframe:true})
+)
+scene.add(cube)
+
+const sunLight = new THREE.DirectionalLight(0xffcccc, 1.2)
+
+scene.add(sunLight)
 /**
  * Renderer
  */
@@ -75,24 +91,24 @@ const render = () =>
 {
     window.requestAnimationFrame(render)
     // Update camera
-    sphere.position.x = - cursor.x * 0.2
-    sphere.position.y = cursor.y * 0.2
+    sphere.position.x =  13 - cursor.x * 0.2
+    sphere.position.y = cursor.y * 0.1
     sphere.rotation.x += 0.002
     sphere.rotation.y += 0.002
+
+    cube.position.x = - cursor.x * 0.1 - 13
+    cube.position.y = cursor.y * 0.2
+    cube.rotation.x -= 0.002
+    cube.rotation.y -= 0.002
+
     camera.lookAt(scene.position)     
     // Render
-    renderer.render( scene, camera )   
+    renderer.render( scene, camera )
+    sunLight.position.x -= 0.01
+    sunLight.position.y += 0.01
+    sunLight.position.z -= 0.01  
 }
 render()
-
-/**
- * Utilities loop func & screen size
- */
-
-const loop = (whatInside) => {
-    window.requestAnimationFrame(loop)
-    whatInside
-}
 
 /**
  * Scroll + Click > Continue to portfolio
@@ -101,30 +117,36 @@ const buttonContinue = document.querySelector('.continueTo')
 const getScrolled = () => {
     wavyText.classList.add('scrolled')
     buttonContinue.classList.add('buttonIsGone')
-    const canvasToDelete = document.querySelectorAll('canvas')
-    canvasToDelete[1].remove()
+    const canvasToDelete = document.querySelector('script + canvas')
+    setTimeout(() => {
+        createArticles()
+        canvasToDelete.remove()
+    }, 1000)
+    const lilLoop = () => {
+        window.requestAnimationFrame(lilLoop)
+        sphere.position.z -= 0.2
+        cube.position.z -= 0.2
+    }
+    lilLoop()
+    isInFolio = true
+
+
 }
 let isInFolio = false
 
 window.addEventListener('wheel', () => {
     if (aboutMeButton.classList.contains('changeColor') == false && isInFolio == false && isPageLoaded == true) {
         getScrolled()
-        isInFolio = true
-        createArticles()
     }
 })
 window.addEventListener('scroll', () => {
     if (aboutMeButton.classList.contains('changeColor') == false && isInFolio == false && isPageLoaded == true) {
         getScrolled()
-        isInFolio = true
-        createArticles()
     }
 })
 buttonContinue.addEventListener('click', () => {
     if (aboutMeButton.classList.contains('changeColor') == false && isInFolio == false && isPageLoaded == true) {
         getScrolled()
-        isInFolio = true
-        createArticles()
     }
 })
 
@@ -206,7 +228,7 @@ aboutMeButton.addEventListener('click', () => {
     aboutMeInfos.classList.toggle('goWide')
     aboutMeInfos.classList.toggle('zIndexPlus')
     aboutMeButton.classList.toggle('changeColor')
-    setTimeout(function(){ document.body.style.overflowY = 'hidden' }, 200)
+    setTimeout(function(){ document.body.style.overflowY = 'scroll' }, 200)
     if (aboutMeButton.classList.contains('changeColor') == true) {
         aboutMeButton.innerHTML = 'close'
         aboutMeButton.classList.remove('changeColorReverse')
@@ -224,57 +246,56 @@ aboutMeButton.addEventListener('click', () => {
 
 window.addEventListener('scroll', () => {
     if (isInFolio == true) {
-        // first block
         const blockOne = main.querySelector('article:first-child'),
-        titleOne = blockOne.querySelector('h3'),
-        paraOne = blockOne.querySelector('p'),
-        imgsOne = blockOne.querySelectorAll('img'),
         blockTwo = main.querySelector('article:nth-child(2)'),
-        titleTwo = blockTwo.querySelector('h3'),
-        paraTwo = blockTwo.querySelector('p'),
-        imgsTwo = blockTwo.querySelectorAll('img'),
-        blockThree = main.querySelector('article:nth-child(3)'),
-        titleThree = blockThree.querySelector('h3'),
-        paraThree = blockThree.querySelector('p'),
-        imgsThree = blockThree.querySelectorAll('img')
+        blockThree = main.querySelector('article:nth-child(3)')
 
-        if(window.scrollY >= 0 && window.scrollY <= 550) {
-          blockOne.style.opacity = 1
-          blockTwo.style.opacity = 0
-          blockThree.style.opacity = 0
-          titleOne.style.transform = `translateY(-${Math.round(window.scrollY/1.8)}px)`
-          paraOne.style.transform = `translateY(-${Math.round(window.scrollY/1.5)}px)`
-          imgsOne[0].style.transform = `translateY(-${Math.round(window.scrollY/1.9)}px)`
-          imgsOne[1].style.transform = `translateY(-${Math.round(window.scrollY/1.65)}px)`
-        }
-
-        console.log(window.scrollY)
-
+        //first block
+        new ScrollsElements(blockOne, 150, 650, [blockTwo, blockThree])
         //second block
-        //console.log(blockTwo.offsetParent)
-        if(window.scrollY >= 450 && window.scrollY <= 1000) {
-          blockOne.style.opacity = 0
-          blockTwo.style.opacity = 1
-          blockThree.style.opacity = 0
-          titleTwo.style.transform = `translateY(-${Math.round(window.scrollY/1.4)-237}px)`
-          paraTwo.style.transform = `translateY(-${Math.round(window.scrollY/1.3)-257}px)`
-          imgsTwo[0].style.transform = `translateY(-${Math.round(window.scrollY/1.2)-277}px)`
-          imgsTwo[1].style.transform = `translateY(-${Math.round(window.scrollY/1.45)-277}px)`
-        }
-
+        new ScrollsElements(blockTwo, 600, 1350, [blockOne, blockThree])
         //third block
-        if(window.scrollY >= 950 && window.scrollY <= 1500) {
-          blockTwo.style.opacity = 0
-          blockOne.style.opacity = 0
-          blockThree.style.opacity = 1
-          titleThree.style.transform = `translateY(-${Math.round(window.scrollY/1.5)-350}px)`
-          paraThree.style.transform = `translateY(-${Math.round(window.scrollY/1.5)-350}px)`
-          imgsThree[0].style.transform = `translateY(-${Math.round(window.scrollY/1.5)-350}px)`
-          imgsThree[1].style.transform = `translateY(-${Math.round(window.scrollY/3)-350}px)`
-        }
+        new ScrollsElements(blockThree, 1300, 1800, [blockOne, blockTwo])
     }
 })
 
 /**
  * Scroll indicator
  */
+const $canvas = document.querySelector('.js-canvas')
+const context = $canvas.getContext('2d')
+let posX,
+    posY
+
+$canvas.width = sizes.width
+$canvas.height = sizes.height
+window.addEventListener('mousemove', (_event) => {
+    posY = _event.clientY -33
+    posX = _event.clientX +4.5
+})
+window.addEventListener('scroll', (_event) => {
+    $canvas.style.top = `${window.scrollY +33}px`
+    
+})
+
+/**
+ * Utilities loop func & screen size
+ */
+
+const loop = () => {
+    window.requestAnimationFrame(loop)
+    context.clearRect(0, 0, sizes.width, sizes.height)
+
+    context.beginPath()
+    context.strokeStyle = '#0c0c0c'
+    context.lineWidth = 2
+    context.arc(posX, posY, 10, 0, Math.PI * 2)
+    context.stroke()
+
+    // context.beginPath()
+    // context.fillStyle = '#0c0c0c'
+    // context.arc(posX, posY, 2, 0, Math.PI * 2)
+    // context.fill()
+
+}
+loop()
