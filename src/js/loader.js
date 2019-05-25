@@ -19,9 +19,7 @@ export default class Loading
         console.log('not loaded')
         setTimeout(function(){animLoading.style.opacity = 1}, 800)
 
-        this.el.addEventListener('load', () => {
-            console.log('its loaded')
-            
+        this.el.addEventListener('load', () => {            
             setTimeout(function(){
                 main.style.display = 'flex'
                 animLoading.style.opacity = 0
@@ -29,6 +27,8 @@ export default class Loading
             setTimeout(function(){
                 animLoading.remove()
                 main.style.opacity = 1  
+                const footer = document.querySelector('footer')
+                footer.style.display = "flex"
             }, 1290)
         })
     }

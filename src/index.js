@@ -4,11 +4,18 @@ import Projects from './js/projects';
 import ScrollsElements from './js/scroll';
 import Loading from './js/loader';
 
-import img0_0 from './images/image0_0.jpg';
-import img0_1 from './images/image0_1.png';
-import img1_0 from './images/image1_0.png';
-import img1_1 from './images/image1_1.png';
-import imgPP from './images/profile.jpg';
+import imgGame_1 from './images/image_threejs_game2.png';
+import imgGame_2 from './images/image_threejs_game.png';
+
+import imgMandala_1 from './images/image_mandala.png';
+import imgMandala_2 from './images/image_mandala2.png';
+
+import imgInterface_1 from './images/image_interface.png';
+import imgInterface_2 from './images/image_interface2.png';
+
+import img404_1 from './images/image404.png';
+import img404_2 from './images/image404_2.png';
+
 
 
 /**
@@ -26,9 +33,6 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix()
     //update
     renderer.setSize(sizes.width, sizes.height)
-    
-    $canvas.width = sizes.width
-    $canvas.height = sizes.height
 })
 
 
@@ -83,10 +87,11 @@ scene.add(sunLight)
 const renderer = new THREE.WebGLRenderer()
 renderer.setSize(sizes.width, sizes.height)
 document.body.appendChild(renderer.domElement)
+renderer.domElement.classList.add('three')
+
 /**
  * Loop Render
  */
-console.log(sphere.position)
 const render = () =>
 {
     window.requestAnimationFrame(render)
@@ -121,11 +126,13 @@ const getScrolled = () => {
     setTimeout(() => {
         createArticles()
         canvasToDelete.remove()
-    }, 1000)
+        buttonContinue.remove()
+
+    }, 700)
     const lilLoop = () => {
         window.requestAnimationFrame(lilLoop)
-        sphere.position.z -= 0.2
-        cube.position.z -= 0.2
+        sphere.position.z -= 0.25
+        cube.position.z -= 0.25
     }
     lilLoop()
     isInFolio = true
@@ -204,12 +211,13 @@ checkSizes()
 const main = document.querySelector('main')
 
 const createArticles = () => {
-    new Projects(img0_0, img0_1, '01.</br>Undertale Mandala', 'Lorem ipsum dolor amet tote bag sustainable cliche, pok pok vaporware XOXO godard twee. Sartorial truffaut cornhole quinoa, sustainable scenester tofu kinfolk VHS hashtag. Austin 8-bit cloud bread sartorial try-hard. Hot chicken poke mustache wolf biodiesel pok pok lo-fi salvia. Ugh kale chips listicle, migas pop-up paleo la croix jean shorts meditation. Bicycle rights photo booth wayfarers, air plant slow-carb dreamcatcher listicle YOLO cronut craft beer biodiesel intelligentsia food truck. Tattooed squid cornhole vape yuccie.')
-    new Projects(img1_0, img1_1, '02.</br>404 Page inspired by Neo', 'Lorem ipsum dolor amet tote bag sustainable cliche, pok pok vaporware XOXO godard twee. Sartorial truffaut cornhole quinoa, sustainable scenester tofu kinfolk VHS hashtag. Austin 8-bit cloud bread sartorial try-hard. Hot chicken poke mustache wolf biodiesel pok pok lo-fi salvia. Ugh kale chips listicle, migas pop-up paleo la croix jean shorts meditation. Bicycle rights photo booth wayfarers, air plant slow-carb dreamcatcher listicle YOLO cronut craft beer biodiesel intelligentsia food truck. Tattooed squid cornhole vape yuccie.')
-    new Projects(img0_0, img0_0, '03.</br>Undertale Mandala', 'Lorem ipsum dolor amet tote bag sustainable cliche, pok pok vaporware XOXO godard twee. Sartorial truffaut cornhole quinoa, sustainable scenester tofu kinfolk VHS hashtag. Austin 8-bit cloud bread sartorial try-hard. Hot chicken poke mustache wolf biodiesel pok pok lo-fi salvia. Ugh kale chips listicle, migas pop-up paleo la croix jean shorts meditation. Bicycle rights photo booth wayfarers, air plant slow-carb dreamcatcher listicle YOLO cronut craft beer biodiesel intelligentsia food truck. Tattooed squid cornhole vape yuccie.')
+    new Projects(imgGame_1, imgGame_2, 'Three.JS Space Game', `Here is a project that is close to my heart because it is one of the first projects where I really enjoyed developing it, it is a fairly simple game that is inspired by Simcity, you choose a planet and you create your colony. The biggest difficulty was managing the raycasting, i.e. detecting the mouse in the 3D space, but I'm quite happy with the rendering even if it still needs to be improved and optimized. Nevertheless it was my first Three.JS project and I remain quite proud of it, you can test it with the links below.`)
+    new Projects(imgInterface_1, imgInterface_2, `UX/UI Work on Quentin Deronzier`, `This school project aimed to highlight through interfaces the work of photographer artists, so I took Quentin Deronzier's work and designed it in a slightly original way. It's a project I enjoyed doing, because the colors of the photos and the ones I used are colors I like to work with. Some constraints were highlighted, such as the scroll indicator or image sizes. It is a project that counts for me because it allowed me to implement the UX / UI knowledge I had acquired in class.`)
+    new Projects(imgMandala_1, imgMandala_2, 'Mandala Undertale', `This is a school graphic design project. The theme was mandala and the choice of the universe of it was free, so I chose a universe that I liked very much, i. e. Undertale, an independent video game, where the color palette goes from blue to purple through other interesting shades. The difficulty was to adapt the very old school style to a vector construction. It was a project that pleased me and allowed me to learn a lot about graphic design concepts.`)
+    new Projects(img404_1, img404_2, '404 Page inspired by Neo', `This project is part of the DailyUI I started last year (but I didn't finish), so I had to make a 404 page in one day, so I thought about a nice theme, and the idea of Neo in Matrix seemed cool to me, so I tried to make a character recognizable enough but also simple enough not to denote with the minimalist style. I really enjoyed it and I was able to let my imagination run wild and I think that's what makes it more or less successful!`)
+
     const firstImgEl = document.querySelectorAll('img')
     new Loading(firstImgEl[1])
-    
 }
 
 
@@ -219,24 +227,31 @@ const createArticles = () => {
 
 const aboutMeButton = document.querySelector('nav > button'),
 aboutMeInfos = document.querySelector('.aboutMe'),
-profilePicture = document.createElement('img')
-
-profilePicture.src = imgPP
-aboutMeInfos.appendChild(profilePicture)
+aboutBg = document.querySelector('.aboutMeBg'),
+aboutMeText = document.querySelector('.aboutMeTex')
 aboutMeButton.addEventListener('click', () => {
     window.scrollTo(0,0)
-    aboutMeInfos.classList.toggle('goWide')
     aboutMeInfos.classList.toggle('zIndexPlus')
     aboutMeButton.classList.toggle('changeColor')
-    setTimeout(function(){ document.body.style.overflowY = 'scroll' }, 200)
+    aboutBg.classList.toggle('goWide')
+    aboutMeText.classList.toggle('changeColor')
+    setTimeout(function(){ document.body.style.overflowY = 'hidden' }, 200)
     if (aboutMeButton.classList.contains('changeColor') == true) {
         aboutMeButton.innerHTML = 'close'
         aboutMeButton.classList.remove('changeColorReverse')
+        aboutBg.classList.remove('goWideR')
+        aboutMeText.classList.remove('changeColorReverse')
+        aboutMeText.style.display = 'flex'
+
     }
     else{
         aboutMeButton.innerHTML = 'About me'
         aboutMeButton.classList.add('changeColorReverse')
-        setTimeout(function(){ document.body.style.overflowY = 'scroll' }, 200)
+        aboutMeText.classList.add('changeColorReverse')
+        aboutBg.classList.add('goWideR')
+        aboutMeText.style.display = 'none'
+
+        setTimeout(function(){ document.body.style.overflowY = 'scroll' }, 600)
     }
 })
 
@@ -246,56 +261,30 @@ aboutMeButton.addEventListener('click', () => {
 
 window.addEventListener('scroll', () => {
     if (isInFolio == true) {
-        const blockOne = main.querySelector('article:first-child'),
-        blockTwo = main.querySelector('article:nth-child(2)'),
-        blockThree = main.querySelector('article:nth-child(3)')
-
-        //first block
-        new ScrollsElements(blockOne, 150, 650, [blockTwo, blockThree])
-        //second block
-        new ScrollsElements(blockTwo, 600, 1350, [blockOne, blockThree])
-        //third block
-        new ScrollsElements(blockThree, 1300, 1800, [blockOne, blockTwo])
+        
+        const blocks = main.querySelectorAll('article')
+        let iteration = 650
+        let lastIteration = 0
+        for (let i = 0; i < blocks.length-1; i++) {
+            if (i < blocks.length && i%2 == 0) {
+                new ScrollsElements(blocks[i], lastIteration , iteration, blocks, true)
+            }
+            else {
+                new ScrollsElements(blocks[i], lastIteration , iteration, blocks, false)
+            }
+            lastIteration = iteration
+            iteration += 650
+            
+        }
+        const lastBlock = main.querySelector('article:last-child')
+        if (lastBlock.getBoundingClientRect().top <= 400 && lastBlock.getBoundingClientRect().top >= -500 ) {
+            lastBlock.style.opacity = 1
+            blocks[2].style.opacity = 0
+        }
+        else {
+            lastBlock.style.opacity = 0
+            
+        }
+        
     }
 })
-
-/**
- * Scroll indicator
- */
-const $canvas = document.querySelector('.js-canvas')
-const context = $canvas.getContext('2d')
-let posX,
-    posY
-
-$canvas.width = sizes.width
-$canvas.height = sizes.height
-window.addEventListener('mousemove', (_event) => {
-    posY = _event.clientY -33
-    posX = _event.clientX +4.5
-})
-window.addEventListener('scroll', (_event) => {
-    $canvas.style.top = `${window.scrollY +33}px`
-    
-})
-
-/**
- * Utilities loop func & screen size
- */
-
-const loop = () => {
-    window.requestAnimationFrame(loop)
-    context.clearRect(0, 0, sizes.width, sizes.height)
-
-    context.beginPath()
-    context.strokeStyle = '#0c0c0c'
-    context.lineWidth = 2
-    context.arc(posX, posY, 10, 0, Math.PI * 2)
-    context.stroke()
-
-    // context.beginPath()
-    // context.fillStyle = '#0c0c0c'
-    // context.arc(posX, posY, 2, 0, Math.PI * 2)
-    // context.fill()
-
-}
-loop()

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132312209-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-132312209-1');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <title>You lost ?</title>
+    
+</head>
+<body>
+    <style type="text/css">
+        ::selection{
+            background: #e7fcfa;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .flex{
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            height: 50%;
+        }
+        h1{
+            font-family: 'Mukta-M', sans-serif;
+            font-size: 14rem;
+            color: #3c3c3c;
+            margin: 0;
+        }
+        h3{
+            font-family: 'Mukta-M', sans-serif;
+            font-size: 3rem;
+            color: #3c3c3c;
+            text-align: center;
+            margin: 0;
+        }
+        a{
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            transform: translate(-50%, -40%);
+            color: #3c3c3c;
+            text-decoration: none;
+            transition: .2s linear;
+            font-family: 'Mukta-M', sans-serif;
+            font-size: 2rem;
+        }
+        a:visited{
+            color: #3c3c3c;
+        }
+        a:hover{
+            transform: translate(-50%,-49%);
+        }
+    </style>
+    <div class="flex">
+        <h1>404</h1>
+        <h3>You seem to be lost</h3>
+    </div>
+    <a href="/">Go Home</a>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js"></script>
+    <script src="vanta.net.min.js"></script>
+    <script>
+    VANTA.NET({
+      el: "body",
+      color: 0x3c3c3c,
+      backgroundColor: 0xfefcfa
+    })
+    </script>
+</body>
+</html>
