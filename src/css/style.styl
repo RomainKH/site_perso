@@ -4,11 +4,6 @@
     font-display swap
 
 @font-face
-    font-family 'Noto-L'
-    src url('../fonts/NotoSerifJP-Light.otf')
-    font-display swap
-
-@font-face
     font-family 'Playfair-R'
     src url('../fonts/PlayfairDisplay-Regular.ttf')
     font-display swap
@@ -25,7 +20,6 @@ body
     background #fefcfa
     width 100%
     min-height 100%
-    scroll-behavior smooth
 
 nav 
     position relative
@@ -177,7 +171,7 @@ nav button:hover::before
 
 .aboutMeTex h4
     font-size 6rem
-    font-family 'Noto-L', serif
+    font-family 'Playfair-R', serif
     text-transform uppercase
     color #fefcfa
     margin 0
@@ -196,19 +190,18 @@ nav button:hover::before
 
 h1
     position relative
-    font-family 'Playfair-R', serif
     margin 0
     padding 0
+    font-family 'Mukta-M', sans-serif
     width 100%
     bottom 85%
     font-size 4rem
-    font-family: ''
     transform translate(0%, 35%)
     text-align center
     user-select none
     line-height 100%
-    text-transform uppercase
     will-change transform
+    color #3c3c3c
     
 .three
     top 8%
@@ -216,7 +209,7 @@ h1
     z-index -1
 
 .scrolled
-    transform translate(0%, 0%) scale(0.4)
+    transform translate(0%, -30%) scale(0.4)
     transition 1.3s linear
     
 
@@ -312,7 +305,6 @@ main
     width 100%
     transition .3s linear
     opacity 0
-    scroll-behavior smooth
 
 
 article 
@@ -324,7 +316,7 @@ article
     height 105%
     transition .3s linear
     opacity 0
-    margin 0 0 10% 0
+    margin 3% 0 3% 0
     will-change transform
 
 
@@ -338,13 +330,15 @@ article h3
     font-size 4rem
     margin 0
     transition .1s linear
+    will-change transform
 
 
 article p
     margin-bottom 4.5%
-    font-family 'Noto-L', sans-serif
+    font-family 'Playfair-R', serif
     font-size 1rem
     transition .1s linear
+    will-change transform
 
 
 .images
@@ -352,11 +346,25 @@ article p
     flex-direction row
     justify-content space-between
 
-
 article .images img
     width 42%
     height 42%
     transition .1s linear
+    will-change transform
+
+article .images a img
+    width 72%
+    height 100%
+    z-index -20
+    transition .1s linear
+    will-change transform
+
+article .images a
+    z-index 20
+    display flex
+    justify-content flex-end
+    text-decoration none
+    position relative
 
 
 .loadingAnim
@@ -365,8 +373,8 @@ article .images img
     top 300px
     width 100px
     height 100px
-    border 2px solid gray
     border-radius 10px
+    border solid 2px #3c3c3c
     opacity 0
     transition 0.5s ease-out
     transform rotate(0deg) scale(0.5)
@@ -392,7 +400,7 @@ footer
     position relative
     bottom 0
     width 100%
-    padding 1% 0% 2.5% 0%
+    padding 2% 0% 2.5% 0%
     flex-direction row
     justify-content space-around
     align-items center
@@ -413,12 +421,149 @@ footer a:visited
 
 footer > *:hover
     transform translateY(-10%)
+
+#circle
+    z-index 10
+    width 40px
+    height 40px
+    background none
+    border 2px solid #6bfff1
+    border-radius 50%
+    position absolute
+    left 0px
+    top 0px
+    margin -10px 0 0 -10px
+    pointer-events none
+    transition ease-out .11s
+    will-change transform
+
+#smallCircle
+    z-index 10
+    width 9px
+    height 9px
+    background #6bfff1
+    border-radius 50%
+    position absolute
+    left 0px
+    top 0px
+    margin -10px 0 0 -10px
+    transition ease-out .08s
+    pointer-events none
+    will-change transform
+
     
 /*** RESPONSIVE ***/
 
-@media screen and (min-width 100px) and (max-width 1320px)
+@media screen and (min-width 1280px) and (max-width 1440px)
 
     article h3
         font-size 3rem
 
+@media screen and (min-width 1024px) and (max-width 1280px)
+
+    .aboutMeTex h4
+        font-size 4rem
+
+    .aboutMeTex p
+        font-size 1rem
+
+    article h3
+        font-size 2rem
     
+    article p
+        font-size 0.8rem
+    
+    footer
+        display none
+        bottom 0
+        padding 2% 0% 2.5% 0%
+        flex-direction row
+        justify-content space-around
+        align-items center
+    
+@media screen and (min-width 768px) and (max-width 1023px)
+
+    .aboutMeTex
+        left 47%
+
+    .aboutMeTex h4
+        font-size 3.5rem
+
+    .aboutMeTex p
+        font-size 1.2rem
+        width 100%
+
+    article 
+        width 80%
+
+    article h3
+        font-size 2rem
+    
+    article p
+        font-size 0.8rem
+    
+    footer
+        display none
+        bottom 0
+        padding 1% 0% 2.5% 0%
+        flex-direction row
+        justify-content space-around
+        align-items center
+
+@media screen and (min-width 375px) and (max-width 767px)
+
+    .scrolled
+        transform translate(-25%, -43%) scale(0.4)
+        text-align left
+    
+    .aboutMeTex
+        left 47%
+        width 88%
+
+    .aboutMeTex h4
+        font-size 3.5rem
+
+    .aboutMeTex p
+        font-size 1.2rem
+
+    article 
+        width 80%
+
+    article h3
+        font-size 1.3rem
+    
+    article p
+        font-size 0.8rem
+    
+    footer
+        display none
+        bottom 0
+        padding 1% 0% 2.5% 0%
+        flex-direction row
+        justify-content space-around
+        align-items center
+    
+    .images
+        position relative
+        display flex
+        flex-direction column
+        justify-content space-between
+        align-items center
+    
+    article .images img
+        width 80%
+        height auto
+        margin-bottom 5%
+
+    article .images a
+        justify-content center
+
+    article .images a img
+        width 80%
+        height 80%
+
+    #smallCircle
+        display none
+
+    #circle
+        display none

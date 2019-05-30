@@ -35,10 +35,10 @@ export default class ScrollsElements
             }
             this.block.style.opacity = 1
             
-            this.titleBlock.style.transform = `translateX(-${Math.round(-this.fromTopElment / 4.6)}%)`
-            this.paraBlock.style.transform = `translateX(-${Math.round(-this.fromTopElment / 6.55)}%)`
-            this.imgsBlock[0].style.transform = `translateX(-${Math.round(-this.fromTopElment / 3.2)}%)`
-            this.imgsBlock[1].style.transform = `translateX(-${Math.round(-this.fromTopElment / 3.3)}%)`
+            this.titleBlock.style.transform = `translateX(-${Math.round(-this.fromTopElment / 1.6)}px)`
+            this.paraBlock.style.transform = `translateX(-${Math.round(-this.fromTopElment / 1.55)}px)`
+            this.imgsBlock[0].style.transform = `translateX(-${Math.round(-this.fromTopElment / 1.2)}px)`
+            this.imgsBlock[1].style.transform = `translateX(-${Math.round(-this.fromTopElment / 1.3)}px)`
             
         }
         else{
@@ -55,10 +55,10 @@ export default class ScrollsElements
             }
             this.block.style.opacity = 1
             
-            this.titleBlock.style.transform = `translateX(${Math.round(-this.fromTopElment / 4.6)}%)`
-            this.paraBlock.style.transform = `translateX(${Math.round(-this.fromTopElment / 6.55)}%)`
-            this.imgsBlock[0].style.transform = `translateX(${Math.round(-this.fromTopElment / 3.2)}%)`
-            this.imgsBlock[1].style.transform = `translateX(${Math.round(-this.fromTopElment / 3.3)}%)` 
+            this.titleBlock.style.transform = `translateX(${Math.round(-this.fromTopElment / 1.6)}px)`
+            this.paraBlock.style.transform = `translateX(${Math.round(-this.fromTopElment / 1.55)}px)`
+            this.imgsBlock[0].style.transform = `translateX(${Math.round(-this.fromTopElment / 1.2)}px)`
+            this.imgsBlock[1].style.transform = `translateX(${Math.round(-this.fromTopElment / 1.3)}px)` 
         }
         else{
             this.block.style.zIndex = 0

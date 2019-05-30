@@ -10,13 +10,14 @@ import imgGame_2 from './images/image_threejs_game.png';
 import imgMandala_1 from './images/image_mandala.png';
 import imgMandala_2 from './images/image_mandala2.png';
 
+import imgPro_1 from './images/image_sitepro.png';
+import imgPro_2 from './images/image_sitepro2.png';
+
 import imgInterface_1 from './images/image_interface.png';
 import imgInterface_2 from './images/image_interface2.png';
 
 import img404_1 from './images/image404.png';
 import img404_2 from './images/image404_2.png';
-
-
 
 /**
  * Sizes
@@ -136,10 +137,12 @@ const getScrolled = () => {
     }
     lilLoop()
     isInFolio = true
-
+    sessionStorage.setItem('wasOnHome', true)
 
 }
+
 let isInFolio = false
+
 
 window.addEventListener('wheel', () => {
     if (aboutMeButton.classList.contains('changeColor') == false && isInFolio == false && isPageLoaded == true) {
@@ -211,8 +214,9 @@ checkSizes()
 const main = document.querySelector('main')
 
 const createArticles = () => {
-    new Projects(imgGame_1, imgGame_2, 'Three.JS Space Game', `Here is a project that is close to my heart because it is one of the first projects where I really enjoyed developing it, it is a fairly simple game that is inspired by Simcity, you choose a planet and you create your colony. The biggest difficulty was managing the raycasting, i.e. detecting the mouse in the 3D space, but I'm quite happy with the rendering even if it still needs to be improved and optimized. Nevertheless it was my first Three.JS project and I remain quite proud of it, you can test it with the links below.`)
+    new Projects(imgGame_1, imgGame_2, 'Three.JS Space Game', `Here is a project that is close to my heart because it is one of the first projects where I really enjoyed developing it, it is a fairly simple game that is inspired by Simcity, you choose a planet and you create your colony. The biggest difficulty was managing the raycasting, i.e. detecting the mouse in the 3D space, but I'm quite happy with the rendering even if it still needs to be improved and optimized. Nevertheless it was my first Three.JS project and I remain quite proud of it, you can test it with the links below.`, 'https://webgl-game.netlify.com/')
     new Projects(imgInterface_1, imgInterface_2, `UX/UI Work on Quentin Deronzier`, `This school project aimed to highlight through interfaces the work of photographer artists, so I took Quentin Deronzier's work and designed it in a slightly original way. It's a project I enjoyed doing, because the colors of the photos and the ones I used are colors I like to work with. Some constraints were highlighted, such as the scroll indicator or image sizes. It is a project that counts for me because it allowed me to implement the UX / UI knowledge I had acquired in class.`)
+    new Projects(imgPro_1, imgPro_2, `Olivier Geffard's website` , `This first was the first time I worked for a professional, it was a school project but we learned a lot, I was one of the developpers, I was in charge of different page such as the gallery and some others. It really improved my level since we also learned to work as a team with a client, and the result was pretty convincing since we only had one month to do it. Even if it was my first professionnal project, I am truly happy of it, it was my first time and I am ready to do some more!`, 'http://www.geffard.com/index.html')
     new Projects(imgMandala_1, imgMandala_2, 'Mandala Undertale', `This is a school graphic design project. The theme was mandala and the choice of the universe of it was free, so I chose a universe that I liked very much, i. e. Undertale, an independent video game, where the color palette goes from blue to purple through other interesting shades. The difficulty was to adapt the very old school style to a vector construction. It was a project that pleased me and allowed me to learn a lot about graphic design concepts.`)
     new Projects(img404_1, img404_2, '404 Page inspired by Neo', `This project is part of the DailyUI I started last year (but I didn't finish), so I had to make a 404 page in one day, so I thought about a nice theme, and the idea of Neo in Matrix seemed cool to me, so I tried to make a character recognizable enough but also simple enough not to denote with the minimalist style. I really enjoyed it and I was able to let my imagination run wild and I think that's what makes it more or less successful!`)
 
@@ -220,6 +224,13 @@ const createArticles = () => {
     new Loading(firstImgEl[1])
 }
 
+/**
+ * check if comeback from 404
+ */
+let data = sessionStorage.getItem('wasOnHome')
+if (data !== null) {
+    getScrolled()
+}
 
 /**
  * Click > About Me
@@ -261,25 +272,24 @@ aboutMeButton.addEventListener('click', () => {
 
 window.addEventListener('scroll', () => {
     if (isInFolio == true) {
-        
         const blocks = main.querySelectorAll('article')
-        let iteration = 650
+        let iteration = blocks[0].clientHeight + 50
         let lastIteration = 0
         for (let i = 0; i < blocks.length-1; i++) {
             if (i < blocks.length && i%2 == 0) {
-                new ScrollsElements(blocks[i], lastIteration , iteration, blocks, true)
+                new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks, true)
             }
             else {
-                new ScrollsElements(blocks[i], lastIteration , iteration, blocks, false)
+                new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks, false)
             }
             lastIteration = iteration
-            iteration += 650
+            iteration += blocks[i].clientHeight + 120
             
         }
         const lastBlock = main.querySelector('article:last-child')
-        if (lastBlock.getBoundingClientRect().top <= 400 && lastBlock.getBoundingClientRect().top >= -500 ) {
+        if (lastBlock.getBoundingClientRect().top <= 300 && lastBlock.getBoundingClientRect().top >= -500 ) {
             lastBlock.style.opacity = 1
-            blocks[2].style.opacity = 0
+            blocks[3].style.opacity = 0
         }
         else {
             lastBlock.style.opacity = 0
@@ -287,4 +297,37 @@ window.addEventListener('scroll', () => {
         }
         
     }
+})
+
+// circle following mouse on move
+const cursor_circle = {x:20, y:20}
+
+window.addEventListener('mousemove', (event) =>
+{
+    //let underCursor = document.elementFromPoint(event.clientX,event.clientY)
+
+    cursor_circle.x = event.clientX - 5  
+    cursor_circle.y = event.clientY + window.scrollY
+})
+window.addEventListener('wheel', (event) =>
+{
+    cursor_circle.x = event.clientX - 5  
+    cursor_circle.y = event.clientY + window.scrollY
+})
+const circle_cursor = document.querySelector('#circle'),
+      small_circle = document.querySelector('#smallCircle')
+
+const circle_loop = () => {
+    
+    window.requestAnimationFrame(circle_loop)
+    circle_cursor.style.transform = `translate(${cursor_circle.x-7}px,${cursor_circle.y-12}px)`
+    small_circle.style.transform = `translate(${cursor_circle.x + 11}px,${cursor_circle.y + 5}px)`   
+}
+circle_loop()
+
+// footer links
+
+const footerContact = document.querySelector('footer button')
+footerContact.addEventListener('click', () => {
+    window.location.href = "mailto:romain.khanoyan@gmail.com"
 })
