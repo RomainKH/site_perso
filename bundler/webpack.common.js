@@ -10,7 +10,9 @@ module.exports = {
         open: true,
         hot: true
     },
-    entry: './src/index.js',
+    entry: {
+        index:'./src/index.js'
+    },
     output:
     {
         filename: 'bundle.[hash].js',
