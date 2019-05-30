@@ -120,10 +120,10 @@ render()
  * Scroll + Click > Continue to portfolio
  */ 
 const buttonContinue = document.querySelector('.continueTo')
+const canvasToDelete = document.querySelector('script + canvas')
 const getScrolled = () => {
     wavyText.classList.add('scrolled')
     buttonContinue.classList.add('buttonIsGone')
-    const canvasToDelete = document.querySelector('script + canvas')
     setTimeout(() => {
         createArticles()
         canvasToDelete.remove()
@@ -323,11 +323,13 @@ const cursorFollowed = () => {
 if( navigator.userAgent.match(/Android/i)
 || navigator.userAgent.match(/webOS/i)
 || navigator.userAgent.match(/iPhone/i)
-|| navigator.userAgent.match(/iPad/i)
 || navigator.userAgent.match(/iPod/i)
 || navigator.userAgent.match(/BlackBerry/i)
 || navigator.userAgent.match(/Windows Phone/i)
-){}
+){
+    buttonContinue.remove()
+    canvasToDelete.remove()
+}
 else {
     cursorFollowed()
 } 
