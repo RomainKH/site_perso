@@ -270,10 +270,10 @@ aboutMeButton.addEventListener('click', () => {
  * Scroll parallax
  */
 
-const lastBlock = main.querySelector('article:last-child')
-const blocks = main.querySelectorAll('article')
 window.addEventListener('scroll', () => {
     if (isInFolio == true) {
+        const lastBlock = main.querySelector('article:last-child')
+        const blocks = main.querySelectorAll('article')
         for (let i = 0; i < blocks.length-1; i++) {
             if (i < blocks.length && i%2 == 0) {
                 new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks, true)
@@ -333,7 +333,7 @@ if( (navigator.userAgent.match(/Android/i)
 }
 else {
     cursorFollowed()
-}
+} 
 
 // footer links
 
