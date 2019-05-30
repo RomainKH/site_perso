@@ -270,9 +270,10 @@ aboutMeButton.addEventListener('click', () => {
  * Scroll parallax
  */
 
+const lastBlock = main.querySelector('article:last-child')
+const blocks = main.querySelectorAll('article')
 window.addEventListener('scroll', () => {
     if (isInFolio == true) {
-        const blocks = main.querySelectorAll('article')
         for (let i = 0; i < blocks.length-1; i++) {
             if (i < blocks.length && i%2 == 0) {
                 new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks, true)
@@ -281,7 +282,6 @@ window.addEventListener('scroll', () => {
                 new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks, false)
             }
         }
-        const lastBlock = main.querySelector('article:last-child')
         if (lastBlock.getBoundingClientRect().top <= 300 && lastBlock.getBoundingClientRect().top >= -500 ) {
             lastBlock.style.opacity = 1
             blocks[3].style.opacity = 0
@@ -330,11 +330,10 @@ if( (navigator.userAgent.match(/Android/i)
 ){
     buttonContinue.remove()
     getScrolled()
-
 }
 else {
     cursorFollowed()
-} 
+}
 
 // footer links
 
