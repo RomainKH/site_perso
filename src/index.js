@@ -228,7 +228,7 @@ const createArticles = () => {
  * check if comeback from 404
  */
 let data = sessionStorage.getItem('wasOnHome')
-if (data !== null) {
+if (data !== null && isInFolio == false) {
     getScrolled()
 }
 
@@ -320,15 +320,17 @@ const cursorFollowed = () => {
     }
     circle_loop()
 } 
-if( navigator.userAgent.match(/Android/i)
+if( (navigator.userAgent.match(/Android/i)
 || navigator.userAgent.match(/webOS/i)
 || navigator.userAgent.match(/iPhone/i)
 || navigator.userAgent.match(/iPod/i)
 || navigator.userAgent.match(/BlackBerry/i)
-|| navigator.userAgent.match(/Windows Phone/i)
+|| navigator.userAgent.match(/Windows Phone/i))
+&& isInFolio == false
 ){
     buttonContinue.remove()
-    canvasToDelete.remove()
+    getScrolled()
+
 }
 else {
     cursorFollowed()
