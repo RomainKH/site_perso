@@ -273,8 +273,6 @@ aboutMeButton.addEventListener('click', () => {
 window.addEventListener('scroll', () => {
     if (isInFolio == true) {
         const blocks = main.querySelectorAll('article')
-        let iteration = blocks[0].clientHeight + 50
-        let lastIteration = 0
         for (let i = 0; i < blocks.length-1; i++) {
             if (i < blocks.length && i%2 == 0) {
                 new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks, true)
@@ -282,9 +280,6 @@ window.addEventListener('scroll', () => {
             else {
                 new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks, false)
             }
-            lastIteration = iteration
-            iteration += blocks[i].clientHeight + 120
-            
         }
         const lastBlock = main.querySelector('article:last-child')
         if (lastBlock.getBoundingClientRect().top <= 300 && lastBlock.getBoundingClientRect().top >= -500 ) {

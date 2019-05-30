@@ -78,7 +78,7 @@ nav button:hover::before
     left 50%
     position absolute
     width 1%
-    height 98%
+    height 100%
     z-index 0
     will-change transform
     
@@ -411,7 +411,7 @@ footer > *
     text-decoration none
     color #3c3c3c
     font-family 'Mukta-M', sans-serif
-    font-size 1rem
+    font-size 1.1rem
     cursor pointer
     overflow hidden
     transition .2s linear
@@ -427,7 +427,7 @@ footer > *:hover
     width 40px
     height 40px
     background none
-    border 2px solid #6bfff1
+    border 2px solid #6bcdff
     border-radius 50%
     position absolute
     left 0px
@@ -441,7 +441,7 @@ footer > *:hover
     z-index 10
     width 9px
     height 9px
-    background #6bfff1
+    background #6bcdff
     border-radius 50%
     position absolute
     left 0px
@@ -481,6 +481,9 @@ footer > *:hover
         justify-content space-around
         align-items center
     
+    footer > *
+        font-size 1.1rem
+    
 @media screen and (min-width 768px) and (max-width 1023px)
 
     .aboutMeTex
@@ -503,14 +506,16 @@ footer > *:hover
         font-size 0.8rem
     
     footer
-        display none
         bottom 0
         padding 1% 0% 2.5% 0%
         flex-direction row
         justify-content space-around
         align-items center
+    
+    footer > *
+        font-size 1rem
 
-@media screen and (min-width 375px) and (max-width 767px)
+@media screen and (min-width 320px) and (max-width 767px)
 
     .scrolled
         transform translate(-25%, -43%) scale(0.4)
@@ -521,10 +526,10 @@ footer > *:hover
         width 88%
 
     .aboutMeTex h4
-        font-size 3.5rem
+        font-size 3.1rem
 
     .aboutMeTex p
-        font-size 1.2rem
+        font-size 1rem
 
     article 
         width 80%
@@ -534,14 +539,17 @@ footer > *:hover
     
     article p
         font-size 0.8rem
+        margin-bottom 8%
     
     footer
-        display none
         bottom 0
-        padding 1% 0% 2.5% 0%
+        padding 5% 0% 2.5% 0%
         flex-direction row
         justify-content space-around
         align-items center
+    
+    footer > *
+        font-size 0.7rem
     
     .images
         position relative
@@ -567,3 +575,31 @@ footer > *:hover
 
     #circle
         display none
+    
+    
+@media screen and (max-width 319px)
+
+    body
+        position absolute
+        overflow hidden
+
+    body::after
+        content 'NOT AVAILABLE FOR THIS DISPLAY' 
+        position absolute
+        text-align center
+        top 40%
+        left 0
+        color #fefcfa
+
+    body::before
+        content '' 
+        position absolute
+        height 107vh
+        width 107vw
+        top 0
+        left 0
+        background #3c3c3c
+
+    body  *
+        display none
+        opacity 0

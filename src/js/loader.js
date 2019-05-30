@@ -16,7 +16,6 @@ export default class Loading
         const animLoading = document.createElement('div')
         animLoading.classList.add('loadingAnim')
         document.body.appendChild(animLoading)
-        console.log('not loaded')
         setTimeout(function(){animLoading.style.opacity = 1}, 800)
 
         this.el.addEventListener('load', () => {            
