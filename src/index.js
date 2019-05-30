@@ -295,30 +295,42 @@ window.addEventListener('scroll', () => {
 })
 
 // circle following mouse on move
-const cursor_circle = {x:20, y:20}
+const cursorFollowed = () => {
+    const cursor_circle = {x:20, y:20}
+    window.addEventListener('mousemove', (event) =>
+    {
+        //let underCursor = document.elementFromPoint(event.clientX,event.clientY)
 
-window.addEventListener('mousemove', (event) =>
-{
-    //let underCursor = document.elementFromPoint(event.clientX,event.clientY)
+        cursor_circle.x = event.clientX - 5  
+        cursor_circle.y = event.clientY + window.scrollY
+    })
+    window.addEventListener('wheel', (event) =>
+    {
+        cursor_circle.x = event.clientX - 5  
+        cursor_circle.y = event.clientY + window.scrollY
+    })
+    const circle_cursor = document.querySelector('#circle'),
+          small_circle = document.querySelector('#smallCircle')
 
-    cursor_circle.x = event.clientX - 5  
-    cursor_circle.y = event.clientY + window.scrollY
-})
-window.addEventListener('wheel', (event) =>
-{
-    cursor_circle.x = event.clientX - 5  
-    cursor_circle.y = event.clientY + window.scrollY
-})
-const circle_cursor = document.querySelector('#circle'),
-      small_circle = document.querySelector('#smallCircle')
+    const circle_loop = () => {
 
-const circle_loop = () => {
-    
-    window.requestAnimationFrame(circle_loop)
-    circle_cursor.style.transform = `translate(${cursor_circle.x-7}px,${cursor_circle.y-12}px)`
-    small_circle.style.transform = `translate(${cursor_circle.x + 11}px,${cursor_circle.y + 5}px)`   
-}
-circle_loop()
+        window.requestAnimationFrame(circle_loop)
+        circle_cursor.style.transform = `translate(${cursor_circle.x-7}px,${cursor_circle.y-12}px)`
+        small_circle.style.transform = `translate(${cursor_circle.x + 11}px,${cursor_circle.y + 5}px)`   
+    }
+    circle_loop()
+} 
+if( navigator.userAgent.match(/Android/i)
+|| navigator.userAgent.match(/webOS/i)
+|| navigator.userAgent.match(/iPhone/i)
+|| navigator.userAgent.match(/iPad/i)
+|| navigator.userAgent.match(/iPod/i)
+|| navigator.userAgent.match(/BlackBerry/i)
+|| navigator.userAgent.match(/Windows Phone/i)
+){}
+else {
+    cursorFollowed()
+} 
 
 // footer links
 
