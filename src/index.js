@@ -311,7 +311,7 @@ const cursorFollowed = () => {
     }
     circle_loop()
 } 
-if(sizes.width <= 768 && data == null){
+if(sizes.width <= 767 && data == null){
     buttonContinue.remove()
     getScrolled()
     const circle_cursor = document.querySelector('#circle'),
@@ -319,7 +319,7 @@ if(sizes.width <= 768 && data == null){
     circle_cursor.remove()
     small_circle.remove()
 }
-else if (sizes.width <= 768 && data !== null){
+else if (sizes.width <= 767 && data !== null){
     buttonContinue.remove()
     const circle_cursor = document.querySelector('#circle'),
     small_circle = document.querySelector('#smallCircle')
@@ -328,12 +328,8 @@ else if (sizes.width <= 768 && data !== null){
 }
 else {
     cursorFollowed()
-    // scrollParallax()
+    scrollParallax()
 }
-scrollParallax()
-
-
-// footer links
 
 const footerContact = document.querySelector('footer button')
 footerContact.addEventListener('click', () => {
