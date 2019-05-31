@@ -48,7 +48,6 @@ export default class Projects
     {
         const img1 = document.createElement('img')
         const img2 = document.createElement('img')
-        const images = document.createElement('div')
         const article = document.createElement('article')
         const content = document.createElement('div')
         const title = document.createElement('h3')
@@ -57,18 +56,20 @@ export default class Projects
 
         linkOut.href = this.openOtherLink
         linkOut.target = '_blank'
-        images.classList.add('images')
+        linkOut.classList.add('images')
         title.innerHTML = this.title
         text.innerHTML = this.text
         img1.src = this.firstLink
         img2.src = this.secondLink
+        img1.classList.add('clickable')
+        img2.classList.add('clickable')
+        linkOut.classList.add('clickable')
 
         article.appendChild(title)
         article.appendChild(text)
         article.appendChild(content)
-        article.appendChild(images)
-        images.appendChild(img1)
-        images.appendChild(linkOut)
+        article.appendChild(linkOut)
+        linkOut.appendChild(img1)
         linkOut.appendChild(img2)
 
         const main = document.querySelector('main')

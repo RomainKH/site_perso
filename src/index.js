@@ -272,7 +272,7 @@ const scrollParallax = () => {
                     new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks, false)
                 }
             }
-            if (lastBlock.getBoundingClientRect().top <= 500 && lastBlock.getBoundingClientRect().top >= -500 ) {
+            if (lastBlock.getBoundingClientRect().top <= 340 && lastBlock.getBoundingClientRect().top >= -500 ) {
                 lastBlock.style.opacity = 1
                 blocks[3].style.opacity = 0
             }
@@ -288,43 +288,62 @@ const scrollParallax = () => {
 // circle following mouse on move
 const cursorFollowed = () => {
     const cursor_circle = {x:20, y:20}
+    let underCursor
     window.addEventListener('mousemove', (event) =>
     {
-        //let underCursor = document.elementFromPoint(event.clientX,event.clientY)
-
+        underCursor = document.elementFromPoint(event.clientX,event.clientY)
         cursor_circle.x = event.clientX - 5  
         cursor_circle.y = event.clientY + window.scrollY
     })
     window.addEventListener('wheel', (event) =>
     {
+        underCursor = document.elementFromPoint(event.clientX,event.clientY)
         cursor_circle.x = event.clientX - 5  
         cursor_circle.y = event.clientY + window.scrollY
     })
     const circle_cursor = document.querySelector('#circle'),
-          small_circle = document.querySelector('#smallCircle')
+          small_circle = document.querySelector('#smallCircle'),
+          textToClick = document.querySelector('#clickme')
 
     const circle_loop = () => {
 
         window.requestAnimationFrame(circle_loop)
         circle_cursor.style.transform = `translate(${cursor_circle.x-7}px,${cursor_circle.y-12}px)`
-        small_circle.style.transform = `translate(${cursor_circle.x + 11}px,${cursor_circle.y + 5}px)`   
+        small_circle.style.transform = `translate(${cursor_circle.x + 11}px,${cursor_circle.y + 5}px)` 
+        if (underCursor != null && underCursor.classList.contains('clickable')) {
+            textToClick.style.opacity = 1
+            textToClick.style.transform =  `translate(${cursor_circle.x - 95}px,${cursor_circle.y - 105}px)`
+        }
+        else{
+            textToClick.style.opacity = 0
+        }
     }
     circle_loop()
+    window.addEventListener('mousedown', () => {
+        circle_cursor.classList.add('clickAnim')
+    })
+    window.addEventListener('mouseup', () => {
+        circle_cursor.classList.remove('clickAnim')
+    })
 } 
 if(sizes.width <= 767 && data == null){
     buttonContinue.remove()
     getScrolled()
     const circle_cursor = document.querySelector('#circle'),
-    small_circle = document.querySelector('#smallCircle')
+    small_circle = document.querySelector('#smallCircle'),
+    textToClick = document.querySelector('#clickme')
     circle_cursor.remove()
     small_circle.remove()
+    textToClick.remove()
 }
 else if (sizes.width <= 767 && data !== null){
     buttonContinue.remove()
     const circle_cursor = document.querySelector('#circle'),
-    small_circle = document.querySelector('#smallCircle')
+    small_circle = document.querySelector('#smallCircle'),
+    textToClick = document.querySelector('#clickme')
     circle_cursor.remove()
     small_circle.remove()
+    textToClick.remove()
 }
 else {
     cursorFollowed()

@@ -316,7 +316,7 @@ article
     height 105%
     transition .3s linear
     opacity 0
-    margin 5% 0 8% 0
+    margin 8% 0 4% 0
     will-change transform
 
 
@@ -427,7 +427,7 @@ footer > *:hover
     width 40px
     height 40px
     background none
-    border 2px solid #6bcdff
+    border 2px solid #1bbecd
     border-radius 50%
     position absolute
     left 0px
@@ -437,11 +437,26 @@ footer > *:hover
     transition ease-out .11s
     will-change transform
 
+#clickme
+    z-index 10
+    position absolute
+    left 0px
+    top 0px
+    color #1bbecd
+    font-family 'Mukta-M', sans-serif
+    font-size 3rem
+    font-weight bold
+    transition ease-out .26s
+    opacity 0
+    user-select none
+    cursor pointer
+
+
 #smallCircle
     z-index 10
     width 9px
     height 9px
-    background #6bcdff
+    background #1bbecd
     border-radius 50%
     position absolute
     left 0px
@@ -451,6 +466,18 @@ footer > *:hover
     pointer-events none
     will-change transform
 
+.clickAnim
+    animation clickAnim 0.9s linear infinite
+
+@keyframes clickAnim 
+  0% 
+    border-radius 30%
+
+  50%
+    border-radius 50%
+
+  100% 
+    border-radius 30%
     
 /*** RESPONSIVE ***/
 
@@ -498,6 +525,7 @@ footer > *:hover
 
     article 
         width 80%
+        margin 12% 0 8% 0
 
     article h3
         font-size 2rem
@@ -536,7 +564,7 @@ footer > *:hover
 
     article 
         width 80%
-        margin 10% 0 15% 0
+        margin 12% 0 15% 0
         opacity 1
 
     article h3
@@ -580,6 +608,9 @@ footer > *:hover
 
     #circle
         display none
+
+    img.clickable
+        border solid 2px blue
 
     .aboutMe
         position absolute
