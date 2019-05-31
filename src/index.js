@@ -168,33 +168,17 @@ window.addEventListener('load', () => {
     aboutMeInfos.classList.add('transitionAboutMe')
     setTimeout(function(){ isPageLoaded = true }, 500)
 })
-let text = new Blotter.Text('ROMAIN KHANOYAN', {
-    family: 'serif',
-    size: 110,
-    fill: '#3c3c3c',
-    weight: 350,
-    paddingLeft: 50,
-    paddingRight: 50,
-})
-
-const material = new Blotter.LiquidDistortMaterial()
-
-material.uniforms.uSpeed.value = 0.09
-material.uniforms.uVolatility.value = 0.05
-
-const blotter = new Blotter(material, {texts: text})
 
 const wavyText = document.querySelector('#distortion-text')
-const scope = blotter.forText(text)
 
 const h1 = document.querySelector('h1')
 const checkSizes = () => {
     if (sizes.width <= 1190) {
-        text = ''
         h1.innerHTML = 'romain khanoyan'
+        
     }
     else {
-        text = new Blotter.Text('ROMAIN KHANOYAN', {
+        let text = new Blotter.Text('ROMAIN KHANOYAN', {
             family: 'serif',
             size: 110,
             fill: '#3c3c3c',
@@ -202,7 +186,13 @@ const checkSizes = () => {
             paddingLeft: 50,
             paddingRight: 50,
         })
+        const material = new Blotter.LiquidDistortMaterial()
+
+        material.uniforms.uSpeed.value = 0.09
+        material.uniforms.uVolatility.value = 0.05
+        const blotter = new Blotter(material, {texts: text})
         h1.innerHTML = ''
+        const scope = blotter.forText(text)
         scope.appendTo(wavyText)
     }
 }
@@ -222,14 +212,6 @@ const createArticles = () => {
 
     const firstImgEl = document.querySelectorAll('img')
     new Loading(firstImgEl[1])
-}
-
-/**
- * check if comeback from 404
- */
-let data = sessionStorage.getItem('wasOnHome')
-if (data !== null && isInFolio == false) {
-    getScrolled()
 }
 
 /**
@@ -267,32 +249,41 @@ aboutMeButton.addEventListener('click', () => {
 })
 
 /**
+ * check if comeback from 404
+ */
+let data = sessionStorage.getItem('wasOnHome')
+if (data !== null && isInFolio == false) {
+    getScrolled()    
+}
+
+/**
  * Scroll parallax
  */
-
-window.addEventListener('scroll', () => {
-    if (isInFolio == true) {
-        const lastBlock = main.querySelector('article:last-child')
-        const blocks = main.querySelectorAll('article')
-        for (let i = 0; i < blocks.length-1; i++) {
-            if (i < blocks.length && i%2 == 0) {
-                new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks, true)
+const scrollParallax = () => {
+    window.addEventListener('scroll', () => {
+        if (isInFolio == true) {
+            const lastBlock = main.querySelector('article:last-child')
+            const blocks = main.querySelectorAll('article')
+            for (let i = 0; i < blocks.length-1; i++) {
+                if (i < blocks.length && i%2 == 0) {
+                    new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks, true)
+                }
+                else {
+                    new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks, false)
+                }
+            }
+            if (lastBlock.getBoundingClientRect().top <= 500 && lastBlock.getBoundingClientRect().top >= -500 ) {
+                lastBlock.style.opacity = 1
+                blocks[3].style.opacity = 0
             }
             else {
-                new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks, false)
+                lastBlock.style.opacity = 0
+                
             }
-        }
-        if (lastBlock.getBoundingClientRect().top <= 300 && lastBlock.getBoundingClientRect().top >= -500 ) {
-            lastBlock.style.opacity = 1
-            blocks[3].style.opacity = 0
-        }
-        else {
-            lastBlock.style.opacity = 0
             
         }
-        
-    }
-})
+    })
+}
 
 // circle following mouse on move
 const cursorFollowed = () => {
@@ -320,20 +311,27 @@ const cursorFollowed = () => {
     }
     circle_loop()
 } 
-if( (navigator.userAgent.match(/Android/i)
-|| navigator.userAgent.match(/webOS/i)
-|| navigator.userAgent.match(/iPhone/i)
-|| navigator.userAgent.match(/iPod/i)
-|| navigator.userAgent.match(/BlackBerry/i)
-|| navigator.userAgent.match(/Windows Phone/i))
-&& isInFolio == false
-){
+if(sizes.width <= 768 && data == null){
     buttonContinue.remove()
     getScrolled()
+    const circle_cursor = document.querySelector('#circle'),
+    small_circle = document.querySelector('#smallCircle')
+    circle_cursor.remove()
+    small_circle.remove()
+}
+else if (sizes.width <= 768 && data !== null){
+    buttonContinue.remove()
+    const circle_cursor = document.querySelector('#circle'),
+    small_circle = document.querySelector('#smallCircle')
+    circle_cursor.remove()
+    small_circle.remove()
 }
 else {
     cursorFollowed()
-} 
+    // scrollParallax()
+}
+scrollParallax()
+
 
 // footer links
 

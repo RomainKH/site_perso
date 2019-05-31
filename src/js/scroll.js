@@ -35,10 +35,10 @@ export default class ScrollsElements
             }
             this.block.style.opacity = 1
             
-            this.titleBlock.style.transform = `translateX(-${Math.round(-this.fromTopElment / 1.6)}px)`
-            this.paraBlock.style.transform = `translateX(-${Math.round(-this.fromTopElment / 1.55)}px)`
-            this.imgsBlock[0].style.transform = `translateX(-${Math.round(-this.fromTopElment / 1.2)}px)`
-            this.imgsBlock[1].style.transform = `translateX(-${Math.round(-this.fromTopElment / 1.3)}px)`
+            this.titleBlock.style.transform = `translateX(-${Math.round(-this.fromTopElment / 1.7)}px)`
+            this.paraBlock.style.transform = `translateX(-${Math.round(-this.fromTopElment / 1.65)}px)`
+            this.imgsBlock[0].style.transform = `translateX(-${Math.round(-this.fromTopElment / 1.35)}px)`
+            this.imgsBlock[1].style.transform = `translateX(-${Math.round(-this.fromTopElment / 1.44)}px)`
             
         }
         else{
@@ -55,10 +55,10 @@ export default class ScrollsElements
             }
             this.block.style.opacity = 1
             
-            this.titleBlock.style.transform = `translateX(${Math.round(-this.fromTopElment / 1.6)}px)`
-            this.paraBlock.style.transform = `translateX(${Math.round(-this.fromTopElment / 1.55)}px)`
-            this.imgsBlock[0].style.transform = `translateX(${Math.round(-this.fromTopElment / 1.2)}px)`
-            this.imgsBlock[1].style.transform = `translateX(${Math.round(-this.fromTopElment / 1.3)}px)` 
+            this.titleBlock.style.transform = `translateX(${Math.round(-this.fromTopElment / 1.7)}px)`
+            this.paraBlock.style.transform = `translateX(${Math.round(-this.fromTopElment / 1.65)}px)`
+            this.imgsBlock[0].style.transform = `translateX(${Math.round(-this.fromTopElment / 1.35)}px)`
+            this.imgsBlock[1].style.transform = `translateX(${Math.round(-this.fromTopElment / 1.44)}px)` 
         }
         else{
             this.block.style.zIndex = 0
