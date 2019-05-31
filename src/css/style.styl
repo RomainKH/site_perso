@@ -418,6 +418,7 @@ footer > *
 
 footer a:visited
     color #3c3c3c
+    text-decoration none
 
 footer > *:hover
     transform translateY(-10%)
@@ -427,7 +428,7 @@ footer > *:hover
     width 40px
     height 40px
     background none
-    border 2px solid #1bbecd
+    border 2px solid #ae40e7
     border-radius 50%
     position absolute
     left 0px
@@ -442,7 +443,7 @@ footer > *:hover
     position absolute
     left 0px
     top 0px
-    color #1bbecd
+    color #ae40e7
     font-family 'Mukta-M', sans-serif
     font-size 3rem
     font-weight bold
@@ -456,7 +457,7 @@ footer > *:hover
     z-index 10
     width 9px
     height 9px
-    background #1bbecd
+    background #ae40e7
     border-radius 50%
     position absolute
     left 0px
@@ -479,6 +480,8 @@ footer > *:hover
   100% 
     border-radius 30%
     
+span.clickable
+    display none
 /*** RESPONSIVE ***/
 
 @media screen and (min-width 1280px) and (max-width 1440px)
@@ -598,6 +601,8 @@ footer > *:hover
 
     article .images a
         justify-content center
+        text-decoration none
+        color #3c3c3c
 
     article .images a img
         width 80%
@@ -610,7 +615,29 @@ footer > *:hover
         display none
 
     img.clickable
-        border solid 2px blue
+        animation clickIt 1.5s linear infinite
+        border solid 2px #ae40e7
+
+    @keyframes clickIt 
+        0%
+            border solid 2px #ae40e7
+        
+        50%
+            border solid 2px #fefcfa
+        
+        100%
+            border solid 2px #ae40e7
+
+    span.clickable
+        display block
+        position absolute
+        top 19%
+        border-radius 10px
+        background #fefcfa
+        padding 1.5% 4.5% 1.5% 4.5%
+        font-family 'Mukta-M', sans-serif
+        font-size 0.8rem
+        color #ae40e7
 
     .aboutMe
         position absolute

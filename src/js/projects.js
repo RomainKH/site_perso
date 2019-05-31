@@ -53,6 +53,7 @@ export default class Projects
         const title = document.createElement('h3')
         const text = document.createElement('p')
         const linkOut = document.createElement('a')
+        const spanText = document.createElement('span')
 
         linkOut.href = this.openOtherLink
         linkOut.target = '_blank'
@@ -61,15 +62,18 @@ export default class Projects
         text.innerHTML = this.text
         img1.src = this.firstLink
         img2.src = this.secondLink
+        spanText.innerHTML = 'Click Me'
         img1.classList.add('clickable')
         img2.classList.add('clickable')
         linkOut.classList.add('clickable')
+        spanText.classList.add('clickable')
 
         article.appendChild(title)
         article.appendChild(text)
         article.appendChild(content)
         article.appendChild(linkOut)
         linkOut.appendChild(img1)
+        linkOut.appendChild(spanText)
         linkOut.appendChild(img2)
 
         const main = document.querySelector('main')
