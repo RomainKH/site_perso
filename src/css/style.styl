@@ -9,7 +9,7 @@
     font-display swap
 
 ::selection
-    background #e7fcfa
+    background #ceedfd
 
 html
     height 100%
@@ -425,17 +425,17 @@ footer > *:hover
 
 #circle
     z-index 10
-    width 40px
-    height 40px
+    width 55px
+    height 55px
     background none
-    border 2px solid #ae40e7
+    border 2px solid #7e91ff
     border-radius 50%
     position absolute
     left 0px
     top 0px
     margin -10px 0 0 -10px
     pointer-events none
-    transition ease-out .11s
+    transition ease-out .05s
     will-change transform
 
 #clickme
@@ -443,45 +443,38 @@ footer > *:hover
     position absolute
     left 0px
     top 0px
-    color #ae40e7
+    color #7e91ff
     font-family 'Mukta-M', sans-serif
     font-size 3rem
     font-weight bold
     transition ease-out .26s
     opacity 0
     user-select none
-    cursor pointer
 
+article .center
+    text-align center
+    position relative
+    top 30%
+    height 170px
+    width 100%
+    display flex
+    align-items center
+    justify-content center
 
-#smallCircle
-    z-index 10
-    width 9px
-    height 9px
-    background #ae40e7
-    border-radius 50%
-    position absolute
-    left 0px
-    top 0px
-    margin -10px 0 0 -10px
-    transition ease-out .08s
-    pointer-events none
-    will-change transform
-
-.clickAnim
-    animation clickAnim 0.9s linear infinite
-
-@keyframes clickAnim 
-  0% 
-    border-radius 30%
-
-  50%
-    border-radius 50%
-
-  100% 
-    border-radius 30%
+.center a 
+  color #fefcfa
+  text-decoration none
+  background-color #3c3c3c
+  padding 20px 60px
+  border-radius 2px
+  font-weight 800
+  font-size 24px
+  font-family sans-serif
+  text-transform uppercase
+  text-rendering optimizeLegibility
+  -webkit-font-smoothing antialiased
+  display inline-block
     
-span.clickable
-    display none
 /*** RESPONSIVE ***/
 
 @media screen and (min-width 1280px) and (max-width 1440px)
@@ -513,6 +506,9 @@ span.clickable
     
     footer > *
         font-size 1.1rem
+
+    .center a
+        padding 20px 50px
     
 @media screen and (min-width 768px) and (max-width 1023px)
 
@@ -546,6 +542,13 @@ span.clickable
     footer > *
         font-size 1rem
 
+    .center a
+        padding 25px 15%
+        font-size 1.2rem
+    
+    article .center
+        height 140px   
+
 @media screen and (min-width 300px) and (max-width 767px)
 
     .scrolled
@@ -554,7 +557,7 @@ span.clickable
         transition 0s linear
     
     .aboutMeTex
-        left 47%
+        left 48%
         width 88%
 
     .aboutMeTex h4
@@ -562,7 +565,7 @@ span.clickable
 
     .aboutMeTex p
         font-size 1rem
-        width 80%
+        width 87%
         padding-left 7%
 
     article 
@@ -614,30 +617,15 @@ span.clickable
     #circle
         display none
 
-    img.clickable
-        animation clickIt 1.5s linear infinite
-        border solid 2px #ae40e7
-
     @keyframes clickIt 
         0%
-            border solid 2px #ae40e7
+            border solid 2px #7e91ff
         
         50%
             border solid 2px #fefcfa
         
         100%
-            border solid 2px #ae40e7
-
-    span.clickable
-        display block
-        position absolute
-        top 19%
-        border-radius 10px
-        background #fefcfa
-        padding 1.5% 4.5% 1.5% 4.5%
-        font-family 'Mukta-M', sans-serif
-        font-size 0.8rem
-        color #ae40e7
+            border solid 2px #7e91ff
 
     .aboutMe
         position absolute
@@ -668,7 +656,15 @@ span.clickable
 
         100% 
             transform translateY(100%)
+
+    .center a
+        width 100%
+        padding 6.5% 26%
+        font-size 1rem
+        box-shadow 1px 1px 17px 9px rgba(0 0 0 0.06)
     
+    article .center
+        height 100px
     
 @media screen and (max-width 300px)
 
