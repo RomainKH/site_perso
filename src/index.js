@@ -344,3 +344,13 @@ footerContact.addEventListener('click', () => {
 })
 
 
+
+// scroll indicator
+const scrollIndic = document.createElement('div')
+scrollIndic.classList.add('scrollIndicator')
+document.body.append(scrollIndic)
+window.addEventListener('scroll', () => {
+    let bar = window.scrollY/((document.body.getBoundingClientRect().height)/ 148)
+    bar > 100 ? bar = 100 : bar = window.scrollY/((document.body.getBoundingClientRect().height)/ 148)
+    scrollIndic.style.transform = `translateX(${bar}%)`
+})
