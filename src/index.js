@@ -350,7 +350,7 @@ const scrollIndic = document.createElement('div')
 scrollIndic.classList.add('scrollIndicator')
 document.body.append(scrollIndic)
 window.addEventListener('scroll', () => {
-    let bar = window.scrollY/((document.body.getBoundingClientRect().height)/ 148)
-    bar > 100 ? bar = 100 : bar = window.scrollY/((document.body.getBoundingClientRect().height)/ 148)
+    let bar = -document.body.getBoundingClientRect().top/((document.body.getBoundingClientRect().height)/ 147)
+    bar > 100 ? bar = 100 : bar = -document.body.getBoundingClientRect().top/((document.body.getBoundingClientRect().height)/ 147)
     scrollIndic.style.transform = `translateX(${bar}%)`
 })

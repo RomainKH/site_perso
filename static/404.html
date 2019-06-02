@@ -20,7 +20,7 @@
 <body>
     <style type="text/css">
         ::selection{
-            background: #e7fcfa;
+            background: #ceedfd;
         }
         body {
             width: 100vw;
@@ -71,10 +71,10 @@
         }
         #circle{
             z-index: 30;
-            width: 40px;
-            height: 40px;
+            width: 55px;
+            height: 55px;
             background: none;
-            border: 2px solid #6bcdff;
+            border: 2px solid #7e91ff;
             border-radius: 50%;
             position: absolute;
             left: 0px;
@@ -82,20 +82,6 @@
             margin: -10px 0 0 -10px;
             pointer-events: none;
             transition: ease-out .11s;
-            will-change: transform;
-        }
-        #smallCircle{
-            z-index: 30;
-            width: 9px;
-            height: 9px;
-            background: #6bcdff;
-            border-radius: 50%;
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            margin: -10px 0 0 -10px;
-            transition: ease-out .08s;
-            pointer-events: none;
             will-change: transform;
         }
         @media screen and (min-width: 320px) and (max-width: 768px) {
@@ -140,26 +126,19 @@
             cursor_circle.x = event.clientX 
             cursor_circle.y = event.clientY
         })
-        const circle_cursor = document.querySelector('#circle'),
-              small_circle = document.querySelector('#smallCircle')
-
+        const circle_cursor = document.querySelector('#circle')
         const circle_loop = () => {
 
             window.requestAnimationFrame(circle_loop)
-            circle_cursor.style.transform = `translate(${cursor_circle.x-19}px,${cursor_circle.y-19}px)`
-            small_circle.style.transform = `translate(${cursor_circle.x - 2}px,${cursor_circle.y - 1}px)`   
+            circle_cursor.style.transform = `translate(${cursor_circle.x-12}px,${cursor_circle.y-15}px)`
         }
         circle_loop()
     } 
-    if( navigator.userAgent.match(/Android/i)
-    || navigator.userAgent.match(/webOS/i)
-    || navigator.userAgent.match(/iPhone/i)
-    || navigator.userAgent.match(/iPod/i)
-    || navigator.userAgent.match(/BlackBerry/i)
-    || navigator.userAgent.match(/Windows Phone/i)
-    ){}
+    if( window.innerWidth >= 767){cursorFollowed()}
     else {
-        cursorFollowed()
+        
+        const circle_cursor = document.querySelector('#circle')
+        circle_cursor.remove()
     }
     </script>
 </body>
