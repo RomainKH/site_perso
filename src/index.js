@@ -264,23 +264,9 @@ const scrollParallax = () => {
         if (isInFolio == true) {
             const lastBlock = main.querySelector('article:last-child')
             const blocks = main.querySelectorAll('article')
-            for (let i = 0; i < blocks.length-1; i++) {
-                if (i < blocks.length && i%2 == 0) {
-                    new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks, true)
-                }
-                else {
-                    new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks, false)
-                }
+            for (let i = 0; i < blocks.length; i++) {
+                new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks)
             }
-            if (lastBlock.getBoundingClientRect().top <= 450 && lastBlock.getBoundingClientRect().top >= -500 ) {
-                lastBlock.style.opacity = 1
-                blocks[3].style.opacity = 0
-            }
-            else {
-                lastBlock.style.opacity = 0
-                
-            }
-            
         }
     })
 }
@@ -318,20 +304,24 @@ const cursorFollowed = () => {
     }
     circle_loop()
 } 
-if(sizes.width <= 767 && data == null){
+if(sizes.width < 1024 && data == null){
     buttonContinue.remove()
     getScrolled()
     const circle_cursor = document.querySelector('#circle'),
     textToClick = document.querySelector('#clickme')
     circle_cursor.remove()
     textToClick.remove()
+    scrollParallax()
+
 }
-else if (sizes.width <= 767 && data !== null){
+else if (sizes.width < 1024 && data !== null){
     buttonContinue.remove()
     const circle_cursor = document.querySelector('#circle'),
     textToClick = document.querySelector('#clickme')
     circle_cursor.remove()
     textToClick.remove()
+    scrollParallax()
+
 }
 else {
     cursorFollowed()

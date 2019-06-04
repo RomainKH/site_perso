@@ -314,22 +314,15 @@ article
     align-items flex-start
     width 50%
     height 105%
-    transition .3s linear
-    opacity 0
     margin 8% 0 4% 0
     will-change transform
 
-
-article:nth-child(1)
-    z-index 2
-    opacity 1
-    
 
 article h3
     font-family 'Mukta-M', sans-serif
     font-size 4rem
     margin 0
-    transition .1s linear
+    transition .15s linear
     will-change transform
 
 
@@ -337,7 +330,7 @@ article p
     margin-bottom 4.5%
     font-family 'Playfair-R', serif
     font-size 1rem
-    transition .1s linear
+    transition .15s linear
     will-change transform
 
 
@@ -349,22 +342,8 @@ article p
 article .images img
     width 42%
     height 42%
-    transition .1s linear
+    transition .15s linear
     will-change transform
-
-article .images a img
-    width 72%
-    height 100%
-    z-index -20
-    transition .1s linear
-    will-change transform
-
-article .images a
-    z-index 20
-    display flex
-    justify-content flex-end
-    text-decoration none
-    position relative
 
 
 .loadingAnim
@@ -460,6 +439,7 @@ article .center
     display flex
     align-items center
     justify-content center
+    transition .15s linear
 
 .center a 
   color #fefcfa
