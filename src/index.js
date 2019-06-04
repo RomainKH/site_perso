@@ -304,24 +304,39 @@ const cursorFollowed = () => {
     }
     circle_loop()
 } 
-if(sizes.width < 1024 && data == null){
-    buttonContinue.remove()
-    getScrolled()
-    const circle_cursor = document.querySelector('#circle'),
-    textToClick = document.querySelector('#clickme')
-    circle_cursor.remove()
-    textToClick.remove()
-    scrollParallax()
-
+if(data == null){
+    if (sizes.width < 768) {
+        buttonContinue.remove()
+        const circle_cursor = document.querySelector('#circle'),
+        textToClick = document.querySelector('#clickme')
+        circle_cursor.remove()
+        textToClick.remove()
+    }
+    else if(sizes.width < 1024 && sizes.width >= 768) {
+        buttonContinue.remove()
+        const circle_cursor = document.querySelector('#circle'),
+        textToClick = document.querySelector('#clickme')
+        circle_cursor.remove()
+        textToClick.remove()
+        scrollParallax()
+    }
 }
-else if (sizes.width < 1024 && data !== null){
-    buttonContinue.remove()
-    const circle_cursor = document.querySelector('#circle'),
-    textToClick = document.querySelector('#clickme')
-    circle_cursor.remove()
-    textToClick.remove()
-    scrollParallax()
-
+else if (data !== null){
+    if (sizes.width < 768) {
+        buttonContinue.remove()
+        const circle_cursor = document.querySelector('#circle'),
+        textToClick = document.querySelector('#clickme')
+        circle_cursor.remove()
+        textToClick.remove()
+    }
+    else if(sizes.width < 1024 && sizes.width >= 768) {
+        buttonContinue.remove()
+        const circle_cursor = document.querySelector('#circle'),
+        textToClick = document.querySelector('#clickme')
+        circle_cursor.remove()
+        textToClick.remove()
+        scrollParallax()
+    }
 }
 else {
     cursorFollowed()
