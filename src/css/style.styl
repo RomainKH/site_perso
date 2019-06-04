@@ -175,18 +175,52 @@ nav button:hover::before
     text-transform uppercase
     color #fefcfa
     margin 0
-    padding-bottom 10%
+    padding-bottom 4%
 
 .aboutMeTex p
-    top 20%
+    position relative
+    left 10%
     font-size 1.3rem
     font-family 'Mukta-M', sans-serif
     color #fefcfa
     margin 0
-    padding-left 15%
+    padding-bottom 10%
 
-.aboutMeTex img 
-    width 10%
+.aboutMeTex h5
+    font-size 6rem
+    font-family 'Playfair-R', serif
+    text-transform uppercase
+    color #fefcfa
+    margin 0
+    padding-bottom 4%
+
+.aboutMeTex a
+    position relative
+    font-size 1.5rem
+    font-family 'Mukta-M', sans-serif
+    color #fefcfa
+    text-decoration none
+    margin 0
+    left 10%
+    padding 0 1% 2% 0%
+    overflow hidden
+
+.aboutMeTex a::after
+    content ''
+    z-index 20
+    position absolute
+    width 33%
+    bottom 27%
+    left 0
+    transform translate(-105%,3%)
+    height 4px
+    background #fefcfa
+    transition 0.3s ease-out
+ 
+
+.aboutMeTex a:hover::after
+    transform translate(0%,3%)
+
 
 h1
     position relative
