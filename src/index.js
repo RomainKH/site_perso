@@ -321,6 +321,10 @@ if(data == null){
         textToClick.remove()
         scrollParallax()
     }
+    else {
+        cursorFollowed()
+        scrollParallax()
+    }
 }
 else if (data !== null){
     if (sizes.width < 768) {
@@ -338,10 +342,10 @@ else if (data !== null){
         textToClick.remove()
         scrollParallax()
     }
-}
-else {
-    cursorFollowed()
-    scrollParallax()
+    else {
+        cursorFollowed()
+        scrollParallax()
+    }
 }
 
 const footerContact = document.querySelector('footer button')
