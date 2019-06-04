@@ -311,6 +311,7 @@ if(data == null){
         textToClick = document.querySelector('#clickme')
         circle_cursor.remove()
         textToClick.remove()
+        getScrolled()    
     }
     else if(sizes.width < 1024 && sizes.width >= 768) {
         buttonContinue.remove()
