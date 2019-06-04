@@ -7,7 +7,8 @@ export default class ScrollsElements
         this.paraBlock = this.block.querySelector('p')
         this.imgsBlock = this.block.querySelectorAll('img')
         this.imgContainer = this.block.querySelector('.images')
-        this.button = this.block.querySelector('.center')
+        this.buttons = this.block.querySelectorAll('.center a')
+        this.buttonsContainer = this.block.querySelector('.center')
         this.startScroll = scrollStart
         this.endScroll = scrollEnd
         this.othersBlock = allOthers
@@ -17,6 +18,7 @@ export default class ScrollsElements
         else{
             this.fromTopElment = 0
         }
+
         this.scroll()
     }
 
@@ -32,9 +34,16 @@ export default class ScrollsElements
             this.paraBlock.style.transform = `translateY(-${Math.round(-this.fromTopElment / 1.4)}px)`
             this.imgsBlock[0].style.transform = `translateY(-${Math.round(-this.fromTopElment / 1.15)}px)`
             this.imgsBlock[1].style.transform = `translateY(-${Math.round(-this.fromTopElment / 1.24)}px)`
-            if (this.button != null) {
-                this.button.style.transform = `translateY(-${Math.round(-this.fromTopElment / 1.28)}px)`
+            if (this.buttons !== null && this.buttons.length > 1) {
+                this.buttons[0].style.transform = `translateY(-${Math.round(-this.fromTopElment / 2.88)}px)`
+                this.buttonsContainer.style.transform = `translateY(-${Math.round(-this.fromTopElment / 1.99)}px)`
+                this.buttons[1].style.transform = `translateY(-${Math.round(-this.fromTopElment / 2.6)}px)`
             }
+            else if (this.buttons.length > 0) {
+                this.buttons[0].style.transform = `translateY(-${Math.round(-this.fromTopElment / 2.88)}px)`
+                this.buttonsContainer.style.transform = `translateY(-${Math.round(-this.fromTopElment / 1.99)}px)`
+            }
+            else{}
             
         }
     }

@@ -1,13 +1,14 @@
 export default class Projects
 {
-    constructor(firstLink, secondLink, title, text, openOtherLink)
+    constructor(firstLink, secondLink, title, text, openOtherLink, githubLink)
     {
         this.firstLink = firstLink
         this.secondLink = secondLink
         this.text = text
         this.title = title
         this.openOtherLink = openOtherLink
-        if (openOtherLink != null) {
+        this.githubLink = githubLink
+        if (this.openOtherLink != null || this.githubLink != null) {
             this.createBlock2()
         }
         else{
@@ -52,6 +53,7 @@ export default class Projects
         const images = document.createElement('div')
         const aroundLink = document.createElement('div')
         const linkOut = document.createElement('a')
+        const linkGit = document.createElement('a')
 
         linkOut.href = this.openOtherLink
         linkOut.innerHTML = 'Go to site'
@@ -71,6 +73,13 @@ export default class Projects
         images.appendChild(img2)
         article.appendChild(aroundLink)
         aroundLink.appendChild(linkOut)
+        if (this.githubLink !=null) {
+            linkGit.href = this.githubLink
+            linkGit.innerHTML = 'Github'
+            linkGit.target = '_blank'
+            linkGit.classList.add('clickable')
+            aroundLink.appendChild(linkGit)
+        }
 
         const main = document.querySelector('main')
         main.appendChild(article)
