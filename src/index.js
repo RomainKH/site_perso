@@ -266,7 +266,6 @@ if (data !== null && isInFolio == false) {
 const scrollParallax = () => {
     window.addEventListener('scroll', () => {
         if (isInFolio == true) {
-            const lastBlock = main.querySelector('article:last-child')
             const blocks = main.querySelectorAll('article')
             for (let i = 0; i < blocks.length; i++) {
                 new ScrollsElements(blocks[i], blocks[i].offsetTop , blocks[i].offsetTop+blocks[i].clientHeight, blocks)
@@ -308,6 +307,8 @@ const cursorFollowed = () => {
     }
     circle_loop()
 } 
+
+// does it need to scroll auto on home & features available or not in resp
 if(data == null){
     if (sizes.width < 768) {
         buttonContinue.remove()
@@ -363,8 +364,9 @@ footerContact.addEventListener('click', () => {
 const scrollIndic = document.createElement('div')
 scrollIndic.classList.add('scrollIndicator')
 document.body.append(scrollIndic)
+scrollIndic.style.transition = `0.29s ease-out`
 window.addEventListener('scroll', () => {
-    let bar = -document.body.getBoundingClientRect().top/((document.body.getBoundingClientRect().height)/ 147)
-    bar > 100 ? bar = 100 : bar = -document.body.getBoundingClientRect().top/((document.body.getBoundingClientRect().height)/ 147)
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+    let bar = Math.round((document.documentElement.scrollTop / height) * 100) +1
     scrollIndic.style.transform = `translateX(${bar}%)`
 })

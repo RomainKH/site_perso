@@ -56,7 +56,7 @@ export default class Projects
         const linkGit = document.createElement('a')
 
         linkOut.href = this.openOtherLink
-        linkOut.innerHTML = 'Go to site'
+        linkOut.innerHTML = 'site'
         linkOut.target = '_blank'
         images.classList.add('images')
         title.innerHTML = this.title
@@ -68,9 +68,6 @@ export default class Projects
 
         article.appendChild(title)
         article.appendChild(text)
-        article.appendChild(images)
-        images.appendChild(img1)
-        images.appendChild(img2)
         article.appendChild(aroundLink)
         aroundLink.appendChild(linkOut)
         if (this.githubLink !=null) {
@@ -80,6 +77,9 @@ export default class Projects
             linkGit.classList.add('clickable')
             aroundLink.appendChild(linkGit)
         }
+        article.appendChild(images)
+        images.appendChild(img1)
+        images.appendChild(img2)
 
         const main = document.querySelector('main')
         main.appendChild(article)

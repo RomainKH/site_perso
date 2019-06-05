@@ -9,7 +9,7 @@
     font-display swap
 
 ::selection
-    background #ceedfd
+    background #a0d5fe
 
 html
     height 100%
@@ -126,13 +126,13 @@ nav button:hover::before
     transition 0.6s cubic-bezier(0.53, 0.18, 0.96, 1.21)
 
 .changeColor
-    animation changeButton 1s ease-in 1 normal forwards
+    animation changeButton 1.8s ease-in 1 normal forwards
 
 @keyframes changeButton
     0%
         opacity 0
         color #fefcfa  
-    50%
+    70%
         opacity 0
         color #3c3c3c
 
@@ -141,7 +141,7 @@ nav button:hover::before
         color #fefcfa
 
 .changeColorReverse
-    animation changeButtonR 1.2s ease-in 1 normal forwards
+    animation changeButtonR 1.3s ease-in 1 normal forwards
 
 @keyframes changeButtonR
     0%
@@ -157,69 +157,69 @@ nav button:hover::before
 
 .aboutMeTex
     height 100%
-    width 45%
+    width 60%
     position absolute
     transform translate(-50%, 50%)
     top 50%
     left 50%
-    padding-left 1%
     z-index 2
     display none
     flex-direction column
     justify-content center
     align-items flex-start
 
-.aboutMeTex h4
-    font-size 6rem
+.aboutMeTex h4, .aboutMeTex h5
+    font-size 3.8rem
     font-family 'Playfair-R', serif
     text-transform uppercase
     color #fefcfa
     margin 0
-    padding-bottom 4%
+    padding-bottom 1.5%
 
 .aboutMeTex p
     position relative
     left 10%
+    width 80%
+    font-size 1.25rem
+    font-family 'Mukta-M', sans-serif
+    color #fefcfa
+    margin 0
+    padding-bottom 2%
+
+.aboutMeTex p > a
     font-size 1.3rem
     font-family 'Mukta-M', sans-serif
     color #fefcfa
-    margin 0
-    padding-bottom 10%
 
-.aboutMeTex h5
-    font-size 6rem
-    font-family 'Playfair-R', serif
-    text-transform uppercase
-    color #fefcfa
-    margin 0
-    padding-bottom 4%
-
-.aboutMeTex a
+.aboutMeTex > a
     position relative
-    font-size 1.5rem
+    font-size 1.35rem
     font-family 'Mukta-M', sans-serif
     color #fefcfa
     text-decoration none
-    margin 0
+    padding 0 0.5% 0 0
+    margin 0 0 1.5% 0
     left 10%
-    padding 0 1% 2% 0%
     overflow hidden
 
-.aboutMeTex a::after
+.aboutMeTex > a:last-child
+    margin 0 0 4.5% 0
+
+.aboutMeTex > a::after
     content ''
     z-index 20
     position absolute
-    width 33%
-    bottom 27%
+    width 100%
+    bottom 0%
     left 0
-    transform translate(-105%,3%)
-    height 4px
+    transform translateX(-105%)
+    height 2px
     background #fefcfa
-    transition 0.3s ease-out
+    transition 0.3s linear
  
 
 .aboutMeTex a:hover::after
-    transform translate(0%,3%)
+    transform translateX(60%)
 
 
 h1
@@ -361,7 +361,7 @@ article h3
 
 
 article p
-    margin-bottom 4.5%
+    margin 0 0 4.5% 0
     font-family 'Playfair-R', serif
     font-size 1rem
     transition .15s linear
@@ -468,22 +468,23 @@ article .center
     text-align center
     position relative
     top 30%
-    height 170px
+    height 100px
     width 100%
     display flex
-    align-items center
-    justify-content space-between
+    align-items flex-start
+    justify-content flex-start
     transition .15s linear
 
 .center a 
     color #fefcfa
     text-decoration none
     background-color #3C3C3C
-    padding 2.5% 11%
-    border-radius 2px
+    padding 1.3% 5.3%
+    font-family 'Mukta-M', sans-serif
     font-weight 800
-    font-size 24px
-    font-family sans-serif
+    border-radius 2px
+    font-size 1.15rem
+    margin 0 7% 0 0
     text-transform uppercase
     text-rendering optimizeLegibility
     -webkit-font-smoothing antialiased
@@ -495,7 +496,7 @@ article .center
     width 100vw
     height 2px
     position fixed
-    left -100%
+    left -102%
     top 0   
     background #3c3c3c
 
@@ -507,12 +508,21 @@ article .center
         font-size 3rem
 
 @media screen and (min-width 1024px) and (max-width 1280px)
-
-    .aboutMeTex h4
-        font-size 4rem
+    
+    .aboutMeTex h4, .aboutMeTex h5
+        font-size 2.8rem
+        padding-top 2%
 
     .aboutMeTex p
-        font-size 1rem
+        font-size 0.95rem
+
+    .aboutMeTex p > a
+        padding 0
+
+
+    .aboutMeTex a
+        padding 2% 1% 2% 0
+        font-size 1.1rem
 
     article h3
         font-size 2rem
@@ -532,20 +542,31 @@ article .center
         font-size 1.1rem
 
     .center a
-        padding 2.5% 9.5%
-        font-size 1.1rem
+        padding 1.5% 5%
+        font-size 0.9rem
+    
+    article .center
+        height 75px
     
 @media screen and (min-width 768px) and (max-width 1023px)
 
     .aboutMeTex
         left 47%
 
-    .aboutMeTex h4
-        font-size 3.5rem
+    .aboutMeTex h4, .aboutMeTex h5
+        font-size 2.8rem
+        padding 2% 0 4% 0
 
     .aboutMeTex p
-        font-size 1.2rem
+        font-size 0.95rem
         width 100%
+
+    .aboutMeTex p > a
+        padding 0
+
+    .aboutMeTex a
+        padding 2% 1% 2% 0
+        font-size 1.1rem
 
     article 
         width 80%
@@ -568,12 +589,13 @@ article .center
         font-size 1rem
 
     .center a
-        padding 3% 11%
+        padding 2% 8%
         font-size 1.1rem
-        margin-top 7%
     
     article .center
         height 100%  
+        justify-content flex-start
+        margin-bottom 4.5%
 
 @media screen and (min-width 300px) and (max-width 767px)
 
@@ -583,16 +605,20 @@ article .center
         transition 0s linear
     
     .aboutMeTex
-        left 48%
+        left 49%
         width 88%
 
-    .aboutMeTex h4
-        font-size 3.1rem
+    .aboutMeTex h4, .aboutMeTex h5
+        font-size 1.8rem
+        padding-bottom 6%
 
     .aboutMeTex p
-        font-size 1rem
+        font-size 0.8rem
         width 87%
-        padding-left 7%
+        padding-bottom 5%
+
+    .aboutMeTex > a
+        margin 0 0 4% 0
 
     article 
         width 80%
@@ -604,7 +630,7 @@ article .center
     
     article p
         font-size 0.8rem
-        margin-bottom 8%
+        margin-bottom 7%
     
     footer
         bottom 0
@@ -626,16 +652,7 @@ article .center
     article .images img
         width 80%
         height auto
-        margin-bottom 5%
-
-    article .images a
-        justify-content center
-        text-decoration none
-        color #3c3c3c
-
-    article .images a img
-        width 80%
-        height 80%
+        margin-bottom 8%
 
     #smallCircle
         display none
@@ -685,15 +702,20 @@ article .center
 
     .center a
         width 60%
-        padding 6% 22%
+        padding 6% 15%
         font-size 1rem
         box-shadow 1px 1px 17px 9px rgba(0 0 0 0.06)
-        margin-top 10%
-    
+        margin 10% 0 0 0
+
+    .center a:first-child
+        margin 0
+
     article .center
+        margin-bottom 8%
         height 100%
         flex-direction column 
         justify-content space-between
+        align-items center
     
 @media screen and (max-width 300px)
 

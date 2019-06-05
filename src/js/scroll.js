@@ -12,7 +12,7 @@ export default class ScrollsElements
         this.startScroll = scrollStart
         this.endScroll = scrollEnd
         this.othersBlock = allOthers
-        if (this.block.getBoundingClientRect().top < 10) {
+        if (this.block.getBoundingClientRect().top < -5) {
             this.fromTopElment = this.block.getBoundingClientRect().top
         }
         else{
