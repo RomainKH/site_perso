@@ -69,22 +69,73 @@ scene.add(camera)
 /**
  * Object 3D
  */
+const allcubes = new THREE.Object3D
+for (let i = 0; i <= 12; i+=3) {
+    for (let j = 0; j <= 12; j+=3) {
+        const cube = new THREE.Mesh(
+            new THREE.CubeGeometry(2, 2),
+            new THREE.MeshBasicMaterial( {color: 0xffffff} )
+        )
+        cube.position.x = i
+        cube.position.y = j   
+        allcubes.add(cube)  
+    }
+}
+allcubes.position.y = -5
+allcubes.position.x = 1
+//scene.add(allcubes)
 
-const sphere = new THREE.Mesh(
-    new THREE.SphereGeometry(2, 13, 5),
-    new THREE.MeshStandardMaterial( {color: 0xffffff,metalness: 0.3, roughness: 0.8, wireframe:true} )
-)
-scene.add(sphere)
 
-const cube = new THREE.Mesh(
-    new THREE.BoxGeometry(3, 3, 3),
-    new THREE.MeshStandardMaterial({ color: 0xffffff,metalness: 0.3, roughness: 0.8, wireframe:true})
-)
-scene.add(cube)
+/**
+ * Over Raycasting function
+ */
+let lastObject = new Array()
+let lastObjectPos = {x: null, y:null}
+let onOffClick = false
+let over3D = () => {
+    let raycaster = new THREE.Raycaster()
+    // update the picking ray with the camera and mouse position
+    raycaster.setFromCamera( cursor, camera )
+    // calculate objects intersecting the picking ray
+    let intersects = raycaster.intersectObjects( allcubes.children )
+    if(intersects.length > 0){
+        lastObject.push(intersects[0].object)
+        intersects[0].object.material.color.set(0xff0000)
+        lastObjectPos.y = intersects[0].object.position.y
+        lastObjectPos.x = intersects[0].object.position.x
+        document.body.style.cursor = 'pointer'
+    }
+    else if(lastObject[0] == null){}
+    else{
+        lastObject[0].material.color.set(0x000000)
+        lastObject.splice(0,lastObject.length)
+        lastObjectPos.y = null
+        lastObjectPos.x = null
+        document.body.style.cursor = 'default'
+    }
+    for (let i = 0; i < lastObject.length; i++) {
+        if(lastObject[0] == null){}
+        else if(lastObject[0] != intersects[0].object){
+            lastObject[0].material.color.set(0x000000)
+            lastObject.splice(0,1)
+            lastObjectPos.y = null
+            lastObjectPos.x = null
+            document.body.style.cursor = 'default'
+        }
+    }
+    if(intersects.length <= 0){
+        for (let i = 0; i < allcubes.children.length; i++){
+            allcubes.children[i].material.color.set(0x000000)
+            lastObjectPos.y = null
+            lastObjectPos.x = null
+            document.body.style.cursor = 'default'
+        }
+    }
+    if(lastObject.length > 1){
+        lastObject.splice(2, lastObject.length)
+    }
+}
 
-const sunLight = new THREE.DirectionalLight(0xffcccc, 1.2)
-
-scene.add(sunLight)
 /**
  * Renderer
  */
@@ -98,24 +149,13 @@ renderer.domElement.classList.add('three')
  */
 const render = () =>
 {
+    //over3D()
     window.requestAnimationFrame(render)
     // Update camera
-    sphere.position.x =  13 - cursor.x * 0.2
-    sphere.position.y = cursor.y * 0.1
-    sphere.rotation.x += 0.002
-    sphere.rotation.y += 0.002
-
-    cube.position.x = - cursor.x * 0.1 - 13
-    cube.position.y = cursor.y * 0.2
-    cube.rotation.x -= 0.002
-    cube.rotation.y -= 0.002
 
     camera.lookAt(scene.position)     
     // Render
     renderer.render( scene, camera )
-    sunLight.position.x -= 0.01
-    sunLight.position.y += 0.01
-    sunLight.position.z -= 0.01  
 }
 render()
 
@@ -135,14 +175,13 @@ const getScrolled = () => {
     }, 700)
     const lilLoop = () => {
         window.requestAnimationFrame(lilLoop)
-        sphere.position.z -= 0.25
-        cube.position.z -= 0.25
     }
     lilLoop()
     isInFolio = true
     sessionStorage.setItem('wasOnHome', true)
 
 }
+
 
 let isInFolio = false
 
@@ -276,7 +315,7 @@ const scrollParallax = () => {
 
 // circle following mouse on move
 const cursorFollowed = () => {
-    const cursor_circle = {x:20, y:20}
+    const cursor_circle = {x:-200, y:-200}
     let underCursor
     window.addEventListener('mousemove', (event) =>
     {
