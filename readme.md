@@ -21,7 +21,7 @@ Welcome to Romain Khanoyan's Portfolio, it is made with native HTML/CSS/JS and u
 ## Authors
 
 *coded by Romain Khanoyan
-
+*******************
 designed by Paul Mercié*
 
 
