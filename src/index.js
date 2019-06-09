@@ -27,11 +27,11 @@ import img404_2 from './images/image404_2.png';
  */
 const sizes = {}
 sizes.width = window.innerWidth
-sizes.height = window.innerHeight - 50
+sizes.height = window.innerHeight
 window.addEventListener('resize', () => {
     //Update sizes
     sizes.width = window.innerWidth
-    sizes.height = window.innerHeight - 50
+    sizes.height = window.innerHeight
     //update camera
     camera.aspect = sizes.width / sizes.height
     camera.updateProjectionMatrix()
@@ -58,83 +58,52 @@ const scene = new THREE.Scene()
 scene.background = new THREE.Color( 0xfefcfa )
 
 /**
+ * Fog
+ */
+
+let fogColor = new THREE.Color(0xfefcfa)
+scene.background = fogColor
+scene.fog = new THREE.Fog(fogColor, 70, 220)
+
+
+/**
  * Camera
  */
 
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
-camera.position.z = -15
+camera.position.z = -40
+camera.position.y = -120
+camera.position.x = 0
+
 
 
 scene.add(camera)
 /**
  * Object 3D
  */
-const allcubes = new THREE.Object3D
-for (let i = 0; i <= 12; i+=3) {
-    for (let j = 0; j <= 12; j+=3) {
-        const cube = new THREE.Mesh(
-            new THREE.CubeGeometry(2, 2),
-            new THREE.MeshBasicMaterial( {color: 0xffffff} )
-        )
-        cube.position.x = i
-        cube.position.y = j   
-        allcubes.add(cube)  
-    }
-}
-allcubes.position.y = -5
-allcubes.position.x = 1
-//scene.add(allcubes)
+const generateMap = (pos) => {
+  let scl = 20,
+      cols = 620 / scl,
+      rows = 1200 / scl
 
-
-/**
- * Over Raycasting function
- */
-let lastObject = new Array()
-let lastObjectPos = {x: null, y:null}
-let onOffClick = false
-let over3D = () => {
-    let raycaster = new THREE.Raycaster()
-    // update the picking ray with the camera and mouse position
-    raycaster.setFromCamera( cursor, camera )
-    // calculate objects intersecting the picking ray
-    let intersects = raycaster.intersectObjects( allcubes.children )
-    if(intersects.length > 0){
-        lastObject.push(intersects[0].object)
-        intersects[0].object.material.color.set(0xff0000)
-        lastObjectPos.y = intersects[0].object.position.y
-        lastObjectPos.x = intersects[0].object.position.x
-        document.body.style.cursor = 'pointer'
-    }
-    else if(lastObject[0] == null){}
-    else{
-        lastObject[0].material.color.set(0x000000)
-        lastObject.splice(0,lastObject.length)
-        lastObjectPos.y = null
-        lastObjectPos.x = null
-        document.body.style.cursor = 'default'
-    }
-    for (let i = 0; i < lastObject.length; i++) {
-        if(lastObject[0] == null){}
-        else if(lastObject[0] != intersects[0].object){
-            lastObject[0].material.color.set(0x000000)
-            lastObject.splice(0,1)
-            lastObjectPos.y = null
-            lastObjectPos.x = null
-            document.body.style.cursor = 'default'
+  const map = new THREE.Object3D
+  let material = new THREE.MeshBasicMaterial( {color: 0xC0C0CF, wireframe:true} )
+  let vertices
+  let geometry
+  for (let y = 0; y <= rows; y++) { 
+      for (let x = 0; x <= cols; x++) {
+          geometry = new THREE.PlaneGeometry(x*scl, y*scl, scl, scl, 10, 100)
         }
     }
-    if(intersects.length <= 0){
-        for (let i = 0; i < allcubes.children.length; i++){
-            allcubes.children[i].material.color.set(0x000000)
-            lastObjectPos.y = null
-            lastObjectPos.x = null
-            document.body.style.cursor = 'default'
-        }
-    }
-    if(lastObject.length > 1){
-        lastObject.splice(2, lastObject.length)
-    }
+    vertices = new THREE.Mesh(geometry,material)
+    map.add(vertices)
+    map.rotation.x = (3)
+    map.position.y = pos
+    map.position.x = 0
+    map.position.z = 0
+    scene.add(map)
 }
+generateMap(-2)
 
 /**
  * Renderer
@@ -144,16 +113,45 @@ renderer.setSize(sizes.width, sizes.height)
 document.body.appendChild(renderer.domElement)
 renderer.domElement.classList.add('three')
 
+
+
+/**
+ * Vertices Wavy
+ */
+
+for (let i = 0; i < scene.children[1].children[0].geometry.vertices.length; i++) {
+  scene.children[1].children[0].geometry.vertices[i].z = Math.round(Math.random()*46)
+}
+
 /**
  * Loop Render
  */
+let notReturn = true
 const render = () =>
 {
-    //over3D()
+    if (scene.children[1].children[0].position.y <= 570 && notReturn == true) {
+        scene.children[1].children[0].position.y += 0.38
+    }
+    else if (scene.children[1].children[0].position.y <= 600 && scene.children[1].children[0].position.y >= -10) {
+        renderer.domElement.style.transition = '0.03s ease-in'
+        renderer.domElement.style.opacity = 0
+        notReturn = false
+        scene.children[1].children[0].position.y -= 15
+    }
+    else {
+        for (let i = 0; i < scene.children[1].children[0].geometry.vertices.length; i++) {
+            scene.children[1].children[0].geometry.vertices[i].z = Math.floor(Math.random()*46)
+            scene.children[1].children[0].geometry.verticesNeedUpdate = true
+        }
+        renderer.domElement.style.transition = '0.15s linear'
+        renderer.domElement.style.opacity = 1
+        notReturn = true
+    }
+
     window.requestAnimationFrame(render)
     // Update camera
 
-    camera.lookAt(scene.position)     
+    camera.lookAt(new THREE.Vector3(0, 0, 0))
     // Render
     renderer.render( scene, camera )
 }
@@ -172,9 +170,13 @@ const getScrolled = () => {
         canvasToDelete.remove()
         buttonContinue.remove()
 
-    }, 700)
+    }, 900)
+    let fade = 1
     const lilLoop = () => {
         window.requestAnimationFrame(lilLoop)
+        fade -= 0.03
+        canvasToDelete.style.opacity = fade
+        scene.children[1].children[0].position.y += 0.9
     }
     lilLoop()
     isInFolio = true
@@ -335,7 +337,7 @@ const cursorFollowed = () => {
     const circle_loop = () => {
 
         window.requestAnimationFrame(circle_loop)
-        circle_cursor.style.transform = `translate(${cursor_circle.x-12}px,${cursor_circle.y-15}px)`
+        circle_cursor.style.transform = `translate(${cursor_circle.x-13}px,${cursor_circle.y-17}px)`
         textToClick.style.transform =  `translate(${cursor_circle.x - 95}px,${cursor_circle.y - 105}px)`
         if (underCursor != null && underCursor.classList.contains('clickable')) {
             textToClick.style.opacity = 1
