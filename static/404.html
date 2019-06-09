@@ -81,7 +81,7 @@
             top: 0px;
             margin: -10px 0 0 -10px;
             pointer-events: none;
-            transition: ease-out .11s;
+            transition: ease-out .15s;
             will-change: transform;
         }
         @media screen and (min-width: 320px) and (max-width: 768px) {
@@ -121,8 +121,6 @@
         const cursor_circle = {x:20, y:20}
         window.addEventListener('mousemove', (event) =>
         {
-            //let underCursor = document.elementFromPoint(event.clientX,event.clientY)
-
             cursor_circle.x = event.clientX 
             cursor_circle.y = event.clientY
         })
@@ -130,7 +128,7 @@
         const circle_loop = () => {
 
             window.requestAnimationFrame(circle_loop)
-            circle_cursor.style.transform = `translate(${cursor_circle.x-12}px,${cursor_circle.y-15}px)`
+            circle_cursor.style.transform = `translate(${cursor_circle.x-28}px,${cursor_circle.y-26}px)`
         }
         circle_loop()
     } 

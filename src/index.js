@@ -76,7 +76,6 @@ camera.position.y = -120
 camera.position.x = 0
 
 
-
 scene.add(camera)
 /**
  * Object 3D
@@ -112,8 +111,6 @@ const renderer = new THREE.WebGLRenderer()
 renderer.setSize(sizes.width, sizes.height)
 document.body.appendChild(renderer.domElement)
 renderer.domElement.classList.add('three')
-
-
 
 /**
  * Vertices Wavy
@@ -294,14 +291,6 @@ aboutMeButton.addEventListener('click', () => {
 })
 
 /**
- * check if comeback from 404
- */
-let data = sessionStorage.getItem('wasOnHome')
-if (data !== null && isInFolio == false) {
-    getScrolled()    
-}
-
-/**
  * Scroll parallax
  */
 const scrollParallax = () => {
@@ -350,48 +339,25 @@ const cursorFollowed = () => {
 } 
 
 // does it need to scroll auto on home & features available or not in resp
-if(data == null){
-    if (sizes.width < 768) {
-        buttonContinue.remove()
-        const circle_cursor = document.querySelector('#circle'),
-        textToClick = document.querySelector('#clickme')
-        circle_cursor.remove()
-        textToClick.remove()
-        getScrolled()    
-    }
-    else if(sizes.width < 1024 && sizes.width >= 768) {
-        buttonContinue.remove()
-        const circle_cursor = document.querySelector('#circle'),
-        textToClick = document.querySelector('#clickme')
-        circle_cursor.remove()
-        textToClick.remove()
-        scrollParallax()
-    }
-    else {
-        cursorFollowed()
-        scrollParallax()
-    }
+if (sizes.width < 768) {
+    buttonContinue.remove()
+    const circle_cursor = document.querySelector('#circle'),
+    textToClick = document.querySelector('#clickme')
+    circle_cursor.remove()
+    textToClick.remove()
+    getScrolled()    
 }
-else if (data !== null){
-    if (sizes.width < 768) {
-        buttonContinue.remove()
-        const circle_cursor = document.querySelector('#circle'),
-        textToClick = document.querySelector('#clickme')
-        circle_cursor.remove()
-        textToClick.remove()
-    }
-    else if(sizes.width < 1024 && sizes.width >= 768) {
-        buttonContinue.remove()
-        const circle_cursor = document.querySelector('#circle'),
-        textToClick = document.querySelector('#clickme')
-        circle_cursor.remove()
-        textToClick.remove()
-        scrollParallax()
-    }
-    else {
-        cursorFollowed()
-        scrollParallax()
-    }
+else if(sizes.width < 1024 && sizes.width >= 768) {
+    buttonContinue.remove()
+    const circle_cursor = document.querySelector('#circle'),
+    textToClick = document.querySelector('#clickme')
+    circle_cursor.remove()
+    textToClick.remove()
+    scrollParallax()
+}
+else {
+    cursorFollowed()
+    scrollParallax()
 }
 
 const footerContact = document.querySelector('footer button')
