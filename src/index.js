@@ -340,15 +340,12 @@ const cursorFollowed = () => {
 
 // does it need to scroll auto on home & features available or not in resp
 if (sizes.width < 768) {
-    buttonContinue.remove()
     const circle_cursor = document.querySelector('#circle'),
     textToClick = document.querySelector('#clickme')
     circle_cursor.remove()
     textToClick.remove()
-    getScrolled()    
 }
 else if(sizes.width < 1024 && sizes.width >= 768) {
-    buttonContinue.remove()
     const circle_cursor = document.querySelector('#circle'),
     textToClick = document.querySelector('#clickme')
     circle_cursor.remove()
@@ -374,6 +371,6 @@ document.body.append(scrollIndic)
 scrollIndic.style.transition = `0.29s ease-out`
 window.addEventListener('scroll', () => {
     let height = document.documentElement.scrollHeight - document.documentElement.clientHeight
-    let bar = Math.round((document.documentElement.scrollTop / height) * 100) +1
+    let bar = Math.round((document.documentElement.scrollTop / height) * 100) +2
     scrollIndic.style.transform = `translateX(${bar}%)`
 })

@@ -17,7 +17,6 @@ export default class Loading
         animLoading.classList.add('loadingAnim')
         document.body.appendChild(animLoading)
         setTimeout(function(){animLoading.style.opacity = 1}, 800)
-
         this.el.addEventListener('load', () => {            
             setTimeout(function(){
                 main.style.display = 'flex'
@@ -72,10 +71,4 @@ export default class Loading
             }, 1290)
         })
     }
-
-    buttonSite()
-    {
-        
-    }
-
 }

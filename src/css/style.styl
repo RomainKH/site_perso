@@ -11,9 +11,6 @@
 ::selection
     background #a0d5fe
 
-html
-    height 100%
-
 body
     margin 0 auto
     overflow-x hidden
@@ -245,7 +242,6 @@ h1
 .scrolled
     transform translate(0%, -30%) scale(0.4)
     transition 1.3s linear
-    
 
 .continueTo
     z-index 1
@@ -599,10 +595,12 @@ article .center
 
 @media screen and (min-width 300px) and (max-width 767px)
 
+    main
+        bottom 50px
+
     .scrolled
         transform translate(-25%, -43%) scale(0.4)
-        text-align left
-        transition 0s linear
+        transition 0.6s ease-in
     
     .aboutMeTex
         left 49%
@@ -634,7 +632,8 @@ article .center
     
     footer
         bottom 0
-        padding 5% 0% 2.5% 0%
+        padding 0% 0% 2.5% 0%
+        margin-bottom 2%
         flex-direction row
         justify-content space-around
         align-items center
@@ -680,10 +679,10 @@ article .center
         will-change transform
 
     .goWide
-        animation leftResp 0.4s ease-in 1 normal forwards
+        animation leftResp 0.5s ease-in 1 normal forwards
 
     .goWideR
-        animation leftReverseResp 0.4s ease-in 1 reverse both
+        animation leftReverseResp 0.5s ease-in 1 reverse both
 
     @keyframes leftResp
         0%
