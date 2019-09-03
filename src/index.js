@@ -152,7 +152,18 @@ const render = () =>
     // Render
     renderer.render( scene, camera )
 }
-render()
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const three = document.querySelector('.three')
+        three.style.opacity = 0
+        three.style.zIndex = 0
+        three.style.transition = '.3s ease'
+        render()
+        setTimeout(() => {
+            three.style.opacity = 1
+        }, 500)
+    }, 1000)
+})
 
 /**
  * Scroll + Click > Continue to portfolio
