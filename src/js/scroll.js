@@ -3,7 +3,7 @@ export default class ScrollsElements
     constructor(block, scrollStart, scrollEnd, allOthers)
     {
         this.block = block
-        this.titleBlock = this.block.querySelector('h3')
+        this.titleBlock = this.block.querySelector('h2')
         this.paraBlock = this.block.querySelector('p')
         this.imgsBlock = this.block.querySelectorAll('img')
         this.imgContainer = this.block.querySelector('.images')
