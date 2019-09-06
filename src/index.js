@@ -271,7 +271,7 @@ const createArticles = () => {
  * Click > About Me
  */
 
-const aboutMeButton = document.querySelector('nav > button'),
+const aboutMeButton = document.querySelector('nav > a'),
 aboutMeInfos = document.querySelector('.aboutMe'),
 aboutBg = document.querySelector('.aboutMeBg'),
 aboutMeText = document.querySelector('.aboutMeTex')
@@ -284,6 +284,7 @@ aboutMeButton.addEventListener('click', () => {
     setTimeout(function(){ document.body.style.overflowY = 'hidden' }, 200)
     if (aboutMeButton.classList.contains('changeColor') == true) {
         aboutMeButton.innerHTML = 'close'
+        aboutMeButton.href = "#open"
         aboutMeButton.classList.remove('changeColorReverse')
         aboutBg.classList.remove('goWideR')
         aboutMeText.classList.remove('changeColorReverse')
@@ -295,6 +296,7 @@ aboutMeButton.addEventListener('click', () => {
         aboutMeButton.classList.add('changeColorReverse')
         aboutMeText.classList.add('changeColorReverse')
         aboutBg.classList.add('goWideR')
+        aboutMeButton.href = "#"
         aboutMeText.style.display = 'none'
 
         setTimeout(function(){ document.body.style.overflowY = 'scroll' }, 600)
