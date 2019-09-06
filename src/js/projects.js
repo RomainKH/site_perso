@@ -22,7 +22,7 @@ export default class Projects
         const img2 = document.createElement('img')
         const images = document.createElement('div')
         const article = document.createElement('article')
-        const title = document.createElement('h3')
+        const title = document.createElement('h2')
         const text = document.createElement('p')
 
         images.classList.add('images')
@@ -48,7 +48,7 @@ export default class Projects
         const img1 = document.createElement('img')
         const img2 = document.createElement('img')
         const article = document.createElement('article')
-        const title = document.createElement('h3')
+        const title = document.createElement('h2')
         const text = document.createElement('p')
         const images = document.createElement('div')
         const aroundLink = document.createElement('div')
