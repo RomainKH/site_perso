@@ -1,1 +1,5 @@
 User-agent: *
+Disallow: /blotter.min.js
+Disallow: /index.css
+Disallow: /liquidDistortMaterial.js
+Disallow: /vanta.net.min.js
